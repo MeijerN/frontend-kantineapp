@@ -1,0 +1,71 @@
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+    4. Areas
+        4.1 Sort button
+        4.2 Add task button
+////////////////////////*/
+/* ------------------------------- 1. Global Styles -------------------------------- */
+
+/*!* ------------------------------- 2. Typography ----------------------------------- *!*/
+
+/*!* ------------------------------- 3. Layout ----------------------------------- *!*/
+
+/*!* ------------------------------- 4. Areas ---------------------------------------- *!*/
+
+/*!* --------------- 4.1 Sort button ------------------------- *!*/
+
+.sort {
+    margin: 0 0 5px 0;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+}
+
+.sort::after {
+    content: url(../../assets/sort_icon.svg);
+    margin-left: 5px;
+}
+
+/*!* --------------- 4.2 Add button ------------------------- *!*/
+
+.add-button {
+    background-color: hsl(0, 100%, 50%);
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid red;
+    box-shadow: 0 4px 15px #360101;
+
+    position: absolute;
+    bottom: -10px;
+    left: -15px;
+}
+.add-button::before {
+    content: " ";
+    position: absolute;
+    display: block;
+    background-color: hsl(0, 0%, 100%);
+    width: 4px;
+    margin-left: -2px;
+    left: 50%;
+    top: 12px;
+    bottom: 12px;
+    border-radius: 8px;
+    z-index: 0;
+}
+
+.add-button::after {
+    content: " ";
+    position: absolute;
+    background-color: hsl(0, 0%, 100%);
+    height: 4px;
+    margin-top: -2px;
+    top: 50%;
+    left: 12px;
+    right: 12px;
+    border-radius: 8px;
+    z-index: 0;
+}

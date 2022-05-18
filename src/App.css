@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800&display=swap');
+
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout (reusables)
+////////////////////////*/
+/* ------------------------------- 1. Global Styles -------------------------------- */
+
+/*Global reset CSS*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*Global background color*/
+body {
+    background-color: hsl(0, 0%, 93%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*!* ------------------------------- 2. Typography ----------------------------------- *!*/
+
+* {
+    font-family: 'Red Hat Display', sans-serif, Verdana, Helvetica, Arial;
+    font-weight: 400;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*!* ------------------------------- 3. Layout (reusables) ----------------------------------- *!*/
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*border: solid green 2px;*/
 }
 
-.App-link {
-  color: #61dafb;
-}
+.page-section {
+    padding: 10px 20px 10px 20px;
+    min-height: 100%;
+    width: 100%;
+    max-width: 750px;
+    min-width: 280px;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /*border: solid blue 1px;*/
 }

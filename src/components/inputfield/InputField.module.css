@@ -1,0 +1,31 @@
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+        3.1 Reusables
+        3.2 Other
+    4. Areas
+        4.1 Inputfield
+////////////////////////*/
+/* ------------------------------- 1. Global Styles -------------------------------- */
+
+/* ------------------------------- 2. Typography ----------------------------------- */
+
+/* ------------------------------- 3. Layout --------------------------------------- */
+
+/* ------------------------------- 4. Areas ---------------------------------------- */
+
+/* --------------- 4.1 Inputfield ------------------------- */
+
+.input {
+    height: 40px;
+    border-radius: 8px;
+    border-color: transparent;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
+.input::placeholder {
+    font-size: 16px;
+}
