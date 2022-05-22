@@ -9,17 +9,6 @@ import OpenTasksPage from './pages/opentasks/OpenTasks';
 
 function App() {
     return (
-        // <Switch>
-        //     <Route exact path="/">
-        //         <LoginPage/>
-        //     </Route>
-        //     <Route path="/registreren">
-        //         <RegisterPage/>
-        //     </Route>
-        //     <Route path="/openstaande-taken">
-        //         <OpenTasksPage/>
-        //     </Route>
-        // </Switch>
         <Switch>
             <Route exact path="/">
                 <LoginPage/>

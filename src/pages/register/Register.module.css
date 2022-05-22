@@ -18,14 +18,14 @@
 .page-container {
     padding: 0 20px 105px 20px;
     /*    !*Fix for mobile keyboard issue*!*/
-    background: url("../../assets/login_registration_background.jpeg") no-repeat center top fixed;
+    background: url("../../assets/login_registration_background.jpeg") no-repeat center top;
     background-size: 385% auto;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 
     /*border: solid green 2px;*/
 }
