@@ -17,8 +17,10 @@
 
 /* ------------------------------- 3. Layout ----------------------------------- */
 
-.page-container {
+.main {
     padding: 0 20px 105px 20px;
+    min-height: 100vh;
+
     /*    !*Fix for mobile keyboard issue*!*/
     background: url("../../assets/login_registration_background.jpeg") no-repeat center top;
     background-size: 385% auto;
@@ -27,7 +29,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100%;
 
     /*border: solid green 2px;*/
 }
@@ -47,9 +48,9 @@
 /* --------------- 4.2 Login form ------------------------- */
 
 .form-card {
-    min-height: 300px;
+    flex-basis: 300px;
     margin-top: 50px;
-    padding: 30px 20px 0 20px;
+    padding: 30px 20px 5px 20px;
     width: 100%;
     max-width: 500px;
     min-width: 280px;
@@ -77,6 +78,7 @@
     font-size: 14px;
     font-weight: 300;
     color: hsl(0, 0%, 90%);
+
     /*border: solid red 1px;*/
 }
 
@@ -88,7 +90,7 @@
 /* ------------------------------- 5. Media Queries -------------------------------- */
 
 @media screen and (min-width: 576px) {
-    .page-container {
+    .main {
         padding: 0 20px 105px 20px;
 
         /*    !*Fix for mobile keyboard background jump issue*!*/

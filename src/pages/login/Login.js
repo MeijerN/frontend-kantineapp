@@ -1,14 +1,12 @@
 import React from 'react';
 import styles from './Login.module.css';
-import InputField from '../../components/inputfield/InputField'
+import InputField from '../../components/inputField/InputField'
 import SubmitButton from '../../components/submitButton/SubmitButton'
-import { Link } from 'react-router-dom';
-
-
+import {Link} from 'react-router-dom';
 
 function LoginPage() {
     return (
-        <div className={styles["page-container"]}>
+        <main className={styles.main}>
             <h1 className={styles.h1}>KantineApp</h1>
             <div className={styles["form-card"]}>
                 <form className={styles.form} onSubmit="">
@@ -25,9 +23,9 @@ function LoginPage() {
                         onSubmit=""
                     />
                 </form>
-                <p className={styles.p}>Nog geen account? Registreer <Link to="/registreren">hier</Link> </p>
+                <p className={styles.p}>Nog geen account? Registreer <Link to="/registreren">hier</Link></p>
             </div>
-        </div>
+        </main>
     );
 }
 

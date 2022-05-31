@@ -1,0 +1,138 @@
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+    4. Areas
+        4.1 Navigation drawer closed
+        4.2 Navigation drawer open
+        4.3 Header
+        4.4. Menu list
+        4.5 Logo bottom
+////////////////////////*/
+
+
+/* ------------------------------- 1. Global Styles -------------------------------- */
+
+/* ------------------------------- 2. Typography ----------------------------------- */
+
+/* ------------------------------- 3. Layout (reusables) ----------------------------------- */
+
+/* ------------------------------- 4. Areas ---------------------------------------- */
+
+/* --------------- 4.1 Navigation drawer closed ------------------------- */
+
+.side-nav-closed {
+    height: 100%;
+    width: 0; /* Change this to open drawer */
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: hsl(0, 0%, 15%);
+    overflow-x: hidden;
+    /*padding-top: 60px;*/
+    transition: 850ms;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /*border: solid red 1px;*/
+}
+
+/* --------------- 4.2 Navigation drawer open ------------------------- */
+
+.side-nav-open {
+    height: 100%;
+    width: 300px; /*Prevent drawer getting to big */
+    max-width: 100%; /* Width of the drawer */
+
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: hsl(0, 0%, 15%);
+    overflow-x: hidden;
+    transition: 350ms;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /*border: solid red 1px;*/
+}
+
+/* --------------- 4.3 Header ------------------------- */
+
+.header {
+    padding: 0 20px 40px 20px;
+    min-height: 215px;
+    background: url("../../assets/menu_background.jpeg") no-repeat;
+    background-size: contain;
+
+    display: flex;
+    align-items: flex-end;
+    /*border: solid lightblue 1px;*/
+    position: relative;
+}
+
+.close-menu {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.profile-picture-container {
+    margin-right: 20px ;
+    width: 85px;
+    height: 85px;
+    flex-shrink: 0;
+
+    /*border: solid red 1px;*/
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.details-container {
+    /*border: solid blue 1px;*/
+}
+
+.details-container h1, .details-container p {
+    color: hsl(0, 0%, 90%);
+}
+
+.details-container p {
+    margin-top: 5px;
+}
+
+.line {
+    width: 87%;
+    border-bottom: 1px solid rgba(250, 255, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+
+/* --------------- 4.4 Menu list ------------------------- */
+
+.ul {
+    border: solid purple 1px;
+}
+
+/* --------------- 4.5 Logo bottom ------------------------- */
+
+.SVD-logo-container {
+    padding: 0 0 10px 25px;
+    border: solid yellow 1px;
+}
+
+.SVD-logo-container img {
+    width: 180px;
+}

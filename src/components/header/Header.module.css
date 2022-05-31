@@ -18,18 +18,33 @@
 
 /* --------------- 4.1 Header ------------------------- */
 .header {
+    display: flex;
+    justify-content: center;
+
+    /*min-height: 150px;*/
+    /*min-width: 240px;*/
+    /*width: 100%;*/
+    /*max-width: 710px;*/
+    /*background: url(../../assets/header_background_640×427.jpg);*/
+    /*background-size: 100%;*/
+    /*border-radius: 0 0 5px 5px;*/
+
+    /*display: flex;*/
+    /*position: relative;*/
+
+    border: solid red 1px;
+}
+
+.content-container {
+    flex-basis: 710px;
     min-height: 150px;
-    min-width: 240px;
-    width: 100%;
-    max-width: 710px;
+
+    display: flex;
     background: url(../../assets/header_background_640×427.jpg);
     background-size: 100%;
     border-radius: 0 0 5px 5px;
 
-    display: flex;
     position: relative;
-
-    /*border: solid red 1px;*/
 }
 
 .left-side {
@@ -79,7 +94,7 @@
 }
 
 .line {
-    border: 4px solid rgba(250, 255, 0, 0.5);
+    border-bottom: 4px solid rgba(250, 255, 0, 0.5);
     position: absolute;
     bottom: 0;
     width: 100%;

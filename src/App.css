@@ -15,6 +15,7 @@
     box-sizing: border-box;
 }
 
+
 /*Global background color*/
 body {
     background-color: hsl(0, 0%, 93%);
@@ -29,23 +30,22 @@ body {
 
 /*!* ------------------------------- 3. Layout (reusables) ----------------------------------- *!*/
 
-.page-container {
+main {
+    padding: 10px 20px 10px 20px;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+
     /*border: solid green 2px;*/
 }
 
 .page-section {
-    padding: 10px 20px 10px 20px;
-    min-height: 100%;
-    width: 100%;
-    max-width: 750px;
+    flex-basis: 710px;
     min-width: 280px;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    position: relative;
 
-    /*border: solid blue 1px;*/
+    border: solid blue 1px;
 }

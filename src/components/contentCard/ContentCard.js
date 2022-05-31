@@ -12,3 +12,6 @@ function ContentCard({children}) {
 };
 
 export default ContentCard;
+
+//TODO: Navigation drawer afmaken
+// CSS nog voorzien van indeling
