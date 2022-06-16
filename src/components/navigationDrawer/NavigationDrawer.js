@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './NavigationDrawer.module.css'
-import { Link } from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import SVDLogo from '../../assets/SVDlogo.png'
 import closeMenuIcon from '../../assets/close_menu.svg'
 import profilePicture from '../../assets/profile_picture.jpeg'
 
 function NavigationDrawer({navDrawer, toggleNavDrawer}) {
-
     function closeNav() {
         toggleNavDrawer(!navDrawer);
     }
@@ -32,20 +31,20 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                 <div className={styles.line}/>
             </header>
             <ul className={styles.ul}>
-                <li>
-                    <Link to="/openstaande-taken">Openstaande taken</Link>
+                <li className={styles.li}>
+                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/openstaande-taken">Openstaande taken</NavLink>
                 </li>
-                <li>
-                    <Link to="#">Urenregistratie</Link>
+                <li className={styles.li}>
+                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/urenregistratie">Urenregistratie</NavLink>
                 </li>
-                <li>
-                    <Link to="#">Statistieken</Link>
+                <li className={styles.li}>
+                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/statistieken">Statistieken</NavLink>
                 </li>
-                <li>
-                    <Link to="#">Profiel</Link>
+                <li className={styles.li}>
+                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/profiel">Profiel</NavLink>
                 </li>
-                <li>
-                    <Link to="/">Uitloggen</Link>
+                <li className={styles.li}>
+                    <NavLink onClick={closeNav} className={styles.navlink} to="/">Uitloggen</NavLink>
                 </li>
             </ul>
             <figure className={styles["SVD-logo-container"]}>

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './OpenTasks.module.css';
-import Header from '../../components/header/Header'
 import Task from '../../components/task/Task'
-import ContentCard from '../../components/contentCard/ContentCard'
+import ListContentCard from "../../components/listContentCard/ListContentCard";
 import NavigationDrawer from "../../components/navigationDrawer/NavigationDrawer";
 
-function OpenTasksPage({navDrawer, toggleNavDrawer}) {
+function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
+
+    useEffect(() => {
+        // Change header currentPage state on page mounting and close drawer
+        setCurrentPage("Openstaande taken");
+        toggleNavDrawer(false);
+    }, [])
+
     return (
         <main>
             <NavigationDrawer
@@ -13,8 +19,11 @@ function OpenTasksPage({navDrawer, toggleNavDrawer}) {
                 toggleNavDrawer={toggleNavDrawer}
             />
             <section className="page-section">
-                <p className={styles.sort}>Sorteer</p>
-                <ContentCard>
+                <div className={styles["title-sort"]}>
+                    <h3 className={styles.h3}>Takenlijst</h3>
+                    <figure className={styles.sort}/>
+                </div>
+                <ListContentCard stylingClass="open-tasks">
                     <Task
                         prio="low"
                         dateAdded="2-5-22"
@@ -69,14 +78,11 @@ function OpenTasksPage({navDrawer, toggleNavDrawer}) {
                         status="In behandeling"
                         title="Lamp vervangen"
                     />
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                    />
-                    <button className={styles["add-button"]}/>
-                </ContentCard>
+                    {/*CONTENT VOOR DE MANAGER*/}
+                    {/*<button className={styles["add-button"]}/>*/}
+
+                </ListContentCard>
+
             </section>
         </main>
     );

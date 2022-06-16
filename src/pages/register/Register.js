@@ -13,22 +13,27 @@ function RegisterPage() {
                     <InputField
                         type="text"
                         placeholder="Voornaam"
+                        stylingClass="login-registration"
                     />
                     <InputField
                         type="text"
                         placeholder="Achternaam"
+                        stylingClass="login-registration"
                     />
                     <InputField
                         type="email"
                         placeholder="Email"
+                        stylingClass="login-registration"
                     />
                     <InputField
                         type="password"
                         placeholder="Wachtwoord"
+                        stylingClass="login-registration"
                     />
                     <InputField
                         type="password"
                         placeholder="Herhaal wachtwoord"
+                        stylingClass="login-registration"
                     />
                     <SubmitButton
                         text="Maak account aan"

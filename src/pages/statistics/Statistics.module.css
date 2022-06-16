@@ -1,0 +1,82 @@
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+        3.1 Reusables
+        3.2 Other
+    4. Areas
+        4.1 Titles
+        4.2 Contentcard montly hours overview
+        4.3 Contentcard completed tasks
+        4.4 Table (manager content)
+    5. Media Queries
+////////////////////////*/
+/* ------------------------------- 1. Global Styles -------------------------------- */
+/* ------------------------------- 2. Typography ----------------------------------- */
+/* ------------------------------- 3. Layout --------------------------------------- */
+/* --------------- 3.1 Reusables ----------------------- */
+/* --------------- 3.2 Other --------------------------- */
+/* ------------------------------- 4. Areas ---------------------------------------- */
+/* --------------- 4.1 Title ------------------------- */
+
+.h3 {
+    align-self: center;
+    margin: 20px 0 5px 0;
+}
+
+
+/* --------------- 4.2 Contentcard monthly hours overview ------------------- */
+
+.p {
+    font-weight: 300;
+}
+
+.time {
+    color: hsl(0, 100%, 50%);
+    font-weight: 700;
+}
+
+/* --------------- 4.3 Contentcard completed tasks --------------------------- */
+
+.title-sort {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.sort {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.sort::after {
+    content: url(../../assets/sort_icon.svg);
+}
+
+/* --------------- 4.4 Tables (manager content)------------------------ */
+
+.table{
+    border-collapse: collapse;
+}
+
+.td {
+    /*border: 1px solid #dddddd;*/
+    border-bottom: solid red 1px;
+    text-align: left;
+    padding: 3px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.th {
+    border-bottom: 1px red solid;
+    font-weight: 500;
+    text-align: left;
+    padding: 3px;
+    font-size: 12px;
+    color: red;
+}
+
+/* ------------------------------- 5. Media Queries -------------------------------- */

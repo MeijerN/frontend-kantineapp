@@ -1,0 +1,105 @@
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+        3.1 Reusables
+        3.2 Other
+    4. Areas
+        4.1 Profile information
+    5. Media Queries
+////////////////////////*/
+/* ------------------------------- 1. Global Styles -------------------------------- */
+/* ------------------------------- 2. Typography ----------------------------------- */
+/* ------------------------------- 3. Layout --------------------------------------- */
+/* --------------- 3.1 Reusables ----------------------- */
+/* --------------- 3.2 Other --------------------------- */
+/* ------------------------------- 4. Areas ---------------------------------------- */
+/* --------------- 4.1 Profile information ------------------------- */
+
+.content-wrapper {
+    min-width: 100%;
+    min-height: calc(100vh - 390px); /*Calculate and use the remaining space */
+
+    display: flex;
+    flex-direction: column;
+
+    /*border: solid lightseagreen 2px;*/
+}
+
+.top-section {
+    flex-basis: 60%;
+    display: flex;
+    justify-content: space-around;
+
+    /*border: solid #66ff00 1px;*/
+}
+
+.profile-picture-container {
+    display: flex;
+    flex-basis: 40%;
+    max-width: 200px;
+
+    /*border: solid red 1px;*/
+}
+
+.img {
+    max-width: 100%;
+    border-radius: 8px;
+    align-self: center;
+}
+
+.name-container{
+    flex-basis: 60%;
+    max-width: 200px;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /*border: solid purple 1px;*/
+}
+
+.name {
+    font-weight: 500;
+    margin: 0 0 0 11px;
+}
+
+.name:first-child {
+    margin-bottom: 19px;
+}
+
+.bottom-section {
+    flex-basis: 40%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    /*border: solid red 1px;*/
+}
+
+.h3 {
+    align-self: center;
+    margin: 20px 0 5px 0;
+}
+
+.edit-icon-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    /*border: solid blue 1px;*/
+}
+
+.edit-icon {
+    max-width: 25px;
+}
+
+.edit-icon-text {
+    font-size: 10px;
+}
+
+/* ------------------------------- 5. Media Queries -------------------------------- */

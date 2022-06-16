@@ -6,7 +6,12 @@
         3.1 Reusables
         3.2 Other
     4. Areas
-        4.1 Content card
+        4.1 Title
+        4.2 Introduction
+        4.3 Work
+        4.4 Services
+        4.5 Contact
+        4.6 Footer
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -15,20 +20,29 @@
 /* --------------- 3.1 Reusables ----------------------- */
 /* --------------- 3.2 Other --------------------------- */
 /* ------------------------------- 4. Areas ---------------------------------------- */
-/* --------------- 4.1 Content card ------------------------- */
+/* --------------- 4.1 Title ------------------------- */
 
-.content-card {
-    padding: 20px;
+.h3 {
+    align-self: center;
+    margin: 20px 0 5px 0;
+}
+
+/* --------------- 4.2 Contentcard content ------------------- */
+
+.p {
+    font-weight: 300;
+}
+
+.button {
+    margin-top: 20px;
+    width: fit-content;
+    padding: 10px 20px 10px 20px;
     border-radius: 8px;
-    border: solid hsl(61, 100%, 50%) 1px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    background-color: hsl(0, 0%, 100%);
-    position: relative;
-
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-style: none;
+    font-size: 16px;
+    color: hsl(61 100% 50%);
+    background: hsl(0, 100%, 50%);
+    box-shadow: 0 4px 15px #360101;
 }
 
 /* ------------------------------- 5. Media Queries -------------------------------- */

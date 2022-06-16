@@ -73,6 +73,6 @@
     font-size: 10px;
 }
 
-.task-added-date {
+.task-added-date, .completed-by {
     font-size: 10px;
 }

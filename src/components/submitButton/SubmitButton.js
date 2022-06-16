@@ -6,7 +6,8 @@ function SubmitButton({text, onSubmit}) {
         <button
             className={styles.button}
             type="submit"
-            onSubmit={onSubmit}
+            // CHANGE THIS TO ONSUBMIT
+            onClick={onSubmit}
         >
             {text}
         </button>

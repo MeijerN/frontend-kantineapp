@@ -1,17 +1,12 @@
-import React from 'react';
 import styles from './ContentCard.module.css'
+import React from 'react';
 
 function ContentCard({children}) {
     return (
         <div className={styles["content-card"]}>
-            <ul className={styles.ul}>
-                {children}
-            </ul>
+            {children}
         </div>
     );
-};
+}
 
 export default ContentCard;
-
-//TODO: Navigation drawer afmaken
-// CSS nog voorzien van indeling

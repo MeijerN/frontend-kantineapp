@@ -4,7 +4,7 @@
     2. Typography
     3. Layout
     4. Areas
-        4.1 Sort button
+        4.1 Title
         4.2 Add task button
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -15,18 +15,27 @@
 
 /*!* ------------------------------- 4. Areas ---------------------------------------- *!*/
 
-/*!* --------------- 4.1 Sort button ------------------------- *!*/
+/*!* --------------- 4.1 Title ------------------------- *!*/
+
+.h3 {
+    align-self: center;
+    margin: 20px 0 5px 0;
+}
+
+.title-sort {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
 
 .sort {
-    margin: 0 0 5px 0;
-    align-self: flex-end;
-    display: flex;
-    align-items: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .sort::after {
     content: url(../../assets/sort_icon.svg);
-    margin-left: 5px;
 }
 
 /*!* --------------- 4.2 Add button ------------------------- *!*/
