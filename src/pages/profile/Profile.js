@@ -10,32 +10,13 @@ import {Redirect, useHistory} from "react-router-dom";
 function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     const history = useHistory();
-
-    // const [edit, toggleEdit] = React.useState(false);
-    // const [firstName, setFirstName] = React.useState("Niek");
-    // const [lastName, setLastName] = React.useState("Meijer");
-    // const [email, setEmail] = React.useState("meyerniek@hotmail.com");
-    // const [role, setRole] = React.useState("manager");
-
-    // const options = [
-    //     {value: 'chocolate', label: 'Chocolate'},
-    //     {value: 'strawberry', label: 'Strawberry'},
-    //     {value: 'poep', label: 'Poep'},
-    //     {value: 'tegel', label: 'Tegel'},
-    //     {value: 'snoep', label: 'Snoep'},
-    //     {value: 'plant', label: 'Plant'},
-    //     {value: 'stroo', label: 'Stroo'},
-    // ]
+    const [uploadCard, toggleUploadCard] = React.useState(false);
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Profiel");
         toggleNavDrawer(false);
     }, [])
-
-    function handleOnclick() {
-        history.push("/profiel/wijzigen");
-    }
 
     return (
         <main>
@@ -48,75 +29,29 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 <ContentCard>
                     <section className={styles["content-wrapper"]}>
                         <div className={styles["top-section"]}>
+                            {uploadCard &&
+                                <span className={styles["file-upload"]}>
+                                <p className={styles["upload-title"]}>Selecteer een bestand</p>
+                                <input className={styles["input-file"]}  type="file" />
+                                <button onClick={() => {toggleUploadCard(false)}} className={styles['cancel-button']}>Annuleren</button>
+                            </span>
+                            }
                             <figure className={styles["profile-picture-container"]}>
                                 <img className={styles.img} src={profilePicture} alt="profiel"/>
+                                <button type="button" onClick={() => {toggleUploadCard(true)}} disabled={uploadCard} className={styles["edit-profile-button"]}>Wijzig</button>
                             </figure>
                             <div className={styles["name-container"]}>
                                 <p className={styles.name}>Niek</p>
                                 <p className={styles.name}>Meijer</p>
-                                {/*{!edit &&*/}
-                                {/*    <>*/}
-                                {/*        <p className={styles.name}>Niek</p>*/}
-                                {/*        <p className={styles.name}>Meijer</p>*/}
-                                {/*    </>*/}
-                                {/*}*/}
-                                {/*{edit &&*/}
-                                {/*    <>*/}
-                                {/*        <input*/}
-                                {/*            className={styles["input-name"]}*/}
-                                {/*            id="first-name"*/}
-                                {/*            type="text"*/}
-                                {/*            placeholder="Voornaam"*/}
-                                {/*            value={firstName}*/}
-                                {/*            onChange={(e) => {*/}
-                                {/*                setFirstName(e.target.value)*/}
-                                {/*            }}*/}
-                                {/*        />*/}
-                                {/*        <input*/}
-                                {/*            className={styles["input-name"]}*/}
-                                {/*            id="last-name"*/}
-                                {/*            type="text"*/}
-                                {/*            placeholder="Achternaam"*/}
-                                {/*            value={lastName}*/}
-                                {/*            onChange={(e) => {*/}
-                                {/*                setLastName(e.target.value)*/}
-                                {/*            }}*/}
-                                {/*        />*/}
-                                {/*    </>*/}
-                                {/*}*/}
                             </div>
                         </div>
                         <div className={styles["bottom-section"]}>
-                            <p>Email: meyerniek@hotmail.com</p>
-                            <p>Functie: manager</p>
-                            <p>Specialiteiten: ICT, schilderen, santair </p>
-                            {/*{!edit &&*/}
-                            {/*    <>*/}
-                            {/*        <p>Email: {email}</p>*/}
-                            {/*        <p>Functie: manager</p>*/}
-                            {/*        <p>Specialiteiten: ICT, schilderen, santair </p>*/}
-                            {/*    </>*/}
-                            {/*}*/}
-                            {/*{edit &&*/}
-                            {/*    <>*/}
-                            {/*        <p>Email: <input*/}
-                            {/*            className={styles["edit-bottom-information"]}*/}
-                            {/*            id="email"*/}
-                            {/*            type="email"*/}
-                            {/*            placeholder="Email"*/}
-                            {/*            value={email}*/}
-                            {/*            onChange={(e) => {*/}
-                            {/*                setEmail(e.target.value)*/}
-                            {/*            }}*/}
-                            {/*        />*/}
-                            {/*        </p>*/}
-                            {/*        <p>Functie: {role}</p>*/}
-                            {/*        <p>Specialiteiten:<Select className={styles.select} options={options} isMulti/></p>*/}
-                            {/*    </>*/}
-                            {/*}*/}
+                            <p className={styles["profile-details"]}>Email: <span>meyerniek@hotmail.com</span></p>
+                            <p className={styles["profile-details"]}>Functie: <span>manager</span></p>
+                            <p className={styles["profile-details"]}>Specialiteiten: <span>ICT, schilderen, santair</span></p>
                         </div>
                     </section>
-                    <figure onClick={handleOnclick} className={styles["edit-icon-container"]}>
+                    <figure onClick={() => {history.push("/profiel-wijzigen")}} className={styles["edit-icon-container"]}>
                         <img className={styles["edit-icon"]} src={editIcon} alt="edit"/>
                         <p className={styles["edit-icon-text"]}>Bewerken</p>
                     </figure>

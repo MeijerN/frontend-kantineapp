@@ -29,7 +29,8 @@
 }
 
 .open-tasks {
-    max-height: calc(100vh - 260px);
+    max-height: calc(100vh - 290px);
+    min-height: 200px;
     padding: 20px;
     overflow: scroll;
 
@@ -42,6 +43,7 @@
 
 .statistics-user {
     max-height: calc(100vh - 425px);
+    min-height: 230px;
     padding: 20px;
     overflow: scroll;
 
@@ -53,7 +55,8 @@
 }
 
 .statistics-manager {
-    height: calc(100vh - 510px);
+    max-height: calc(100vh - 510px);
+    min-height: 150px;
     padding: 20px;
     overflow: scroll;
 

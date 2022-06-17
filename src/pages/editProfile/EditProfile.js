@@ -5,18 +5,15 @@ import ContentCard from "../../components/contentCard/ContentCard";
 import Select from 'react-select'
 import {Redirect, useHistory} from "react-router-dom";
 import InputField from "../../components/inputField/InputField";
+import saveIcon from '../../assets/save_icon.svg'
+import backIcon from '../../assets/back_icon.svg'
 
 function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     const history = useHistory();
 
-    // const [edit, toggleEdit] = React.useState(false);
-    // const [firstName, setFirstName] = React.useState("Niek");
-    // const [lastName, setLastName] = React.useState("Meijer");
-    // const [email, setEmail] = React.useState("meyerniek@hotmail.com");
-    // const [role, setRole] = React.useState("manager");
-
     // Specialities array
+    // MOET UIT DE DATABASE GAAN KOMEN!!
     const options = [
         {value: 'sanitair', label: 'Sanitair'},
         {value: 'elektra', label: 'Elektra'},
@@ -32,7 +29,7 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
         control: provided => ({
             ...provided,
             boxShadow: 'none',
-            border: "solid black 2px",
+            border: "solid black 1px",
             borderRadius: "8px",
         })
     }
@@ -43,6 +40,11 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
         toggleNavDrawer(false);
     }, [])
 
+    function handleOnSubmit(e) {
+        e.preventDefault();
+        console.log("Form is gesubmitted");
+    }
+
     return (
         <main>
             <NavigationDrawer
@@ -52,40 +54,46 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
             <section className="page-section">
                 <h3 className={styles.h3}>Mijn gegevens</h3>
                 <ContentCard>
-                    <InputField
-                        type="text"
-                        placeholder="Voornaam"
-                        value="Niek"
-                        stylingClass="edit-profile"
+                    <form onSubmit={handleOnSubmit}>
+                        <InputField
+                            type="text"
+                            placeholder="Voornaam"
+                            value="Niek"
+                            stylingClass="edit-profile"
 
-                    />
-                    <InputField
-                        type="text"
-                        placeholder="Achternaam"
-                        value="Meijer"
-                        stylingClass="edit-profile"
+                        />
+                        <InputField
+                            type="text"
+                            placeholder="Achternaam"
+                            value="Meijer"
+                            stylingClass="edit-profile"
 
-                    />
-                    <InputField
-                        type="email"
-                        placeholder="Email"
-                        value="meyerniek@hotmail.com"
-                        stylingClass="edit-profile"
-                    />
-                    <Select
-                        className={styles["select-specialities"]}
-                        styles={customStyle}
-                        options={options}
-                        placeholder="Selecteer specialisaties"
-                        // value={selectedOptions}
-                        // onChange={handleSelect}
-                        isMulti
-                        isSearchable={false}
-                    />
-                    <p>Profielfoto: [link naar afbeelding]</p>
-                    Icoontjes implementeren
+                        />
+                        <InputField
+                            type="email"
+                            placeholder="Email"
+                            value="meyerniek@hotmail.com"
+                            stylingClass="edit-profile"
+                        />
+                        <Select
+                            className={styles["select-specialities"]}
+                            styles={customStyle}
+                            options={options}
+                            placeholder="Selecteer specialisaties"
+                            // value={selectedOptions}
+                            // onChange={handleSelect}
+                            isMulti
+                            isSearchable={false}
+                        />
+                        <figure className={styles["save-icon-container"]}>
+                            <input type="image" src={saveIcon} className={styles["save-icon"]} alt="save"/>
+                            <p className={styles["save-icon-text"]}>Opslaan</p>
+                        </figure>
+                    </form>
                 </ContentCard>
-                Terug knop implementeren
+                <img onClick={() => {
+                    history.goBack()
+                }} className={styles["back-icon"]} src={backIcon} alt="back"/>
             </section>
         </main>
     );

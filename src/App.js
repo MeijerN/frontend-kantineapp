@@ -11,6 +11,7 @@ import TimeRegistration from "./pages/timeRegistration/TimeRegistration";
 import Profile from "./pages/profile/Profile";
 import Statistics from "./pages/statistics/Statistics";
 import EditProfile from "./pages/editProfile/EditProfile";
+import TaskDetails from "./pages/taskDetails/TaskDetails";
 
 function App() {
 
@@ -37,8 +38,15 @@ function App() {
                 <Route path="/registreren">
                     <RegisterPage/>
                 </Route>
-                <Route path="/openstaande-taken">
+                <Route exact path="/openstaande-taken">
                     <OpenTasksPage
+                        navDrawer={navDrawer}
+                        toggleNavDrawer={toggleNavDrawer}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </Route>
+                <Route path="/openstaande-taken/:id">
+                    <TaskDetails
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
@@ -65,7 +73,7 @@ function App() {
                         setCurrentPage={setCurrentPage}
                     />
                 </Route>
-                <Route path="/profiel/wijzigen">
+                <Route path="/profiel-wijzigen">
                     <EditProfile
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
