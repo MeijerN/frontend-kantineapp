@@ -18,7 +18,7 @@ function TimeRegistration({navDrawer, toggleNavDrawer, setCurrentPage}) {
             />
             <section className="page-section">
                 <h3 className={styles.h3}>Timer</h3>
-                <ContentCard>
+                <ContentCard stylingClass="content-card">
                         <p className={styles.p}>Je bent momenteel niet ingeklokt</p>
                         <button className={styles.button} type="button">Inklokken</button>
                 </ContentCard>

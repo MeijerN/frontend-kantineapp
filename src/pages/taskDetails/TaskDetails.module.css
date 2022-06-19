@@ -1,4 +1,77 @@
-.h3 {
-    align-self: center;
-    margin: 20px 0 5px 0;
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+        3.1 Reusables
+        3.2 Other
+    4. Areas
+        4.1 Task details
+        4.2 Buttons
+    5. Media Queries
+////////////////////////*/
+/* ------------------------------- 1. Global Styles -------------------------------- */
+/* ------------------------------- 2. Typography ----------------------------------- */
+/* ------------------------------- 3. Layout --------------------------------------- */
+/* --------------- 3.1 Reusables ----------------------- */
+/* --------------- 3.2 Other --------------------------- */
+/* ------------------------------- 4. Areas ---------------------------------------- */
+/* --------------- 4.1 Task details ------------------------- */
+
+.status {
+    align-self: flex-end;
+    font-size: 12px;
 }
+
+.label-textarea-task-details, .label-task-owners-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+
+    /*border: solid #10b409 1px;*/
+}
+
+.textarea-task-details, .assigned-users {
+    height: calc(100vh - 600px);
+    width: 100%;
+    overflow: scroll;
+    padding: 5px;
+    font-size: 12px;
+    max-width: 500px;
+    align-self: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: solid rgba(0, 0, 0, 0.1) 1px;
+
+    /*border: solid pink 1px;*/
+}
+
+.p {
+    font-size: 14px;
+}
+
+.assigned-users {
+    height: calc(100vh - 625px);
+
+}
+
+/* --------------- 4.2 Buttons ------------------- */
+
+.icon-container {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    /*border: solid red 1px;*/
+}
+
+.back-icon {
+    max-width: 25px;
+    margin: 10px 0 0 10px;
+}
+
+/* ------------------------------- 5. Media Queries -------------------------------- */

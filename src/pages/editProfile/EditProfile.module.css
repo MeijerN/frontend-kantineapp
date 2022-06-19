@@ -8,10 +8,6 @@
     4. Areas
         4.1 Form
         4.2 Buttons
-        4.3 Work
-        4.4 Services
-        4.5 Contact
-        4.6 Footer
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -33,27 +29,18 @@
 
 /* ------------------------------- 4.2. Buttons -------------------------------- */
 
-.save-icon-container {
+.icon-container {
     margin-top: 20px;
+
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     /*border: solid red 1px;*/
-}
-
-.save-icon {
-    /*border: solid blue 1px;*/
-    max-width: 25px;
-}
-
-.save-icon-text {
-    font-size: 10px;
-    /*border: solid green 1px;*/
-
 }
 
 .back-icon {
     max-width: 25px;
     margin: 10px 0 10px 10px;
 }
+
 /* ------------------------------- 5. Media Queries -------------------------------- */

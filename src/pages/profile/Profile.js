@@ -3,9 +3,10 @@ import React, {useEffect} from 'react';
 import NavigationDrawer from "../../components/navigationDrawer/NavigationDrawer";
 import ContentCard from "../../components/contentCard/ContentCard";
 import profilePicture from '../../assets/profile_picture.jpeg'
-import editIcon from '../../assets/edit_icon.svg'
+import editIcon from '../../assets/edit_task_icon.svg'
 import Select from 'react-select'
 import {Redirect, useHistory} from "react-router-dom";
+import Icon from "../../components/icon/Icon";
 
 function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -26,7 +27,7 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
             />
             <section className="page-section">
                 <h3 className={styles.h3}>Mijn gegevens</h3>
-                <ContentCard>
+                <ContentCard stylingClass="content-card">
                     <section className={styles["content-wrapper"]}>
                         <div className={styles["top-section"]}>
                             {uploadCard &&
@@ -51,9 +52,13 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             <p className={styles["profile-details"]}>Specialiteiten: <span>ICT, schilderen, santair</span></p>
                         </div>
                     </section>
-                    <figure onClick={() => {history.push("/profiel-wijzigen")}} className={styles["edit-icon-container"]}>
-                        <img className={styles["edit-icon"]} src={editIcon} alt="edit"/>
-                        <p className={styles["edit-icon-text"]}>Bewerken</p>
+                    <figure className={styles["icon-container"]}>
+                        <Icon
+                            text="Bewerken"
+                            image={editIcon}
+                            alt="edit"
+                            onClick={() => {history.push("/profiel-wijzigen")}}
+                        />
                     </figure>
                 </ContentCard>
             </section>

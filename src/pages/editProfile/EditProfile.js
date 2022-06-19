@@ -1,12 +1,13 @@
-import styles from './EditProfile.module.css'
+import styles from './EditProfile.module.css';
 import React, {useEffect} from 'react';
 import NavigationDrawer from "../../components/navigationDrawer/NavigationDrawer";
 import ContentCard from "../../components/contentCard/ContentCard";
-import Select from 'react-select'
+import Select from 'react-select';
 import {Redirect, useHistory} from "react-router-dom";
 import InputField from "../../components/inputField/InputField";
-import saveIcon from '../../assets/save_icon.svg'
-import backIcon from '../../assets/back_icon.svg'
+import saveIcon from '../../assets/save_task_icon.svg';
+import backIcon from '../../assets/back_icon.svg';
+import Icon from "../../components/icon/Icon";
 
 function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -53,21 +54,19 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
             />
             <section className="page-section">
                 <h3 className={styles.h3}>Mijn gegevens</h3>
-                <ContentCard>
+                <ContentCard stylingClass="content-card">
                     <form onSubmit={handleOnSubmit}>
                         <InputField
                             type="text"
                             placeholder="Voornaam"
                             value="Niek"
                             stylingClass="edit-profile"
-
                         />
                         <InputField
                             type="text"
                             placeholder="Achternaam"
                             value="Meijer"
                             stylingClass="edit-profile"
-
                         />
                         <InputField
                             type="email"
@@ -85,10 +84,12 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             isMulti
                             isSearchable={false}
                         />
-                        <figure className={styles["save-icon-container"]}>
-                            <input type="image" src={saveIcon} className={styles["save-icon"]} alt="save"/>
-                            <p className={styles["save-icon-text"]}>Opslaan</p>
-                        </figure>
+                        <div className={styles["icon-container"]}>
+                            <Icon
+                                text="Opslaan"
+                                image={saveIcon}
+                            />
+                        </div>
                     </form>
                 </ContentCard>
                 <img onClick={() => {

@@ -27,140 +27,140 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 </div>
 
                 {/*CONTENT VOOR DE MANAGER*/}
-                {/*<ListContentCard stylingClass="statistics-manager">*/}
-                {/*    <table className={styles.table}>*/}
-                {/*        <thead>*/}
-                {/*        <tr>*/}
-                {/*            <th className={styles.th}>Voornaam</th>*/}
-                {/*            <th className={styles.th}>Achternaam</th>*/}
-                {/*            <th className={styles.th}>Uren maandelijks</th>*/}
-                {/*            <th className={styles.th}>Uren totaal</th>*/}
-                {/*        </tr>*/}
-                {/*        </thead>*/}
-                {/*        <tbody>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
-                {/*        <tr>*/}
-                {/*            <td className={styles.td}>Niek</td>*/}
-                {/*            <td className={styles.td}>Meijer</td>*/}
-                {/*            <td className={styles.td}>4</td>*/}
-                {/*            <td className={styles.td}>56</td>*/}
-                {/*        </tr>*/}
+                <ListContentCard stylingClass="statistics-manager-hours">
+                    <table className={styles.table}>
+                        <thead className={styles.thead}>
+                        <tr>
+                            <th className={styles.th}>Voornaam</th>
+                            <th className={styles.th}>Achternaam</th>
+                            <th className={styles.th}>Uren p.m.</th>
+                            <th className={styles.th}>Uren totaal</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
 
-                {/*        </tbody>*/}
-                {/*    </table>*/}
-                {/*</ListContentCard>*/}
+                        </tbody>
+                    </table>
+                </ListContentCard>
 
-                {/*/!*CONTENT VOOR DE NORMALE USER*!/*/}
-                <ContentCard>
-                    <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span className={styles.time}>3 uur</span > en <span className={styles.time}>10 minuten</span></p>
-                </ContentCard>
+                {/*CONTENT VOOR DE NORMALE USER*/}
+                {/*<ContentCard>*/}
+                {/*    <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span className={styles.time}>3 uur</span > en <span className={styles.time}>10 minuten</span></p>*/}
+                {/*</ContentCard>*/}
 
                 <div className={styles["title-sort"]}>
                     <h3 className={styles.h3}>Voltooide taken</h3>
@@ -168,116 +168,116 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 </div>
 
                 {/*CONTENT VOOR DE MANAGER*/}
-                {/*<ListContentCard stylingClass="statistics-manager">*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Niek Meijer"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        completedBy="Peter Pan"*/}
-                {/*    />*/}
-                {/*</ListContentCard>*/}
-
-                {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
-                <ListContentCard stylingClass="statistics-user">
+                <ListContentCard stylingClass="statistics-manager-completed-tasks">
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Niek Meijer"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
-                        />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                     <Task
                         dateAdded="2-5-22"
                         status="Voltooid op 2-4-22"
                         title="Lamp vervangen"
+                        completedBy="Peter Pan"
                     />
                 </ListContentCard>
+
+                {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
+                {/*<ListContentCard stylingClass="statistics-user">*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*        />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*    <Task*/}
+                {/*        dateAdded="2-5-22"*/}
+                {/*        status="Voltooid op 2-4-22"*/}
+                {/*        title="Lamp vervangen"*/}
+                {/*    />*/}
+                {/*</ListContentCard>*/}
             </section>
         </main>
     );

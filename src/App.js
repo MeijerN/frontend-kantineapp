@@ -87,6 +87,11 @@ function App() {
 
 export default App;
 
+//WAAR WAS IK GEBLEVEN?
+// TODO: Component inner-outer maken voor main en section
+// TODO: data dynamisch maken voor taken details pagina
+
+// TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: MANAGERS VRIJWILLIGERS VERWIJDEREN BIJ STATISTIEKEN EN DE STATUS MANAGER GEVEN
 
 // IN DE GATEN HOUDEN:

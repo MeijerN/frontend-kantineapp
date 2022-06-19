@@ -1,9 +1,9 @@
 import styles from './ContentCard.module.css'
 import React from 'react';
 
-function ContentCard({children}) {
+function ContentCard({children, stylingClass}) {
     return (
-        <div className={styles["content-card"]}>
+        <div className={styles[(stylingClass)]}>
             {children}
         </div>
     );

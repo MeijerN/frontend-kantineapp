@@ -59,6 +59,18 @@
 
 .table{
     border-collapse: collapse;
+    width: 100%;
+    max-width: 500px;
+}
+
+.thead {
+    position: sticky;
+    top: 0;
+    vertical-align: bottom;
+    height: 30px;
+
+    background-color: white;
+    /*border: solid green 1px;*/
 }
 
 .td {

@@ -99,7 +99,7 @@
     margin: 20px 0 5px 0;
 }
 
-.edit-icon-container {
+.icon-container {
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -108,13 +108,13 @@
     /*border: solid blue 1px;*/
 }
 
-.edit-icon {
-    max-width: 25px;
-}
+/*.edit-icon {*/
+/*    max-width: 25px;*/
+/*}*/
 
-.edit-icon-text {
-    font-size: 10px;
-}
+/*.edit-icon-text {*/
+/*    font-size: 10px;*/
+/*}*/
 /* ------------------------------- 4.2 File upload card -------------------------------- */
 
 .file-upload {
