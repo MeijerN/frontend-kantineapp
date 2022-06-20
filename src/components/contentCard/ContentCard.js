@@ -3,9 +3,9 @@ import React from 'react';
 
 function ContentCard({children, stylingClass}) {
     return (
-        <div className={styles[(stylingClass)]}>
+        <article className={styles[(stylingClass)]}>
             {children}
-        </div>
+        </article>
     );
 }
 

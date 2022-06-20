@@ -88,8 +88,8 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// TODO: Component inner-outer maken voor main en section
-// TODO: data dynamisch maken voor taken details pagina
+// TODO: Het schalen voor eens en altijd goed maken. Ga verder bij Statistics.js, eerst de secties op schaal krijgen en dan de tabellen laten schalen.
+//LET OP: De h3 (titlesort) verprutsen de scaling. De sectie moet op zijn beurt weer opgedeeld worden met de h3 en tabel (grow gebruiken?)
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: MANAGERS VRIJWILLIGERS VERWIJDEREN BIJ STATISTIEKEN EN DE STATUS MANAGER GEVEN

@@ -7,6 +7,8 @@
         3.2 Other
     4. Areas
         4.1 Content card
+        4.2 Content card (task details page)
+        4.3 Content card (tables)
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -15,23 +17,25 @@
 /* --------------- 3.1 Reusables ----------------------- */
 /* --------------- 3.2 Other --------------------------- */
 /* ------------------------------- 4. Areas ---------------------------------------- */
-/* --------------- 4.1 Content card ------------------------- */
+/* --------------- 4.1 Content card (standard) ------------------------- */
 
-.content-card {
-    padding: 20px;
-    border-radius: 8px;
+.standard {
+    padding: 20px 20px 20px 20px;
+    overflow: scroll;
     border: solid hsl(61, 100%, 50%) 1px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     background-color: hsl(0, 0%, 100%);
-    position: relative;
-
+    flex-basis: 100%;
 
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.content-card-task-details {
+/* --------------- 4.2 Content card (task details) ------------------------- */
+
+.task-details {
     margin-top: 20px;
     padding: 20px;
     border-radius: 8px;
@@ -39,14 +43,28 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     background-color: hsl(0, 0%, 100%);
     position: relative;
+    flex-basis: 100%;
 
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: flex-start;
 }
 
 .content-card-task-details > * {
-
     margin-bottom: 10px;
 }
-/* ------------------------------- 5. Media Queries -------------------------------- */
+/* --------------- 4.3 Content card (tables) ------------------------- */
+
+.table {
+    padding: 0 20px 20px 20px;
+    overflow: scroll;
+    border-radius: 8px;
+    border: solid hsl(61, 100%, 50%) 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background-color: hsl(0, 0%, 100%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

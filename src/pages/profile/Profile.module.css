@@ -108,20 +108,13 @@
     /*border: solid blue 1px;*/
 }
 
-/*.edit-icon {*/
-/*    max-width: 25px;*/
-/*}*/
-
-/*.edit-icon-text {*/
-/*    font-size: 10px;*/
-/*}*/
 /* ------------------------------- 4.2 File upload card -------------------------------- */
 
 .file-upload {
     width: 90%;
     max-width: 560px;
     padding: 20px 10px 10px 10px;
-    top: 30px;
+    top: 100px;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 8px;
     border: solid rgba(3, 2, 2, 0.59) 2px;

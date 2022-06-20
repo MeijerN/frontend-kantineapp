@@ -1,9 +1,9 @@
 import styles from './Statistics.module.css'
 import React, {useEffect} from 'react';
-import NavigationDrawer from "../../components/navigationDrawer/NavigationDrawer";
-import ContentCard from "../../components/contentCard/ContentCard";
-import ListContentCard from "../../components/listContentCard/ListContentCard";
 import Task from "../../components/task/Task";
+import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
+import ContentCard from "../../components/contentCard/ContentCard";
+
 
 function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -14,12 +14,8 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, [])
 
     return (
-        <main>
-            <NavigationDrawer
-                navDrawer={navDrawer}
-                toggleNavDrawer={toggleNavDrawer}
-            />
-            <section className="page-section">
+        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+            <section className={styles.section}>
                 <div className={styles["title-sort"]}>
                     <h3 className={styles.h3}>Maandelijks urenoverzicht</h3>
                     {/*ALLEEN LATEN ZIEN BIJ DE MANAGER*/}
@@ -27,7 +23,7 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 </div>
 
                 {/*CONTENT VOOR DE MANAGER*/}
-                <ListContentCard stylingClass="statistics-manager-hours">
+                <ContentCard stylingClass="table">
                     <table className={styles.table}>
                         <thead className={styles.thead}>
                         <tr>
@@ -98,188 +94,133 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             <td className={styles.td}>4</td>
                             <td className={styles.td}>56</td>
                         </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-                        <tr>
-                            <td className={styles.td}>Niek</td>
-                            <td className={styles.td}>Meijer</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>56</td>
-                        </tr>
-
                         </tbody>
                     </table>
-                </ListContentCard>
-
-                {/*CONTENT VOOR DE NORMALE USER*/}
-                {/*<ContentCard>*/}
-                {/*    <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span className={styles.time}>3 uur</span > en <span className={styles.time}>10 minuten</span></p>*/}
-                {/*</ContentCard>*/}
-
-                <div className={styles["title-sort"]}>
-                    <h3 className={styles.h3}>Voltooide taken</h3>
-                    <figure className={styles.sort}/>
-                </div>
-
-                {/*CONTENT VOOR DE MANAGER*/}
-                <ListContentCard stylingClass="statistics-manager-completed-tasks">
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Niek Meijer"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                    <Task
-                        dateAdded="2-5-22"
-                        status="Voltooid op 2-4-22"
-                        title="Lamp vervangen"
-                        completedBy="Peter Pan"
-                    />
-                </ListContentCard>
-
-                {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
-                {/*<ListContentCard stylingClass="statistics-user">*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*        />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*    <Task*/}
-                {/*        dateAdded="2-5-22"*/}
-                {/*        status="Voltooid op 2-4-22"*/}
-                {/*        title="Lamp vervangen"*/}
-                {/*    />*/}
-                {/*</ListContentCard>*/}
+                </ContentCard>
             </section>
-        </main>
+            {/*/!*CONTENT VOOR DE NORMALE USER*!/*/}
+            {/*/!*<ContentCard>*!/*/}
+            {/*/!*    <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span className={styles.time}>3 uur</span > en <span className={styles.time}>10 minuten</span></p>*!/*/}
+            {/*/!*</ContentCard>*!/*/}
+            <section className={styles.section}>
+            <div className={styles["title-sort"]}>
+                <h3 className={styles.h3}>Voltooide taken</h3>
+                <figure className={styles.sort}/>
+            </div>
+
+            {/*CONTENT VOOR DE MANAGER*/}
+            <ContentCard stylingClass="standard">
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Niek Meijer"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+                <Task
+                    dateAdded="2-5-22"
+                    status="Voltooid op 2-4-22"
+                    title="Lamp vervangen"
+                    completedBy="Peter Pan"
+                />
+            </ContentCard>
+
+            {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
+            {/*<ListContentCard stylingClass="statistics-user">*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*    />*/}
+            {/*</ListContentCard>*/}
+            </section>
+        </InnerOuterContainer>
     );
 }
 

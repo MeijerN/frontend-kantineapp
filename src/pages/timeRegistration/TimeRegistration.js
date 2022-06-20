@@ -1,7 +1,9 @@
 import styles from './TimeRegistration.module.css'
 import React, {useEffect} from 'react';
-import NavigationDrawer from "../../components/navigationDrawer/NavigationDrawer";
 import ContentCard from "../../components/contentCard/ContentCard";
+import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
+
+
 function TimeRegistration({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     useEffect(() => {
@@ -11,19 +13,13 @@ function TimeRegistration({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, []);
 
     return (
-        <main>
-            <NavigationDrawer
-                navDrawer={navDrawer}
-                toggleNavDrawer={toggleNavDrawer}
-            />
-            <section className="page-section">
-                <h3 className={styles.h3}>Timer</h3>
-                <ContentCard stylingClass="content-card">
-                        <p className={styles.p}>Je bent momenteel niet ingeklokt</p>
-                        <button className={styles.button} type="button">Inklokken</button>
-                </ContentCard>
-            </section>
-        </main>
+        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+            <h3 className={styles.h3}>Timer</h3>
+            <ContentCard stylingClass="standard">
+                <p className={styles.p}>Je bent momenteel niet ingeklokt</p>
+                <button className={styles.button} type="button">Inklokken</button>
+            </ContentCard>
+        </InnerOuterContainer>
     );
 }
 

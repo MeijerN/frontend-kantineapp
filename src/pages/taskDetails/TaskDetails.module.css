@@ -23,6 +23,33 @@
     font-size: 12px;
 }
 
+.dot-low:before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: hsl(112, 100%, 50%);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-medium:before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: hsl(47, 98%, 49%);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-high:before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: hsl(0, 100%, 50%);
+    border-radius: 50%;
+    display: inline-block;
+}
+
 .label-textarea-task-details, .label-task-owners-table {
     width: 100%;
     display: flex;

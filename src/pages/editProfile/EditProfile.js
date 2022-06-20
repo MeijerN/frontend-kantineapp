@@ -1,13 +1,13 @@
 import styles from './EditProfile.module.css';
 import React, {useEffect} from 'react';
-import NavigationDrawer from "../../components/navigationDrawer/NavigationDrawer";
 import ContentCard from "../../components/contentCard/ContentCard";
 import Select from 'react-select';
-import {Redirect, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import InputField from "../../components/inputField/InputField";
 import saveIcon from '../../assets/save_task_icon.svg';
 import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";
+import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 
 function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -47,56 +47,50 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }
 
     return (
-        <main>
-            <NavigationDrawer
-                navDrawer={navDrawer}
-                toggleNavDrawer={toggleNavDrawer}
-            />
-            <section className="page-section">
-                <h3 className={styles.h3}>Mijn gegevens</h3>
-                <ContentCard stylingClass="content-card">
-                    <form onSubmit={handleOnSubmit}>
-                        <InputField
-                            type="text"
-                            placeholder="Voornaam"
-                            value="Niek"
-                            stylingClass="edit-profile"
+        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+            <h3 className={styles.h3}>Mijn gegevens</h3>
+            <ContentCard stylingClass="standard">
+                <form onSubmit={handleOnSubmit}>
+                    <InputField
+                        type="text"
+                        placeholder="Voornaam"
+                        value="Niek"
+                        stylingClass="edit-profile"
+                    />
+                    <InputField
+                        type="text"
+                        placeholder="Achternaam"
+                        value="Meijer"
+                        stylingClass="edit-profile"
+                    />
+                    <InputField
+                        type="email"
+                        placeholder="Email"
+                        value="meyerniek@hotmail.com"
+                        stylingClass="edit-profile"
+                    />
+                    <Select
+                        className={styles["select-specialities"]}
+                        styles={customStyle}
+                        options={options}
+                        placeholder="Selecteer specialisaties"
+                        // value={selectedOptions}
+                        // onChange={handleSelect}
+                        isMulti
+                        isSearchable={false}
+                    />
+                    <div className={styles["icon-container"]}>
+                        <Icon
+                            text="Opslaan"
+                            image={saveIcon}
                         />
-                        <InputField
-                            type="text"
-                            placeholder="Achternaam"
-                            value="Meijer"
-                            stylingClass="edit-profile"
-                        />
-                        <InputField
-                            type="email"
-                            placeholder="Email"
-                            value="meyerniek@hotmail.com"
-                            stylingClass="edit-profile"
-                        />
-                        <Select
-                            className={styles["select-specialities"]}
-                            styles={customStyle}
-                            options={options}
-                            placeholder="Selecteer specialisaties"
-                            // value={selectedOptions}
-                            // onChange={handleSelect}
-                            isMulti
-                            isSearchable={false}
-                        />
-                        <div className={styles["icon-container"]}>
-                            <Icon
-                                text="Opslaan"
-                                image={saveIcon}
-                            />
-                        </div>
-                    </form>
-                </ContentCard>
-                <img onClick={() => {
-                    history.goBack()
-                }} className={styles["back-icon"]} src={backIcon} alt="back"/>
-            </section>
-        </main>
+                    </div>
+                </form>
+            </ContentCard>
+            <img onClick={() => {
+                history.goBack()
+            }} className={styles["back-icon"]} src={backIcon} alt="back"/>
+        </InnerOuterContainer>
     );
 }
 

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import styles from './OpenTasks.module.css';
 import Task from '../../components/task/Task'
-import ListContentCard from "../../components/listContentCard/ListContentCard";
-import NavigationDrawer from "../../components/navigationDrawer/NavigationDrawer";
+import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
+import ContentCard from "../../components/contentCard/ContentCard";
 
 function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -13,82 +13,74 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, [])
 
     return (
-        <main>
-            <NavigationDrawer
-                navDrawer={navDrawer}
-                toggleNavDrawer={toggleNavDrawer}
-            />
-            <section className="page-section">
-                <div className={styles["title-sort"]}>
-                    <h3 className={styles.h3}>Takenlijst</h3>
-                    <figure className={styles.sort}/>
-                </div>
-                <ListContentCard stylingClass="open-tasks">
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                        id="1"
-                    />
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                        id="1"
-                    />
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                        id="1"
-                    />
-                    <Task
-                        prio="high"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                        id="1"
-                    />
-                    <Task
-                        prio="medium"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                    />
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                    />
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                    />
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                    />
-                    <Task
-                        prio="low"
-                        dateAdded="2-5-22"
-                        status="In behandeling"
-                        title="Lamp vervangen"
-                    />
-                    {/*CONTENT VOOR DE MANAGER*/}
-                    {/*<button className={styles["add-button"]}/>*/}
-
-                </ListContentCard>
-
-            </section>
-        </main>
+        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+            <div className={styles["title-sort"]}>
+                <h3 className={styles.h3}>Takenlijst</h3>
+                <figure className={styles.sort}/>
+            </div>
+            <ContentCard stylingClass="standard">
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="high"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="medium"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                {/*CONTENT VOOR DE MANAGER*/}
+                {/*<button className={styles["add-button"]}/>*/}
+            </ContentCard>
+        </InnerOuterContainer>
     );
 }
 
