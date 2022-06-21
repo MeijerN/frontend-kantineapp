@@ -1,0 +1,55 @@
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+        3.1 Reusables
+        3.2 Other
+    4. Areas
+        4.1 List item
+    5. Media Queries
+////////////////////////*/
+/* ------------------------------- 1. Global Styles -------------------------------- */
+/* ------------------------------- 2. Typography ----------------------------------- */
+/* ------------------------------- 3. Layout --------------------------------------- */
+/* --------------- 3.1 Reusables ----------------------- */
+/* --------------- 3.2 Other --------------------------- */
+/* ------------------------------- 4. Areas ---------------------------------------- */
+/* --------------- 4.1 List item ------------------------- */
+
+.li {
+    list-style: none;
+    display: flex;
+}
+
+.navlink {
+    padding: 15px 0 15px 25px;
+    flex-basis: 100%;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-decoration: none;
+    color: hsl(0, 0%, 90%);
+}
+
+.navlink-active {
+    background-color: hsl(0, 96%, 11%);
+    position: relative;
+    border-width: 1px;
+    border-style: inset;
+    border-top-color: hsl(0, 0%, 9%);
+    border-right-color: hsl(0, 0%, 30%);
+    border-bottom-color: hsl(0, 0%, 30%);
+}
+
+.navlink-active::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 53px;
+    left: -1px;
+    top: -1px;
+
+    background: hsl(61, 99%, 39%);
+}
+
+/* ------------------------------- 5. Media Queries -------------------------------- */

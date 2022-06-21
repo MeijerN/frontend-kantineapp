@@ -6,9 +6,11 @@
         3.1 Reusables
         3.2 Other
     4. Areas
-        4.1 Content card
-        4.2 Content card (task details page)
-        4.3 Content card (tables)
+        4.1 Content card (standard card)
+        4.2 Content card (time registration)
+        4.3 Content card (task details page)
+        4.4 Content card (tables)
+        4.5 Content card (tasks)
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -20,9 +22,12 @@
 /* --------------- 4.1 Content card (standard) ------------------------- */
 
 .standard {
+    max-height: 100%;
     padding: 20px 20px 20px 20px;
     overflow: scroll;
     border: solid hsl(61, 100%, 50%) 1px;
+
+    border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     background-color: hsl(0, 0%, 100%);
     flex-basis: 100%;
@@ -33,7 +38,22 @@
     align-items: center;
 }
 
-/* --------------- 4.2 Content card (task details) ------------------------- */
+/* --------------- 4.2 Content card (time registration) ------------------------- */
+
+.time-registration {
+    max-height: 100%;
+    padding: 20px 20px 20px 20px;
+    border: solid hsl(61, 100%, 50%) 1px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background-color: hsl(0, 0%, 100%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --------------- 4.3 Content card (task details) ------------------------- */
 
 .task-details {
     margin-top: 20px;
@@ -54,7 +74,7 @@
 .content-card-task-details > * {
     margin-bottom: 10px;
 }
-/* --------------- 4.3 Content card (tables) ------------------------- */
+/* --------------- 4.4 Content card (tables) ------------------------- */
 
 .table {
     padding: 0 20px 20px 20px;
@@ -67,4 +87,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* --------------- 4.5 Content card (tasks) ------------------------- */
+
+.tasks {
+    padding: 20px 20px 20px 20px;
+    overflow: scroll;
+    border: solid hsl(61, 100%, 50%) 1px;
+    border-radius: 8px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background-color: hsl(0, 0%, 100%);
+    flex-basis: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tasks > * {
+    margin: 5px 0 5px 0;
 }

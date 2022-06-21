@@ -109,7 +109,7 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
             </div>
 
             {/*CONTENT VOOR DE MANAGER*/}
-            <ContentCard stylingClass="standard">
+            <ContentCard stylingClass="tasks">
                 <Task
                     dateAdded="2-5-22"
                     status="Voltooid op 2-4-22"

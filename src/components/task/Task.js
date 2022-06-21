@@ -11,7 +11,7 @@ function Task({prio, dateAdded, status, title, completedBy, id}) {
     }
 
     return (
-        <div onClick={handleOnClick} className={styles.li}>
+        <div onClick={handleOnClick} className={styles.task}>
             <span className={styles[prio]}/>
             <p className={styles["task-added-date"]}>Toegevoegd op {dateAdded}</p>
             <p className={styles["task-status"]}>{status}</p>

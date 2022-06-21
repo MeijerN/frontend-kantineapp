@@ -18,7 +18,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 <h3 className={styles.h3}>Takenlijst</h3>
                 <figure className={styles.sort}/>
             </div>
-            <ContentCard stylingClass="standard">
+            <ContentCard stylingClass="tasks">
                 <Task
                     prio="low"
                     dateAdded="2-5-22"

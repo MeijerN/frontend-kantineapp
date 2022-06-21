@@ -15,7 +15,7 @@ function TimeRegistration({navDrawer, toggleNavDrawer, setCurrentPage}) {
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <h3 className={styles.h3}>Timer</h3>
-            <ContentCard stylingClass="standard">
+            <ContentCard stylingClass="time-registration">
                 <p className={styles.p}>Je bent momenteel niet ingeklokt</p>
                 <button className={styles.button} type="button">Inklokken</button>
             </ContentCard>

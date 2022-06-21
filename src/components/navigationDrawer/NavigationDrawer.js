@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './NavigationDrawer.module.css'
-import {Link, NavLink} from "react-router-dom";
 import SVDLogo from '../../assets/SVDlogo.png'
 import closeMenuIcon from '../../assets/close_menu.svg'
 import profilePicture from '../../assets/profile_picture.jpeg'
+import NavigationDrawerItem from "../navigationDrawerItem/NavigationDrawerItem";
 
 function NavigationDrawer({navDrawer, toggleNavDrawer}) {
     function closeNav() {
@@ -31,21 +31,26 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                 <div className={styles.line}/>
             </header>
             <ul className={styles.ul}>
-                <li className={styles.li}>
-                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/openstaande-taken">Openstaande taken</NavLink>
-                </li>
-                <li className={styles.li}>
-                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/urenregistratie">Urenregistratie</NavLink>
-                </li>
-                <li className={styles.li}>
-                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/statistieken">Statistieken</NavLink>
-                </li>
-                <li className={styles.li}>
-                    <NavLink className={styles.navlink} exact activeClassName={styles["navlink-active"]} to="/profiel">Profiel</NavLink>
-                </li>
-                <li className={styles.li}>
-                    <NavLink onClick={closeNav} className={styles.navlink} to="/">Uitloggen</NavLink>
-                </li>
+                <NavigationDrawerItem
+                    text="Openstaande taken"
+                    path="/openstaande-taken"
+                />
+                <NavigationDrawerItem
+                    text="Urenregistratie"
+                    path="/urenregistratie"
+                />
+                <NavigationDrawerItem
+                    text="Statistieken"
+                    path="/statistieken"
+                />
+                <NavigationDrawerItem
+                    text="Profiel"
+                    path="/profiel"
+                />
+                <NavigationDrawerItem
+                    text="Uitloggen"
+                    path="/"
+                />
             </ul>
             <figure className={styles["SVD-logo-container"]}>
                 <img src={SVDLogo} alt="SVD-logo"/>
