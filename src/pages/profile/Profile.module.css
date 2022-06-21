@@ -20,7 +20,7 @@
 
 .content-wrapper {
     min-width: 100%;
-    min-height: calc(100vh - 390px); /*Calculate and use the remaining space */
+    flex-basis: 90%;
 
     display: flex;
     flex-direction: column;
@@ -33,7 +33,7 @@
     display: flex;
     justify-content: space-around;
 
-    /*border: solid #66ff00 1px;*/
+    /*border: solid #e80000 2px;*/
 }
 
 .profile-picture-container {
@@ -91,7 +91,7 @@
     flex-direction: column;
     justify-content: space-around;
 
-    /*border: solid red 1px;*/
+    /*border: solid #1c5d0e 2px;*/
 }
 
 .h3 {
@@ -100,10 +100,12 @@
 }
 
 .icon-container {
-    margin-top: 20px;
+    flex-basis: 10%;
+    min-width: 100%;
+
     display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
 
     /*border: solid blue 1px;*/
 }

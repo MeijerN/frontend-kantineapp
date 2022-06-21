@@ -49,8 +49,8 @@
     box-shadow: 0 4px 15px #360101;
 
     position: absolute;
-    bottom: -10px;
-    left: -15px;
+    bottom: 5px;
+    left: 5px;
 }
 .add-button::before {
     content: " ";
@@ -77,4 +77,8 @@
     right: 12px;
     border-radius: 8px;
     z-index: 0;
+}
+
+.add-button:hover {
+    cursor: pointer;
 }

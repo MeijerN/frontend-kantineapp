@@ -33,25 +33,79 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     title="Lamp vervangen"
                     id="1"
                 />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="high"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="medium"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
                 {/*<Task*/}
                 {/*    prio="low"*/}
                 {/*    dateAdded="2-5-22"*/}
                 {/*    status="In behandeling"*/}
                 {/*    title="Lamp vervangen"*/}
-                {/*    id="1"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="high"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*    id="1"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="medium"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
                 {/*/>*/}
                 {/*<Task*/}
                 {/*    prio="low"*/}
@@ -71,14 +125,9 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 {/*    status="In behandeling"*/}
                 {/*    title="Lamp vervangen"*/}
                 {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
+
                 {/*CONTENT VOOR DE MANAGER*/}
-                {/*<button className={styles["add-button"]}/>*/}
+                <button className={styles["add-button"]}/>
             </ContentCard>
         </InnerOuterContainer>
     );

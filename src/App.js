@@ -88,11 +88,11 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// TODO: Het schalen voor eens en altijd goed maken. Ga verder bij Statistics.js, eerst de secties op schaal krijgen en dan de tabellen laten schalen.
-//LET OP: De h3 (titlesort) verprutsen de scaling. De sectie moet op zijn beurt weer opgedeeld worden met de h3 en tabel (grow gebruiken?)
+//TODO: Add task pagina maken
+//TODO: Edit task pagina maken
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: MANAGERS VRIJWILLIGERS VERWIJDEREN BIJ STATISTIEKEN EN DE STATUS MANAGER GEVEN
 
 // IN DE GATEN HOUDEN:
-// Beslis of je context of state gaat gebruik van door de navbar
+// TODO: Beslis of je context of state gaat gebruik van door de navbar

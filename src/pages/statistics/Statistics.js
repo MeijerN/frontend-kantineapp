@@ -94,6 +94,109 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             <td className={styles.td}>4</td>
                             <td className={styles.td}>56</td>
                         </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.td}>Niek</td>
+                            <td className={styles.td}>Meijer</td>
+                            <td className={styles.td}>4</td>
+                            <td className={styles.td}>56</td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </ContentCard>

@@ -52,6 +52,9 @@
 
 .label-textarea-task-details, .label-task-owners-table {
     width: 100%;
+    flex-basis: 100%;
+    margin: 10px 0 10px 0;
+
     display: flex;
     flex-direction: column;
     font-size: 14px;
@@ -60,7 +63,9 @@
 }
 
 .textarea-task-details, .assigned-users {
-    height: calc(100vh - 600px);
+    /*height: calc(100vh - 600px);*/
+    /*flex-basis: 100%;*/
+    flex-basis:100%;
     width: 100%;
     overflow: scroll;
     padding: 5px;
@@ -78,7 +83,7 @@
 }
 
 .assigned-users {
-    height: calc(100vh - 625px);
+    /*height: calc(100vh - 625px);*/
 
 }
 

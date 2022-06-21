@@ -49,8 +49,8 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <h3 className={styles.h3}>Mijn gegevens</h3>
-            <ContentCard stylingClass="standard">
-                <form onSubmit={handleOnSubmit}>
+            <ContentCard stylingClass="edit-profile">
+                <form className={styles.form} onSubmit={handleOnSubmit}>
                     <InputField
                         type="text"
                         placeholder="Voornaam"
