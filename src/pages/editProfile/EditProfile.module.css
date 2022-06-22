@@ -18,6 +18,11 @@
 /* ------------------------------- 4. Areas ---------------------------------------- */
 /* --------------- 4.1 Form ------------------------- */
 
+.h3 {
+    align-self: center;
+    margin: 20px 0 5px 0;
+}
+
 .form {
     min-width: 100%;
 
@@ -27,15 +32,6 @@
     justify-content: center;
 
     /*border: solid red 1px;*/
-}
-
-.h3 {
-    align-self: center;
-    margin: 20px 0 5px 0;
-}
-
-.select-specialities {
-    width: 100%;
 }
 
 /* ------------------------------- 4.2. Buttons -------------------------------- */

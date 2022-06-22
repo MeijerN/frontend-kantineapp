@@ -3,8 +3,11 @@ import styles from './OpenTasks.module.css';
 import Task from '../../components/task/Task'
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import ContentCard from "../../components/contentCard/ContentCard";
+import {useHistory} from "react-router-dom";
 
 function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
+
+    const history = useHistory();
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
@@ -127,7 +130,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 {/*/>*/}
 
                 {/*CONTENT VOOR DE MANAGER*/}
-                <button className={styles["add-button"]}/>
+                <button onClick={() => {history.push("/opstaande-taken/toevoegen")}} className={styles["add-button"]}/>
             </ContentCard>
         </InnerOuterContainer>
     );

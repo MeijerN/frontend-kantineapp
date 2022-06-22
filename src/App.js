@@ -12,6 +12,7 @@ import Profile from "./pages/profile/Profile";
 import Statistics from "./pages/statistics/Statistics";
 import EditProfile from "./pages/editProfile/EditProfile";
 import TaskDetails from "./pages/taskDetails/TaskDetails";
+import AddTask from "./pages/addTask/AddTask";
 
 function App() {
 
@@ -45,8 +46,15 @@ function App() {
                         setCurrentPage={setCurrentPage}
                     />
                 </Route>
-                <Route path="/openstaande-taken/:id">
+                <Route exact path="/openstaande-taken/:id">
                     <TaskDetails
+                        navDrawer={navDrawer}
+                        toggleNavDrawer={toggleNavDrawer}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </Route>
+                <Route exact path="/opstaande-taken/toevoegen">
+                    <AddTask
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}

@@ -18,73 +18,38 @@
 /* ------------------------------- 4. Areas ---------------------------------------- */
 /* --------------- 4.1 Task details ------------------------- */
 
-.status {
-    align-self: flex-end;
-    font-size: 12px;
-}
-
-.dot-low:before {
-    content: "";
-    height: 8px;
-    width: 8px;
-    background-color: hsl(112, 100%, 50%);
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot-medium:before {
-    content: "";
-    height: 8px;
-    width: 8px;
-    background-color: hsl(47, 98%, 49%);
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot-high:before {
-    content: "";
-    height: 8px;
-    width: 8px;
-    background-color: hsl(0, 100%, 50%);
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.label-textarea-task-details, .label-task-owners-table {
-    width: 100%;
-    flex-basis: 100%;
-    margin: 10px 0 10px 0;
+.form {
+    min-width: 100%;
 
     display: flex;
     flex-direction: column;
-    font-size: 14px;
+    position: relative;
+    justify-content: center;
 
-    /*border: solid #10b409 1px;*/
+    border: solid red 1px;
 }
 
-.textarea-task-details, .assigned-users {
-    /*height: calc(100vh - 600px);*/
-    /*flex-basis: 100%;*/
-    flex-basis:100%;
+.label-textarea-add-task {
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+
+    border: solid #10b409 1px;
+}
+
+.textarea-add-task {
     overflow: scroll;
-    padding: 5px;
+    padding: 10px;
     font-size: 12px;
-    /*max-width: 500px;*/
-    /*align-self: center;*/
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: solid rgba(0, 0, 0, 0.1) 1px;
-
-    /*border: solid pink 1px;*/
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 25px;
 }
 
-.p {
-    font-size: 14px;
-}
-
-.assigned-users {
-    /*height: calc(100vh - 625px);*/
-
+.select {
+    margin-bottom: 25px;
 }
 
 /* --------------- 4.2 Buttons ------------------- */

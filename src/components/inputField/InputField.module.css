@@ -8,6 +8,7 @@
     4. Areas
         4.1 Inputfield login and registration form
         4.2 Inputfield edit profile form
+        4.3 Inputfield add task
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
 
@@ -42,4 +43,10 @@
     border-radius: 8px;
     border-width: 1px;
     margin-bottom: 25px;
+}
+
+/* --------------- 4.3 Inputfield add task ------------------------- */
+
+.add-task-textarea {
+    border: solid red 1px;
 }

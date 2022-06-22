@@ -26,7 +26,6 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <ContentCard stylingClass="task-details">
-                <p className={styles["status"]}><span className={styles["dot-low"]}/> In afwachting</p>
                 <h3>Lamp vervangen</h3>
                 <label htmlFor="textarea-task-details" className={styles["label-textarea-task-details"]}>
                     Beschrijving:
