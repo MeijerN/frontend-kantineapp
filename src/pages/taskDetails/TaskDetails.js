@@ -23,9 +23,14 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     }, [])
 
+    function handleEditButtonClick() {
+        history.push(`/openstaande-taken/${id}/bewerken`)
+    }
+
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <ContentCard stylingClass="task-details">
+                <p className={styles.status}><span className={styles["dot-low"]}/> In behandeling</p>
                 <h3>Lamp vervangen</h3>
                 <label htmlFor="textarea-task-details" className={styles["label-textarea-task-details"]}>
                     Beschrijving:
@@ -61,6 +66,7 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         text="Bewerken"
                         image={editIcon}
                         alt="edit"
+                        onClick={handleEditButtonClick}
                     />
                     <Icon
                         text="Verwijderen"

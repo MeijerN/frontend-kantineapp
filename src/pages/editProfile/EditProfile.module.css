@@ -49,7 +49,11 @@
 
 .back-icon {
     max-width: 25px;
-    margin: 10px 0 0px 10px;
+    margin: 10px 0 0 10px;
+}
+
+.back-icon:hover {
+    cursor: pointer;
 }
 
 /* ------------------------------- 5. Media Queries -------------------------------- */

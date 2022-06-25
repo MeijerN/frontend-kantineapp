@@ -11,8 +11,9 @@
         4.3 Content card (task details page)
         4.4 Content card (tables)
         4.5 Content card (tasks)
-        4.6 Content card (edit profile)
-        4.7 Scrollbar
+        4.6 Conent card (add task)
+        4.7 Content card (edit profile)
+        4.8 Scrollbar
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -62,6 +63,7 @@
     background-color: hsl(0, 0%, 100%);
     position: relative;
     flex-basis: 100%;
+    /*flex-basis: fit-content;*/
 
     display: flex;
     flex-direction: column;
@@ -72,6 +74,23 @@
 .content-card-task-details > * {
     margin-bottom: 10px;
 }
+
+.edit-task-details {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    border: solid hsl(61, 100%, 50%) 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background-color: hsl(0, 0%, 100%);
+    position: relative;
+    flex-basis: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 /* --------------- 4.4 Content card (tables) ------------------------- */
 
 .table {
@@ -110,7 +129,25 @@
     margin: 5px 0 5px 0;
 }
 
-/* --------------- 4.5 Content card (edit profile) ------------------------- */
+/* --------------- 4.6 Content card (add task) ------------------------- */
+
+.add-task {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    border: solid hsl(61, 100%, 50%) 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background-color: hsl(0, 0%, 100%);
+    position: relative;
+    flex-basis: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* --------------- 4.7 Content card (edit profile) ------------------------- */
 
 .edit-profile {
     padding: 20px 20px 20px 20px;
@@ -126,7 +163,7 @@
     align-items: center;
 }
 
-/* --------------- 4.5 Content card (scrollbar) ------------------------- */
+/* --------------- 4.8 Content card (scrollbar) ------------------------- */
 
 .tasks::-webkit-scrollbar, .table::-webkit-scrollbar {
     width: 0;

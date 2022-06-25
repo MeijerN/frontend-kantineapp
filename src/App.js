@@ -13,6 +13,7 @@ import Statistics from "./pages/statistics/Statistics";
 import EditProfile from "./pages/editProfile/EditProfile";
 import TaskDetails from "./pages/taskDetails/TaskDetails";
 import AddTask from "./pages/addTask/AddTask";
+import EditTask from "./pages/editTask/EditTask";
 
 function App() {
 
@@ -34,7 +35,10 @@ function App() {
             />}
             <Switch>
                 <Route exact path="/">
-                    <LoginPage/>
+                    <LoginPage
+                        navDrawer={navDrawer}
+                        toggleNavDrawer={toggleNavDrawer}
+                    />
                 </Route>
                 <Route path="/registreren">
                     <RegisterPage/>
@@ -55,6 +59,13 @@ function App() {
                 </Route>
                 <Route exact path="/opstaande-taken/toevoegen">
                     <AddTask
+                        navDrawer={navDrawer}
+                        toggleNavDrawer={toggleNavDrawer}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </Route>
+                <Route path="/openstaande-taken/:id/bewerken">
+                    <EditTask
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
@@ -96,8 +107,7 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-//TODO: Add task pagina maken
-//TODO: Edit task pagina maken
+
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: MANAGERS VRIJWILLIGERS VERWIJDEREN BIJ STATISTIEKEN EN DE STATUS MANAGER GEVEN

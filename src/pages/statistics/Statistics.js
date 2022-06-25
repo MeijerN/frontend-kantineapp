@@ -3,6 +3,10 @@ import React, {useEffect} from 'react';
 import Task from "../../components/task/Task";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import ContentCard from "../../components/contentCard/ContentCard";
+import Icon from "../../components/icon/Icon";
+import taskDoneIcon from "../../assets/task_done_icon.svg";
+import editIcon from "../../assets/edit_task_icon.svg";
+import deleteTaskIcon from "../../assets/delete_task_icon.svg";
 
 
 function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
@@ -268,7 +272,6 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     completedBy="Peter Pan"
                 />
             </ContentCard>
-
             {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
             {/*<ListContentCard stylingClass="statistics-user">*/}
             {/*    <Task*/}

@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Login.module.css';
 import InputField from '../../components/inputField/InputField'
 import SubmitButton from '../../components/submitButton/SubmitButton'
 import {Link, useHistory} from 'react-router-dom';
 
-function LoginPage() {
-    //Tijdelijke login voor ontwikkeling
+function LoginPage({navDrawer, toggleNavDrawer}) {
+    //TIJDELIJKE LOGIN VOOR ONTWIKKELING
     const history = useHistory();
     function handleOnSubmit() {
         history.push("/openstaande-taken")
     }
+
+    // Close navbar after user logout
+    useEffect(() => {
+        toggleNavDrawer(false);
+    }, [])
 
     return (
         <main className={styles.main}>

@@ -26,7 +26,7 @@
     position: relative;
     justify-content: center;
 
-    border: solid red 1px;
+    /*border: solid red 1px;*/
 }
 
 .label-textarea-add-task {
@@ -36,16 +36,22 @@
     flex-direction: column;
     font-size: 16px;
 
-    border: solid #10b409 1px;
+    /*border: solid #10b409 1px;*/
 }
 
 .textarea-add-task {
+    resize: none;
     overflow: scroll;
     padding: 10px;
     font-size: 12px;
     width: 100%;
     border-radius: 8px;
     margin-bottom: 25px;
+}
+
+.textarea-add-task::-webkit-scrollbar {
+    height: 0;
+    width: 0;
 }
 
 .select {
@@ -69,6 +75,10 @@
 .back-icon {
     max-width: 25px;
     margin: 10px 0 0 10px;
+}
+
+.back-icon:hover {
+    cursor: pointer;
 }
 
 /* ------------------------------- 5. Media Queries -------------------------------- */
