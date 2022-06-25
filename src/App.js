@@ -14,6 +14,7 @@ import EditProfile from "./pages/editProfile/EditProfile";
 import TaskDetails from "./pages/taskDetails/TaskDetails";
 import AddTask from "./pages/addTask/AddTask";
 import EditTask from "./pages/editTask/EditTask";
+import Personnel from "./pages/personnel/Personnel";
 
 function App() {
 
@@ -78,6 +79,13 @@ function App() {
                         setCurrentPage={setCurrentPage}
                     />
                 </Route>
+                <Route path="/personeel">
+                    <Personnel
+                        navDrawer={navDrawer}
+                        toggleNavDrawer={toggleNavDrawer}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </Route>
                 <Route path="/statistieken">
                     <Statistics
                         navDrawer={navDrawer}
@@ -107,7 +115,8 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-
+// Personeel page afmaken
+// Component van select maken (opzetje is gemaakt)
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: MANAGERS VRIJWILLIGERS VERWIJDEREN BIJ STATISTIEKEN EN DE STATUS MANAGER GEVEN

@@ -36,6 +36,10 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                     path="/openstaande-taken"
                 />
                 <NavigationDrawerItem
+                    text="Personeel"
+                    path="/personeel"
+                />
+                <NavigationDrawerItem
                     text="Urenregistratie"
                     path="/urenregistratie"
                 />
