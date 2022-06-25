@@ -57,7 +57,7 @@ function App() {
                         setCurrentPage={setCurrentPage}
                     />
                 </Route>
-                <Route exact path="/opstaande-taken/toevoegen">
+                <Route exact path="/openstaande-taken/toevoegen">
                     <AddTask
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}

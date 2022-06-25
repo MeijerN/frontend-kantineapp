@@ -12,8 +12,8 @@
         4.4 Content card (tables)
         4.5 Content card (tasks)
         4.6 Conent card (add task)
-        4.7 Content card (edit profile)
-        4.8 Scrollbar
+        4.6 Content card (edit profile)
+        4.7 Scrollbar
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -129,8 +129,6 @@
     margin: 5px 0 5px 0;
 }
 
-/* --------------- 4.6 Content card (add task) ------------------------- */
-
 .add-task {
     margin-top: 20px;
     padding: 20px;
@@ -140,6 +138,7 @@
     background-color: hsl(0, 0%, 100%);
     position: relative;
     flex-basis: fit-content;
+    /*flex-basis: fit-content;*/
 
     display: flex;
     flex-direction: column;
@@ -147,7 +146,7 @@
     align-items: flex-start;
 }
 
-/* --------------- 4.7 Content card (edit profile) ------------------------- */
+/* --------------- 4.5 Content card (edit profile) ------------------------- */
 
 .edit-profile {
     padding: 20px 20px 20px 20px;
@@ -163,7 +162,7 @@
     align-items: center;
 }
 
-/* --------------- 4.8 Content card (scrollbar) ------------------------- */
+/* --------------- 4.5 Content card (scrollbar) ------------------------- */
 
 .tasks::-webkit-scrollbar, .table::-webkit-scrollbar {
     width: 0;

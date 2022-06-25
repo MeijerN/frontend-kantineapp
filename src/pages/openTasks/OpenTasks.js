@@ -8,144 +8,132 @@ import {NavLink, useHistory} from "react-router-dom";
 function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     const history = useHistory();
-    const [addTask, toggleAddTask] = React.useState(false);
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Openstaande taken");
         toggleNavDrawer(false);
-        console.log('useEffect MOUNT');
+        console.log('useEffect aangeroepen OPENTASKPAGE');
     }, [])
-
-    useEffect(() => {
-        // Change header currentPage state on page mounting and close drawer
-
-        console.log('useEffect UPDATE');
-    }, [addTask])
 
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
-                    <div className={styles["title-sort"]}>
-                        <h3 className={styles.h3}>Takenlijst</h3>
-                        <figure className={styles.sort}/>
-                    </div>
-                    <ContentCard stylingClass="tasks">
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                            id="1"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                            id="1"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                            id="1"
-                        />
-                        <Task
-                            prio="high"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                            id="1"
-                        />
-                        <Task
-                            prio="medium"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        <Task
-                            prio="low"
-                            dateAdded="2-5-22"
-                            status="In behandeling"
-                            title="Lamp vervangen"
-                        />
-                        {/*<Task*/}
-                        {/*    prio="low"*/}
-                        {/*    dateAdded="2-5-22"*/}
-                        {/*    status="In behandeling"*/}
-                        {/*    title="Lamp vervangen"*/}
-                        {/*/>*/}
-                        {/*<Task*/}
-                        {/*    prio="low"*/}
-                        {/*    dateAdded="2-5-22"*/}
-                        {/*    status="In behandeling"*/}
-                        {/*    title="Lamp vervangen"*/}
-                        {/*/>*/}
-                        {/*<Task*/}
-                        {/*    prio="low"*/}
-                        {/*    dateAdded="2-5-22"*/}
-                        {/*    status="In behandeling"*/}
-                        {/*    title="Lamp vervangen"*/}
-                        {/*/>*/}
-                        {/*<Task*/}
-                        {/*    prio="low"*/}
-                        {/*    dateAdded="2-5-22"*/}
-                        {/*    status="In behandeling"*/}
-                        {/*    title="Lamp vervangen"*/}
-                        {/*/>*/}
+            <div className={styles["title-sort"]}>
+                <h3 className={styles.h3}>Takenlijst</h3>
+                <figure className={styles.sort}/>
+            </div>
+            <ContentCard stylingClass="tasks">
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="high"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                    id="1"
+                />
+                <Task
+                    prio="medium"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                <Task
+                    prio="low"
+                    dateAdded="2-5-22"
+                    status="In behandeling"
+                    title="Lamp vervangen"
+                />
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
 
-                        {/*CONTENT VOOR DE MANAGER*/}
+                {/*ICOON VOOR DE MANAGER*/}
+                <button onClick={() => {history.push("/openstaande-taken/toevoegen")}} className={styles["add-button"]}/>
 
-
-}
-                        <button onClick={() => {history.push("/opstaande-taken/toevoegen")}} className={styles["add-button"]}/>
-
-                    </ContentCard>
-
-
+            </ContentCard>
         </InnerOuterContainer>
     );
 }

@@ -68,9 +68,9 @@ function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             id="title"
                         />
                     </label>
-                    <label htmlFor="textarea-add-task" className={styles["label-textarea-add-task"]}>
+                    <label htmlFor="textarea-add-task" className={styles["label-textarea-edit-task"]}>
                         Omschrijving van de taak:
-                        <textarea className={styles["textarea-add-task"]} name="description" id="description"
+                        <textarea className={styles["textarea-edit-task"]} name="description" id="description"
                                   value="Waarde uit de database"/>
                     </label>
                     <Select className={styles.select} id="select-priority" name="select-priority" styles={customStyle}

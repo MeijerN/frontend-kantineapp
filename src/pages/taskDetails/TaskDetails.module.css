@@ -78,6 +78,11 @@
     /*border: solid pink 1px;*/
 }
 
+.textarea-task-details::-webkit-scrollbar, .assigned-users::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+}
+
 .p {
     font-size: 14px;
 }
@@ -104,6 +109,10 @@
 .back-icon {
     max-width: 25px;
     margin: 10px 0 0 10px;
+}
+
+.back-icon:hover {
+    cursor: pointer;
 }
 
 /* ------------------------------- 5. Media Queries -------------------------------- */
