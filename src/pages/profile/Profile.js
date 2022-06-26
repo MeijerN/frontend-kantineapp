@@ -21,7 +21,7 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <h3 className={styles.h3}>Mijn gegevens</h3>
-            <ContentCard stylingClass="standard">
+            <ContentCard stylingClass="profile">
                 <section className={styles["content-wrapper"]}>
                     <div className={styles["top-section"]}>
                         {uploadCard &&

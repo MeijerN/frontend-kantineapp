@@ -8,6 +8,7 @@ import saveIcon from '../../assets/save_task_icon.svg';
 import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
+import SelectElement from "../../components/selectElement/SelectElement";
 
 function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -69,15 +70,13 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         value="meyerniek@hotmail.com"
                         stylingClass="edit-profile"
                     />
-                    <Select
-                        className={styles["select-specialities"]}
-                        styles={customStyle}
+                    <SelectElement
+                        id="select-volunteers"
+                        name="volunteers"
                         options={options}
-                        placeholder="Selecteer specialisaties"
-                        // value={selectedOptions}
-                        // onChange={handleSelect}
-                        isMulti
+                        placeholder="Selecteer vrijwilligers"
                         isSearchable={false}
+                        isMulti={true}
                     />
                     <div className={styles["icon-container"]}>
                         <Icon

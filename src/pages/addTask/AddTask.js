@@ -8,9 +8,7 @@ import saveIcon from '../../assets/save_task_icon.svg';
 import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
-import taskDoneIcon from "../../assets/task_done_icon.svg";
-import editIcon from "../../assets/edit_task_icon.svg";
-import deleteTaskIcon from "../../assets/delete_task_icon.svg";
+import SelectElement from "../../components/selectElement/SelectElement";
 
 function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -35,20 +33,13 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     ]
 
-    // Remove blue border in <Select/> element when in focus
-    const customStyle = {
-        control: provided => ({
-            ...provided,
-            boxShadow: 'none',
-            border: "solid black 1px",
-            borderRadius: "8px",
-        })
-    }
-
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Taak toevoegen");
         toggleNavDrawer(false);
+
+        // VRIJWILLIGERS EN PRIORITEITEN OPHALEN UIT DATABASE
+
     }, [])
 
 
@@ -74,17 +65,22 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         Omschrijving van de taak:
                         <textarea className={styles["textarea-add-task"]} name="description" id="description"/>
                     </label>
-                    <Select className={styles.select} id="select-priority" name="select-priority" styles={customStyle} options={priorities}
-                            placeholder="Selecteer prioriteit" isSearchable={false}/>
-                    <Select
-                        className={styles["select-specialities"]}
-                        styles={customStyle}
+                    <SelectElement
+                        stylingClass={styles.select}
+                        id="select-priority"
+                        name="priority"
+                        options={priorities}
+                        placeholder="Selecteer prioriteit"
+                        isSearchable={false}
+                        isMulti={false}
+                    />
+                    <SelectElement
+                        id="select-volunteers"
+                        name="volunteers"
                         options={volunteers}
                         placeholder="Selecteer vrijwilligers"
-                        // value={selectedOptions}
-                        // onChange={handleSelect}
-                        isMulti
                         isSearchable={false}
+                        isMulti={true}
                     />
                     <div className={styles["icon-container"]}>
                         <Icon

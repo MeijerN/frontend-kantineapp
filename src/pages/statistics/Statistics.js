@@ -6,8 +6,7 @@ import ContentCard from "../../components/contentCard/ContentCard";
 import Icon from "../../components/icon/Icon";
 import taskDoneIcon from "../../assets/task_done_icon.svg";
 import editIcon from "../../assets/edit_task_icon.svg";
-import deleteTaskIcon from "../../assets/delete_task_icon.svg";
-
+import deleteTaskIcon from "../../assets/delete_task_icon.svg"
 
 function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -216,115 +215,103 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
             </div>
 
             {/*CONTENT VOOR DE MANAGER*/}
+            {/*<ContentCard stylingClass="tasks">*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Niek Meijer"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Peter Pan"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Peter Pan"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Peter Pan"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Niek Meijer"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Peter Pan"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Peter Pan"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*    <Task*/}
+            {/*        dateAdded="2-5-22"*/}
+            {/*        status="Voltooid op 2-4-22"*/}
+            {/*        title="Lamp vervangen"*/}
+            {/*        completedBy="Peter Pan"*/}
+            {/*        isComplete={true}*/}
+            {/*    />*/}
+            {/*</ContentCard>*/}
+            {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
             <ContentCard stylingClass="tasks">
                 <Task
                     dateAdded="2-5-22"
                     status="Voltooid op 2-4-22"
                     title="Lamp vervangen"
-                    completedBy="Niek Meijer"
+                    isComplete={true}
                 />
                 <Task
                     dateAdded="2-5-22"
                     status="Voltooid op 2-4-22"
                     title="Lamp vervangen"
-                    completedBy="Peter Pan"
+                    isComplete={true}
                 />
                 <Task
                     dateAdded="2-5-22"
                     status="Voltooid op 2-4-22"
                     title="Lamp vervangen"
-                    completedBy="Peter Pan"
+                    isComplete={true}
                 />
                 <Task
                     dateAdded="2-5-22"
                     status="Voltooid op 2-4-22"
                     title="Lamp vervangen"
-                    completedBy="Peter Pan"
+                    isComplete={true}
                 />
                 <Task
                     dateAdded="2-5-22"
                     status="Voltooid op 2-4-22"
                     title="Lamp vervangen"
-                    completedBy="Peter Pan"
+                    isComplete={true}
                 />
                 <Task
                     dateAdded="2-5-22"
                     status="Voltooid op 2-4-22"
                     title="Lamp vervangen"
-                    completedBy="Peter Pan"
-                />
-                <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
-                    title="Lamp vervangen"
-                    completedBy="Peter Pan"
-                />
-                <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
-                    title="Lamp vervangen"
-                    completedBy="Peter Pan"
-                />
-                <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
-                    title="Lamp vervangen"
-                    completedBy="Peter Pan"
+                    isComplete={true}
                 />
             </ContentCard>
-            {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
-            {/*<ListContentCard stylingClass="statistics-user">*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*        />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*    <Task*/}
-            {/*        dateAdded="2-5-22"*/}
-            {/*        status="Voltooid op 2-4-22"*/}
-            {/*        title="Lamp vervangen"*/}
-            {/*    />*/}
-            {/*</ListContentCard>*/}
             </section>
         </InnerOuterContainer>
     );

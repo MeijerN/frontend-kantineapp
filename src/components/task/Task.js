@@ -2,16 +2,21 @@ import React from 'react';
 import styles from './Task.module.css'
 import {useHistory} from "react-router-dom";
 
-function Task({prio, dateAdded, status, title, completedBy, id}) {
+function Task({prio, dateAdded, status, title, completedBy, isComplete, ...rest}) {
 
     const history = useHistory();
 
-    function handleOnClick() {
-        history.push(`/openstaande-taken/${id}`)
+    // Dynamically switch between cursor pointer (open task) and no pointer (completed task)
+    let styling = "";
+    if (isComplete) {
+        styling =  "completed-task";
+    }
+    else {
+        styling =  "task";
     }
 
     return (
-        <div onClick={handleOnClick} className={styles.task}>
+        <div className={styles[`${styling}`]} {...rest} >
             <span className={styles[prio]}/>
             <p className={styles["task-added-date"]}>Toegevoegd op {dateAdded}</p>
             <p className={styles["task-status"]}>{status}</p>

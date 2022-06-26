@@ -29,6 +29,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     status="In behandeling"
                     title="Lamp vervangen"
                     id="1"
+                    onClick={() => {history.push(`/openstaande-taken/${'1'}`)}}
                 />
                 <Task
                     prio="low"
@@ -36,6 +37,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     status="In behandeling"
                     title="Lamp vervangen"
                     id="1"
+                    onClick={() => {history.push(`/openstaande-taken/${'1'}`)}}
                 />
                 <Task
                     prio="low"
@@ -43,6 +45,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     status="In behandeling"
                     title="Lamp vervangen"
                     id="1"
+                    onClick={() => {history.push(`/openstaande-taken/1`)}}
                 />
                 <Task
                     prio="high"
@@ -69,42 +72,42 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     status="In behandeling"
                     title="Lamp vervangen"
                 />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
+                {/*<Task*/}
+                {/*    prio="low"*/}
+                {/*    dateAdded="2-5-22"*/}
+                {/*    status="In behandeling"*/}
+                {/*    title="Lamp vervangen"*/}
+                {/*/>*/}
                 {/*<Task*/}
                 {/*    prio="low"*/}
                 {/*    dateAdded="2-5-22"*/}
@@ -132,7 +135,6 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
                 {/*ICOON VOOR DE MANAGER*/}
                 <button onClick={() => {history.push("/openstaande-taken/toevoegen")}} className={styles["add-button"]}/>
-
             </ContentCard>
         </InnerOuterContainer>
     );

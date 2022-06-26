@@ -51,15 +51,15 @@ function App() {
                         setCurrentPage={setCurrentPage}
                     />
                 </Route>
-                <Route exact path="/openstaande-taken/:id">
-                    <TaskDetails
+                <Route path="/openstaande-taken/toevoegen">
+                    <AddTask
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </Route>
-                <Route exact path="/openstaande-taken/toevoegen">
-                    <AddTask
+                <Route exact path="/openstaande-taken/:id">
+                    <TaskDetails
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
@@ -116,7 +116,7 @@ export default App;
 
 //WAAR WAS IK GEBLEVEN?
 // Personeel page afmaken
-// Component van select maken (opzetje is gemaakt)
+// Apart component maken voor afgeronde taken? Zodat deze niet aanklikbaar is
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: MANAGERS VRIJWILLIGERS VERWIJDEREN BIJ STATISTIEKEN EN DE STATUS MANAGER GEVEN
