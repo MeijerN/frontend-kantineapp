@@ -18,7 +18,7 @@
 /* ------------------------------- 3. Layout ----------------------------------- */
 
 .main {
-    padding: 0 20px 105px 20px;
+    padding: 50px 20px 0 20px;
     min-height: 100vh;
 
     /*    !*Fix for mobile keyboard issue*!*/
@@ -27,10 +27,10 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
-    /*border: solid green 2px;*/
+    border: solid green 2px;
 }
 
 /* ------------------------------- 4. Areas ---------------------------------------- */
@@ -39,8 +39,7 @@
 
 .h1 {
     font-weight: 800;
-    font-size: 42px;
-    text-align: center;
+    font-size: 48px;
 
     /*border: solid pink 2px;*/
 }
@@ -91,7 +90,7 @@
 
 @media screen and (min-width: 576px) {
     .main {
-        padding: 0 20px 105px 20px;
+        padding: 100px 20px 0 20px;
 
         /*    !*Fix for mobile keyboard background jump issue*!*/
         background: url("../../assets/login_registration_background.jpeg") no-repeat center top fixed;
@@ -99,10 +98,14 @@
 
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         min-height: 100vh;
 
         /*border: solid green 2px;*/
     }
 }
+
+    .h1 {
+        font-size: 48px;
+    }

@@ -7,7 +7,7 @@ function SubmitButton({text, onSubmit}) {
             className={styles.button}
             type="submit"
             // CHANGE THIS TO ONSUBMIT
-            onClick={onSubmit}
+            onSubmit={onSubmit}
         >
             {text}
         </button>

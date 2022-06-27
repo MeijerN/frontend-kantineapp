@@ -1,19 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import styles from './OpenTasks.module.css';
 import Task from '../../components/task/Task'
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import ContentCard from "../../components/contentCard/ContentCard";
 import {NavLink, useHistory} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
+
 
 function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
-
     const history = useHistory();
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Openstaande taken");
         toggleNavDrawer(false);
-        console.log('useEffect aangeroepen OPENTASKPAGE');
     }, [])
 
     return (

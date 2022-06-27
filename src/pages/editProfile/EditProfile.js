@@ -72,9 +72,9 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     />
                     <SelectElement
                         id="select-volunteers"
-                        name="volunteers"
+                        name="specialties"
                         options={options}
-                        placeholder="Selecteer vrijwilligers"
+                        placeholder="Selecteer specialiteiten"
                         isSearchable={false}
                         isMulti={true}
                     />

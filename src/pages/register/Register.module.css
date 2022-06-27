@@ -16,7 +16,7 @@
 /* ------------------------------- 3. Layout ----------------------------------- */
 
 .main {
-    padding: 0 20px 105px 20px;
+    padding: 0 20px 0 20px;
     min-height: 100vh;
 
     /*    !*Fix for mobile keyboard issue*!*/
@@ -24,11 +24,10 @@
     background-size: 385% auto;
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    /*border: solid green 2px;*/
+    border: solid green 2px;
 }
 
 /* ------------------------------- 4. Areas ---------------------------------------- */
@@ -36,9 +35,8 @@
 /* --------------- 4.1 Login form ------------------------- */
 
 .form-card {
-    flex-basis: 300px;
     padding: 30px 20px 30px 20px;
-    width: 100%;
+    flex-basis: 100%;
     max-width: 500px;
     min-width: 280px;
 
@@ -69,12 +67,32 @@
     /*border: solid purple 2px;*/
 }
 
+.login-registration {
+    height: 40px;
+    border-radius: 8px;
+    border-color: transparent;
+    margin-bottom: 25px;
+    padding: 10px;
+    font-size: 16px;
+    min-width: 100%;
+}
+
+.login-registration::placeholder {
+    font-size: 16px;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}
+
+
 
 /* ------------------------------- 5. Media Queries -------------------------------- */
 
 @media screen and (min-width: 576px) {
     .main {
-        padding: 0 20px 105px 20px;
+        padding: 0 20px 0 20px;
         min-height: 100vh;
 
         /*    !*Fix for mobile keyboard background jump issue*!*/
@@ -82,7 +100,6 @@
         background-size: cover;
 
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
 

@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {AuthContext} from "./context/AuthContext";
 
 // Import pages
 import LoginPage from './pages/login/Login';
@@ -18,14 +19,15 @@ import Personnel from "./pages/personnel/Personnel";
 
 function App() {
 
+    //Context management
+    const {isAuth} = useContext(AuthContext);
+
     // State management
     const [navDrawer, toggleNavDrawer] = React.useState(false);
     const [currentPage, setCurrentPage] = React.useState("Openstaande taken");
-    const [auth, setAuth] = React.useState(true);
-
     return (
         <>
-            {auth && <Header
+            {isAuth && <Header
                 page={currentPage}
                 highPrioNumber="1"
                 mediumPrioNumber="2"
@@ -123,3 +125,4 @@ export default App;
 
 // IN DE GATEN HOUDEN:
 // TODO: Beslis of je context of state gaat gebruik van door de navbar
+// TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen

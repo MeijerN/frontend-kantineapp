@@ -1,10 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import styles from './Login.module.css';
 import InputField from '../../components/inputField/InputField'
 import SubmitButton from '../../components/submitButton/SubmitButton'
 import {Link, useHistory} from 'react-router-dom';
+import {AuthContext} from "../../context/AuthContext";
 
 function LoginPage({navDrawer, toggleNavDrawer}) {
+
+    // Context management
+
     //TIJDELIJKE LOGIN VOOR ONTWIKKELING
     const history = useHistory();
     function handleOnSubmit() {
