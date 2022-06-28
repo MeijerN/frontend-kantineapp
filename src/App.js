@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import './App.css';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import {AuthContext} from "./context/AuthContext";
 
 // Import pages
@@ -38,10 +38,11 @@ function App() {
             />}
             <Switch>
                 <Route exact path="/">
-                    <LoginPage
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
-                    />
+                    {!isAuth ?
+                        <LoginPage
+                            toggleNavDrawer={toggleNavDrawer}
+                        /> : <Redirect to="/openstaande-taken"/>
+                    }
                 </Route>
                 <Route path="/registreren">
                     <RegisterPage/>
@@ -117,7 +118,9 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// Personeel page afmaken
+// Login functie maken
+// Logout functie maken
+// Private routes maken
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Uses moeten zichwelf kunnen verwijderen in profiel i.p.v. de manager

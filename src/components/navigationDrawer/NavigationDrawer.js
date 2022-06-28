@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './NavigationDrawer.module.css'
 import SVDLogo from '../../assets/SVDlogo.png'
 import closeMenuIcon from '../../assets/close_menu.svg'
 import profilePicture from '../../assets/profile_picture.jpeg'
 import NavigationDrawerItem from "../navigationDrawerItem/NavigationDrawerItem";
+import {AuthContext} from "../../context/AuthContext";
 
 function NavigationDrawer({navDrawer, toggleNavDrawer}) {
+
+    const {logout} = useContext(AuthContext);
+
     function closeNav() {
         toggleNavDrawer(!navDrawer);
     }
@@ -53,7 +57,8 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                 />
                 <NavigationDrawerItem
                     text="Uitloggen"
-                    path="/"
+                    path=""
+                    onClick={logout}
                 />
             </ul>
             <figure className={styles["SVD-logo-container"]}>

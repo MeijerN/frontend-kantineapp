@@ -3,7 +3,7 @@ import styles from './AuthContext.module.css'
 // Firebase imports
 import {doc, setDoc, getDoc} from "firebase/firestore";
 import {authFirebase, db} from "../Firebase";
-import {deleteUser, onAuthStateChanged} from "firebase/auth";
+import {deleteUser, onAuthStateChanged, signOut} from "firebase/auth";
 import {useHistory} from "react-router-dom";
 
 export const AuthContext = createContext({});
@@ -43,6 +43,7 @@ function AuthContextProvider({children}) {
                                 },
                                 status: 'done',
                             })
+                            history.push("/openstaande-taken");
                         } else {
                             toggleAuth({
                                 ...auth,
@@ -60,9 +61,10 @@ function AuthContextProvider({children}) {
 
                 getUserInformation();
             } else {
-                // No user was logged in
+                // No user was logged in or user just logged out
                 toggleAuth({
-                    ...auth,
+                    isAuth: false,
+                    user: null,
                     status: 'done',
                 });
                 // console.log("useEffect context: user is NULL")
@@ -75,7 +77,7 @@ function AuthContextProvider({children}) {
         });
     }, [])
 
-    // Create firebase document with user information after registration
+    // Create firebase document with user information after registration and set auth state
     async function createUserInformation(userCredential, data) {
         try {
             // Create firebase document with user uid ass document id
@@ -95,7 +97,7 @@ function AuthContextProvider({children}) {
                     lastName: data["last-name"],
                     email: data.email,
                     function: "vrijwilliger",
-                    specialties: ["Voeg je specialiteiten toe!"],
+                    specialties: ["Nog geen specialiteiten toegevoegd"],
                 },
                 status: 'done',
             })
@@ -111,42 +113,46 @@ function AuthContextProvider({children}) {
         }
     }
 
-    function login(uid, email) {
-        console.log("Login authcontext triggered");
-        // 2. Haal, indien nodig, de gebruikersgegevens uit de backend op:
-        // async function getData() {
-        // };
+    // HOOGSTWAARSCHIJNLIJK NIET NODIG
+    // function login(uid, email) {
+    //     console.log("Login authcontext triggered");
+    //     // 2. Haal, indien nodig, de gebruikersgegevens uit de backend op:
+    //     // async function getData() {
+    //     // };
+    //
+    //     // 3. Zet de gebruikersgegevens (MAAR NIET DE JWT) in de context state:
+    //     // toggleAuth({
+    //     //     ...auth,
+    //     //     isAuth: true,
+    //     //     user: {
+    //     //         email: decodedToken.email,
+    //     //         id: decodedToken.sub,
+    //     //     },
+    //     //     status: 'done',
+    //     // });
+    //
+    //     console.log('De gebruiker is ingelogd!');
+    //     // history.push('/profile');
+    // }
 
-        // 3. Zet de gebruikersgegevens (MAAR NIET DE JWT) in de context state:
-        // toggleAuth({
-        //     ...auth,
-        //     isAuth: true,
-        //     user: {
-        //         email: decodedToken.email,
-        //         id: decodedToken.sub,
-        //     },
-        //     status: 'done',
-        // });
-
-        console.log('De gebruiker is ingelogd!');
-        // history.push('/profile');
-    }
-
+    // Log user out and let onAuthStateChange handle the auth state
     function logout() {
-        console.log("Login authcontext triggered");
-        // toggleAuth({
-        //     isAuth: false,
-        //     user: null,
-        //     status: 'done',
-        // });
-
-        // history.push('/');
+        console.log("Logout authcontext triggered");
+        signOut(authFirebase).then(() => {
+            console.log("Uitgelogd");
+        }).catch((error) => {
+            console.error(error);
+            toggleAuth({
+                ...auth,
+                status: "error",
+            })
+        });
     }
 
     const contextData = {
         isAuth: auth.isAuth,
         user: auth.user,
-        login: login,
+        // login: login,
         logout: logout,
         createUserInformation: createUserInformation,
     };

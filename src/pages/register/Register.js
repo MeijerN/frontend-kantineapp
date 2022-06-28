@@ -3,7 +3,7 @@ import styles from './Register.module.css';
 import SubmitButton from '../../components/submitButton/SubmitButton'
 import {Link, useHistory} from "react-router-dom";
 import {useForm} from 'react-hook-form';
-import authContext, {AuthContext} from "../../context/AuthContext";
+import {AuthContext} from "../../context/AuthContext";
 // Firebase imports
 import {authFirebase} from "../../Firebase";
 import {createUserWithEmailAndPassword} from "firebase/auth";
@@ -25,28 +25,6 @@ function RegisterPage() {
 
     // React hook forms Watcher for password match check
     const checkPassword = watch('password');
-
-    // Specialities array
-    // MOET UIT DE DATABASE GAAN KOMEN!!
-    const options = [
-        {value: 'sanitair', label: 'Sanitair'},
-        {value: 'elektra', label: 'Elektra'},
-        {value: 'schilderwerk', label: 'Schilderwerk'},
-        {value: 'bouwen', label: 'Bouwen'},
-        {value: 'dakwerk', label: 'Dakwerk'},
-        {value: 'slopen', label: 'Slopen'},
-        {value: 'tuin', label: 'Tuin'},
-    ]
-
-    // Remove blue border in <Select/> element when in focus
-    const customStyle = {
-        control: provided => ({
-            ...provided,
-            boxShadow: 'none',
-            border: "solid black 1px",
-            borderRadius: "8px",
-        })
-    }
 
     async function registerUser(data) {
         toggleSubmitButtonDisable(true);

@@ -36,7 +36,6 @@ function Personnel({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     <tr>
                         <th className={styles.th}>Voornaam</th>
                         <th className={styles.th}>Achternaam</th>
-                        {/*<th className={styles.th}>Email</th>*/}
                         <th className={styles.th}>Specialiteiten</th>
                     </tr>
                     </thead>
