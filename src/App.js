@@ -118,11 +118,10 @@ export default App;
 
 //WAAR WAS IK GEBLEVEN?
 // Personeel page afmaken
-// Apart component maken voor afgeronde taken? Zodat deze niet aanklikbaar is
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
-// TODO: MANAGERS VRIJWILLIGERS VERWIJDEREN BIJ STATISTIEKEN EN DE STATUS MANAGER GEVEN
+// TODO: Uses moeten zichwelf kunnen verwijderen in profiel i.p.v. de manager
+// TODO: Overzicht van personeel en haar kwaliteiten in Personeel pagina van manager
 
 // IN DE GATEN HOUDEN:
-// TODO: Beslis of je context of state gaat gebruik van door de navbar
 // TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen

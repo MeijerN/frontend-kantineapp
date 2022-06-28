@@ -85,7 +85,7 @@ function AuthContextProvider({children}) {
                 lastName: data["last-name"],
                 email: data.email,
                 function: "vrijwilliger",
-                specialties: ["Voeg je specialiteiten toe!"],
+                specialties: ["Nog geen specialiteiten toegevoegd"],
             });
             toggleAuth({
                 isAuth: true,
