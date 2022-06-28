@@ -8,7 +8,7 @@ import {AuthContext} from "../../context/AuthContext";
 
 function NavigationDrawer({navDrawer, toggleNavDrawer}) {
 
-    const {logout} = useContext(AuthContext);
+    const {logout, user} = useContext(AuthContext);
 
     function closeNav() {
         toggleNavDrawer(!navDrawer);
@@ -29,8 +29,8 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                     <img className={styles["profile-picture"]} src={profilePicture} alt="profile"/>
                 </figure>
                 <div className={styles["details-container"]}>
-                    <h1>Voornaam</h1>
-                    <p>Functie</p>
+                    <h1>{user.firstName}</h1>
+                    <p>{user.function}</p>
                 </div>
                 <div className={styles.line}/>
             </header>
@@ -39,14 +39,16 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                     text="Openstaande taken"
                     path="/openstaande-taken"
                 />
-                <NavigationDrawerItem
-                    text="Personeel"
-                    path="/personeel"
-                />
-                <NavigationDrawerItem
-                    text="Urenregistratie"
-                    path="/urenregistratie"
-                />
+                {user.function === "manager" ?
+                    <NavigationDrawerItem
+                        text="Personeel"
+                        path="/personeel"
+                    /> :
+                    <NavigationDrawerItem
+                        text="Urenregistratie"
+                        path="/urenregistratie"
+                    />
+                }
                 <NavigationDrawerItem
                     text="Statistieken"
                     path="/statistieken"

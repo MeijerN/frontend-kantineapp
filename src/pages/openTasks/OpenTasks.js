@@ -8,6 +8,8 @@ import {AuthContext} from "../../context/AuthContext";
 
 
 function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
+
+    const {user} = useContext(AuthContext);
     const history = useHistory();
 
     useEffect(() => {
@@ -134,7 +136,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 {/*/>*/}
 
                 {/*ICOON VOOR DE MANAGER*/}
-                <button onClick={() => {history.push("/openstaande-taken/toevoegen")}} className={styles["add-button"]}/>
+                {user.function === "manager" && <button onClick={() => {history.push("/openstaande-taken/toevoegen")}} className={styles["add-button"]}/>}
             </ContentCard>
         </InnerOuterContainer>
     );

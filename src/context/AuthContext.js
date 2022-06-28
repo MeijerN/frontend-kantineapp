@@ -43,7 +43,6 @@ function AuthContextProvider({children}) {
                                 },
                                 status: 'done',
                             })
-                            history.push("/openstaande-taken");
                         } else {
                             toggleAuth({
                                 ...auth,
@@ -67,12 +66,10 @@ function AuthContextProvider({children}) {
                     user: null,
                     status: 'done',
                 });
-                // console.log("useEffect context: user is NULL")
             }
             // Unsubscribe on unmount cycle
             return function cleanUp() {
                 unsubscribe();
-                // console.log("Unsubscribe in context is aangeroepen!");
             }
         });
     }, [])
@@ -137,9 +134,7 @@ function AuthContextProvider({children}) {
 
     // Log user out and let onAuthStateChange handle the auth state
     function logout() {
-        console.log("Logout authcontext triggered");
         signOut(authFirebase).then(() => {
-            console.log("Uitgelogd");
         }).catch((error) => {
             console.error(error);
             toggleAuth({
@@ -156,7 +151,7 @@ function AuthContextProvider({children}) {
         logout: logout,
         createUserInformation: createUserInformation,
     };
-    console.log(auth);
+
     return (
         <AuthContext.Provider value={contextData}>
             {auth.status === 'done' && children}

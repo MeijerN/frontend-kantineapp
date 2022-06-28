@@ -6,7 +6,7 @@
         3.1 Reusables
         3.2 Other
     4. Areas
-        4.1 Task details
+        4.1 Form
         4.2 Buttons
     5. Media Queries
 ////////////////////////*/
@@ -16,7 +16,7 @@
 /* --------------- 3.1 Reusables ----------------------- */
 /* --------------- 3.2 Other --------------------------- */
 /* ------------------------------- 4. Areas ---------------------------------------- */
-/* --------------- 4.1 Task details ------------------------- */
+/* --------------- 4.1 Form ------------------------- */
 
 .form {
     min-width: 100%;
@@ -54,10 +54,20 @@
     width: 0;
 }
 
-.select {
+.add-task {
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 8px;
+    border-width: 1px;
     margin-bottom: 25px;
 }
 
+.error {
+    text-align: center;
+    color: red;
+}
 /* --------------- 4.2 Buttons ------------------- */
 
 .icon-container {

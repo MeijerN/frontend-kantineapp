@@ -9,10 +9,17 @@ import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import SelectElement from "../../components/selectElement/SelectElement";
+import {useForm, Controller} from 'react-hook-form';
+import selectElementStyles from "../../helpers/selectElementStyles";
 
 function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     const history = useHistory();
+    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+
+    // const {
+    //     control
+    // } = useForm();
 
     // Select priorities dropdown values
     // MOET UIT DE DATABASE GAAN KOMEN!!
@@ -43,44 +50,58 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, [])
 
 
-    function handleOnSubmit() {
+    function handleSave(data) {
         console.log("Form submit aangesproken");
+        console.log(data);
     }
 
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <ContentCard stylingClass="add-task">
-                <form className={styles.form} onSubmit={handleOnSubmit}>
+                <form className={styles.form} onSubmit={handleSubmit(handleSave)}>
                     <label htmlFor="title" className={styles["label-textarea-add-task"]}>
                         Titel:
-                        <InputField
-                            stylingClass="edit-profile"
+                        <input
+                            className={styles["add-task"]}
                             type="text"
-                            placeholder=""
-                            value=""
                             id="title"
+                            {...register("title", {
+                                required: "Vul de titel in",
+                            })}
                         />
                     </label>
                     <label htmlFor="textarea-add-task" className={styles["label-textarea-add-task"]}>
                         Omschrijving van de taak:
-                        <textarea className={styles["textarea-add-task"]} name="description" id="description"/>
+                        <textarea
+                            className={styles["textarea-add-task"]}
+                            id="description"
+                            {...register("description", {
+                                required: {
+                                    value: true,
+                                    message: "Vul de titel in"},
+                                maxLength: {
+                                    value: 1000,
+                                    message: "Er mogen maximaal 1000 karakters gebruikt worden"
+                                }
+                            })}
+                        />
                     </label>
                     <SelectElement
-                        stylingClass={styles.select}
-                        id="select-priority"
                         name="priority"
                         options={priorities}
+                        controller={control}
+                        stylingClass="select"
+                        isMulti={true}
                         placeholder="Selecteer prioriteit"
-                        isSearchable={false}
-                        isMulti={false}
+                        errorMessage="Selecteer een prioriteit"
                     />
                     <SelectElement
-                        id="select-volunteers"
                         name="volunteers"
                         options={volunteers}
-                        placeholder="Selecteer vrijwilligers"
-                        isSearchable={false}
+                        controller={control}
                         isMulti={true}
+                        placeholder="Selecteer vrijwilligers"
+                        errorMessage="Selecteer minimaal een vrijwilliger"
                     />
                     <div className={styles["icon-container"]}>
                         <Icon
@@ -88,15 +109,17 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             image={saveIcon}
                         />
                     </div>
+                    {errors["title"] && <p className={styles.error}>{errors["title"].message}</p>}
+                    {errors["description"] && <p className={styles.error}>{errors["description"].message}</p>}
+                    {errors["priority"] && <p className={styles.error}>{errors["priority"].message}</p>}
+                    {errors["volunteers"] && <p className={styles.error}>{errors["volunteers"].message}</p>}
                 </form>
             </ContentCard>
             <img onClick={() => {
                 history.goBack()
             }} className={styles["back-icon"]} src={backIcon} alt="back"/>
         </InnerOuterContainer>
-
     );
 }
-
 
 export default AddTask;

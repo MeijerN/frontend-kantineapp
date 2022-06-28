@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import './App.css';
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import {AuthContext} from "./context/AuthContext";
+import PrivateRoute from "./components/privateRoute/PrivateRoute";
 
 // Import pages
 import LoginPage from './pages/login/Login';
@@ -45,71 +46,76 @@ function App() {
                     }
                 </Route>
                 <Route path="/registreren">
+                    {!isAuth ?
+                        <RegisterPage
+                            toggleNavDrawer={toggleNavDrawer}
+                        /> : <Redirect to="/openstaande-taken"/>
+                    }
                     <RegisterPage/>
                 </Route>
-                <Route exact path="/openstaande-taken">
+                <PrivateRoute exact path="/openstaande-taken" isAuth={isAuth}>
                     <OpenTasksPage
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route path="/openstaande-taken/toevoegen">
+                </PrivateRoute>
+                <PrivateRoute path="/openstaande-taken/toevoegen" isAuth={isAuth}>
                     <AddTask
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route exact path="/openstaande-taken/:id">
+                </PrivateRoute>
+                <PrivateRoute exact path="/openstaande-taken/:id" isAuth={isAuth}>
                     <TaskDetails
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route path="/openstaande-taken/:id/bewerken">
+                </PrivateRoute>
+                <PrivateRoute path="/openstaande-taken/:id/bewerken" isAuth={isAuth}>
                     <EditTask
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route path="/urenregistratie">
+                </PrivateRoute>
+                <PrivateRoute path="/urenregistratie" isAuth={isAuth}>
                     <TimeRegistration
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route path="/personeel">
+                </PrivateRoute>
+                <PrivateRoute path="/personeel" isAuth={isAuth}>
                     <Personnel
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route path="/statistieken">
+                </PrivateRoute>
+                <PrivateRoute path="/statistieken" isAuth={isAuth}>
                     <Statistics
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route exact path="/profiel">
+                </PrivateRoute>
+                <PrivateRoute exact path="/profiel" isAuth={isAuth}>
                     <Profile
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
-                <Route path="/profiel-wijzigen">
+                </PrivateRoute>
+                <PrivateRoute path="/profiel-wijzigen" isAuth={isAuth}>
                     <EditProfile
                         navDrawer={navDrawer}
                         toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
-                </Route>
+                </PrivateRoute>
             </Switch>
         </>
     );
@@ -118,12 +124,12 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// Login functie maken
-// Logout functie maken
-// Private routes maken
+// TODO: Input elementen ombouwen zoals het SelectElement (controllers toevoegen).
+// TODO: Addtask formulier werkt goed. Handlesave functie afmaken en data opslaan in database.
+// TODO: Collections aanmaken voor prioriteiten en deze ophalen in de Addtask pagina.
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
-// TODO: Uses moeten zichwelf kunnen verwijderen in profiel i.p.v. de manager
+// TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager
 // TODO: Overzicht van personeel en haar kwaliteiten in Personeel pagina van manager
 
 // IN DE GATEN HOUDEN:
