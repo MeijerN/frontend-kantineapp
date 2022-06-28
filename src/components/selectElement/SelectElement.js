@@ -1,25 +1,16 @@
 import styles from './SelectElement.module.css'
 import React from 'react';
 import Select from "react-select";
+import selectElementStyles from "../../helpers/selectElementStyles";
 
 function SelectElement({stylingClass, id, name, options, placeholder, isSearchable, isMulti}) {
-
-    // Remove blue border in <Select/> element when in focus
-    const customStyle = {
-        control: provided => ({
-            ...provided,
-            boxShadow: 'none',
-            border: "solid black 1px",
-            borderRadius: "8px",
-        })
-    }
 
     return (
         <Select
             className={stylingClass}
             id={id}
             name={name}
-            styles={customStyle}
+            styles={selectElementStyles()}
             options={options}
             placeholder={placeholder}
             isSearchable={isSearchable}

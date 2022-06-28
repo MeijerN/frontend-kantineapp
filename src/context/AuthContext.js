@@ -1,11 +1,9 @@
 import React, {createContext, useEffect, useState} from 'react';
 import styles from './AuthContext.module.css'
 // Firebase imports
-import {doc, setDoc} from "firebase/firestore";
-import {db} from "../Firebase";
-import {auth} from '../Firebase'
-
-import {getAuth, deleteUser} from "firebase/auth";
+import {doc, setDoc, getDoc} from "firebase/firestore";
+import {authFirebase, db} from "../Firebase";
+import {deleteUser, onAuthStateChanged} from "firebase/auth";
 import {useHistory} from "react-router-dom";
 
 export const AuthContext = createContext({});
@@ -21,16 +19,67 @@ function AuthContextProvider({children}) {
 
     const history = useHistory();
 
+    // Check for logged in user on mount cycle and get user information
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(authFirebase, (user) => {
+            if (user) {
 
-    //TODO: onmount useState schrijven met OnAuthChange functie om bij refresh de user op te halen
+                async function getUserInformation() {
+                    try {
+                        const docRef = doc(db, "users", user.uid);
+                        const docSnap = await getDoc(docRef);
+
+                        if (docSnap.exists()) {
+                            const userInformation = docSnap.data();
+                            toggleAuth({
+                                isAuth: true,
+                                user: {
+                                    id: userInformation.id,
+                                    firstName: userInformation.firstName,
+                                    lastName: userInformation.lastName,
+                                    email: userInformation.email,
+                                    function: userInformation.function,
+                                    specialties: userInformation.specialties,
+                                },
+                                status: 'done',
+                            })
+                        } else {
+                            toggleAuth({
+                                ...auth,
+                                status: "error",
+                            })
+                        }
+                    } catch (e) {
+                        console.error(e);
+                        toggleAuth({
+                            ...auth,
+                            status: "error",
+                        })
+                    }
+                }
+
+                getUserInformation();
+            } else {
+                // No user was logged in
+                toggleAuth({
+                    ...auth,
+                    status: 'done',
+                });
+                // console.log("useEffect context: user is NULL")
+            }
+            // Unsubscribe on unmount cycle
+            return function cleanUp() {
+                unsubscribe();
+                // console.log("Unsubscribe in context is aangeroepen!");
+            }
+        });
+    }, [])
 
     // Create firebase document with user information after registration
     async function createUserInformation(userCredential, data) {
-        console.log("Usercredential context: ", userCredential);
-        console.log("Data context: ", data);
         try {
             // Create firebase document with user uid ass document id
-            const userData = await setDoc(doc(db, "users", userCredential.user.uid), {
+            await setDoc(doc(db, "users", userCredential.user.uid), {
                 id: userCredential.user.uid,
                 firstName: data["first-name"],
                 lastName: data["last-name"],
@@ -38,7 +87,6 @@ function AuthContextProvider({children}) {
                 function: "vrijwilliger",
                 specialties: ["Voeg je specialiteiten toe!"],
             });
-            //TODO: zet de gegevens in de state
             toggleAuth({
                 isAuth: true,
                 user: {
@@ -54,7 +102,6 @@ function AuthContextProvider({children}) {
             history.push("/openstaande-taken");
         } catch (e) {
             console.error(e);
-            console.log("Catch in context aangesproken")
             // Delete firebase user so user can try again with same email
             await deleteUser(userCredential.user);
             toggleAuth({
@@ -63,7 +110,7 @@ function AuthContextProvider({children}) {
             })
         }
     }
-    console.log(auth);
+
     function login(uid, email) {
         console.log("Login authcontext triggered");
         // 2. Haal, indien nodig, de gebruikersgegevens uit de backend op:
@@ -103,13 +150,11 @@ function AuthContextProvider({children}) {
         logout: logout,
         createUserInformation: createUserInformation,
     };
-
+    console.log(auth);
     return (
         <AuthContext.Provider value={contextData}>
-            {auth.status !== 'error' && children}
-            {/*/!*{auth.status === 'done' ? children : <p>Loading...</p>}*!/*/}
-            {/*{auth.status === 'done' && children}*/}
-            {/*{auth.status === 'pending' && <p>Loading...</p>}*/}
+            {auth.status === 'done' && children}
+            {auth.status === 'pending' && <p className={styles.error}>Loading...</p>}
             {auth.status === 'error' && <p className={styles.error}>Oeps, er ging iets mis! Ververs de pagina.</p>}
         </AuthContext.Provider>
     );

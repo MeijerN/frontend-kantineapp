@@ -3,9 +3,9 @@ import styles from './Register.module.css';
 import SubmitButton from '../../components/submitButton/SubmitButton'
 import {Link, useHistory} from "react-router-dom";
 import {useForm} from 'react-hook-form';
-import {AuthContext} from "../../context/AuthContext";
+import authContext, {AuthContext} from "../../context/AuthContext";
 // Firebase imports
-import {auth} from "../../Firebase";
+import {authFirebase} from "../../Firebase";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {db} from '../../Firebase'
 import {doc, setDoc} from "firebase/firestore";
@@ -16,7 +16,7 @@ import Select from "react-select";
 function RegisterPage() {
 
     // State management
-    const [submitButton, toggleSubmitButton] = React.useState(false);
+    const [submitButtonDisable, toggleSubmitButtonDisable] = React.useState(false);
     const [error, toggleError] = React.useState(false);
 
     const {register, handleSubmit, reset, formState: {errors}, watch} = useForm();
@@ -49,23 +49,19 @@ function RegisterPage() {
     }
 
     async function registerUser(data) {
-        toggleSubmitButton(true);
+        toggleSubmitButtonDisable(true);
         toggleError(false);
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-            console.log("Usercredential ", userCredential);
-            console.log("Usercredential.user ", userCredential.user);
-            if(userCredential) {
-                createUserInformation(userCredential, data);
-            }
-            // Email, voornaam en achternaam moeten naar AuthContext
+            const userCredential = await createUserWithEmailAndPassword(authFirebase, data.email, data.password);
+            // Send user credentials and input data to Authcontext
+            createUserInformation(userCredential, data);
             history.push("/");
         } catch (e) {
             console.error(e);
             toggleError(true);
         }
         reset();
-        toggleSubmitButton(false);
+        toggleSubmitButtonDisable(false);
     }
 
     return (
@@ -156,7 +152,7 @@ function RegisterPage() {
                     {/*/>*/}
                     <SubmitButton
                         text="Maak account aan"
-                        disabled={submitButton}
+                        disabled={submitButtonDisable}
                     />
                     {errors["first-name"] && <p className={styles.error}>{errors["first-name"].message}</p>}
                     {errors["last-name"] && <p className={styles.error}>{errors["last-name"].message}</p>}
