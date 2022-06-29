@@ -124,8 +124,7 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// TODO: Input elementen ombouwen zoals het SelectElement (controllers toevoegen).
-// TODO: Addtask formulier werkt goed. Handlesave functie afmaken en data opslaan in database.
+// TODO: Addtask formulier werkt goed. Handlesave functie afmaken en data opslaan in database. --> users worden opgehaald uit database, moeten nog doorgegeven worden in select
 // TODO: Collections aanmaken voor prioriteiten en deze ophalen in de Addtask pagina.
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT

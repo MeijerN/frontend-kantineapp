@@ -27,7 +27,6 @@ function LoginPage({toggleNavDrawer}) {
         signInWithEmailAndPassword(authFirebase, data.email, data.password)
             .catch((error) => {
                 toggleError(true);
-                console.log("catch aangesproken")
                 console.error(error);
             });
     }

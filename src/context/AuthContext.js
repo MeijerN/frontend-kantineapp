@@ -67,11 +67,12 @@ function AuthContextProvider({children}) {
                     status: 'done',
                 });
             }
-            // Unsubscribe on unmount cycle
-            return function cleanUp() {
-                unsubscribe();
-            }
+
         });
+        // Unsubscribe on unmount cycle
+        return function cleanUp() {
+            unsubscribe();
+        }
     }, [])
 
     // Create firebase document with user information after registration and set auth state
