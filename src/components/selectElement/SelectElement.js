@@ -1,7 +1,6 @@
 import styles from './SelectElement.module.css'
 import React from 'react';
 import Select from "react-select";
-import selectElementStyles from "../../helpers/selectElementStyles";
 import {Controller, useForm} from "react-hook-form";
 
 function SelectElement({stylingClass, name, options, placeholder, isMulti, controller, errorMessage}) {
@@ -24,7 +23,7 @@ function SelectElement({stylingClass, name, options, placeholder, isMulti, contr
                 <Select
                     inputRef={ref}
                     value={options.filter(c => value.includes(c.value))}
-                    onChange={val => onChange(val.map(c => c.value))}
+                    onChange={isMulti ? val => onChange(val.map(c => c.value)) : val => onChange(val.value)}
                     options={options}
                     isMulti={isMulti}
                     styles={style}

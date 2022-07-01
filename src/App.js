@@ -124,8 +124,7 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// TODO: Addtask formulier werkt goed. Handlesave functie afmaken en data opslaan in database. --> users worden opgehaald uit database, moeten nog doorgegeven worden in select
-// TODO: Collections aanmaken voor prioriteiten en deze ophalen in de Addtask pagina.
+// TODO: Opentask page taken laten binnenhalen. Maak 2 verschillende functies die voor verschillende functies aanroepbaar zijn?
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager

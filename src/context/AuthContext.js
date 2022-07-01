@@ -78,7 +78,7 @@ function AuthContextProvider({children}) {
     // Create firebase document with user information after registration and set auth state
     async function createUserInformation(userCredential, data) {
         try {
-            // Create firebase document with user uid ass document id
+            // Create new firebase document with user info and uid as document id
             await setDoc(doc(db, "users", userCredential.user.uid), {
                 id: userCredential.user.uid,
                 firstName: data["first-name"],
@@ -133,16 +133,17 @@ function AuthContextProvider({children}) {
     //     // history.push('/profile');
     // }
 
-    // Log user out and let onAuthStateChange handle the auth state
-    function logout() {
-        signOut(authFirebase).then(() => {
-        }).catch((error) => {
-            console.error(error);
+    // Log user out and let onAuthStateChange() handle the auth state
+    async function logout() {
+        try {
+            await signOut(authFirebase);
+        } catch (e) {
+            console.error(e);
             toggleAuth({
                 ...auth,
                 status: "error",
             })
-        });
+        }
     }
 
     const contextData = {

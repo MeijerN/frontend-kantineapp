@@ -21,14 +21,15 @@ function LoginPage({toggleNavDrawer}) {
         toggleNavDrawer(false);
     }, [])
 
-    function loginUser(data) {
+    async function loginUser(data) {
         toggleError(false);
-        //Log user in and let onAuthStateChange handle the auth state(in Authcontext)
-        signInWithEmailAndPassword(authFirebase, data.email, data.password)
-            .catch((error) => {
-                toggleError(true);
-                console.error(error);
-            });
+        try {
+            //Log user in and let onAuthStateChange handle the auth state(in Authcontext)
+            await signInWithEmailAndPassword(authFirebase, data.email, data.password);
+        } catch (e) {
+            toggleError(true);
+            console.error(e);
+        }
     }
 
     return (
