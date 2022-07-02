@@ -3,13 +3,17 @@ import styles from './OpenTasks.module.css';
 import Task from '../../components/task/Task'
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import ContentCard from "../../components/contentCard/ContentCard";
-import {NavLink, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
+import {collection, getDocs, query, where} from "firebase/firestore";
+import {db} from "../../Firebase";
 
 function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     // State management
-    const [data, setData] = React.useState();
+    const [data, setData] = React.useState([]);
+    const [loading, toggleLoading] = React.useState(true);
+    const [error, toggleError] = React.useState(false);
 
     const {user} = useContext(AuthContext);
     const history = useHistory();
@@ -18,14 +22,46 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Openstaande taken");
         toggleNavDrawer(false);
+        toggleLoading(true);
+        toggleError(false);
 
-        if (user.function === "vrijwilliger") {
-            // TODO: haal taken voor de ingelogde vrijwilliger op
-        }
-        if (user.function === "manager") {
-            // TODO: haal taken voor de ingelogde vrijwilliger op
+        async function fetchTasks() {
+            const tasksArray = [];
+            try {
+                if (user.function === "manager") {
+                    //Fetch all tasks
+                    const querySnapshot = await getDocs(collection(db, "tasks"));
+                    querySnapshot.forEach((doc) => {
+                        // Filter out completed tasks
+                        if (!doc.data().status.includes("Voltooid")) {
+                            tasksArray.push(doc.data());
+                        }
+                    });
+                } else {
+                    //Create a query for fetching tasks for signed in user only
+                    const q = query(collection(db, "tasks"), where("assignedVolunteers", "array-contains", {
+                        firstName: user.firstName,
+                        id: user.id,
+                        lastName: user.lastName,
+                    }));
+                    // Execute query and push data to array
+                    const querySnapshot = await getDocs(q);
+                    querySnapshot.forEach((doc) => {
+                        // Filter out completed tasks
+                        if (!doc.data().status.includes("Voltooid")) {
+                            tasksArray.push(doc.data());
+                        }
+                    })
+                }
+                setData([...data, ...tasksArray]);
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
+            toggleLoading(false);
         }
 
+        fetchTasks()
     }, [])
 
     return (
@@ -35,123 +71,26 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 <figure className={styles.sort}/>
             </div>
             <ContentCard stylingClass="tasks">
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                    id="1"
-                    onClick={() => {
-                        history.push(`/openstaande-taken/${'1'}`)
-                    }}
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                    id="1"
-                    onClick={() => {
-                        history.push(`/openstaande-taken/${'1'}`)
-                    }}
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                    id="1"
-                    onClick={() => {
-                        history.push(`/openstaande-taken/1`)
-                    }}
-                />
-                <Task
-                    prio="high"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                    id="1"
-                />
-                <Task
-                    prio="medium"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                <Task
-                    prio="low"
-                    dateAdded="2-5-22"
-                    status="In behandeling"
-                    title="Lamp vervangen"
-                />
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-                {/*<Task*/}
-                {/*    prio="low"*/}
-                {/*    dateAdded="2-5-22"*/}
-                {/*    status="In behandeling"*/}
-                {/*    title="Lamp vervangen"*/}
-                {/*/>*/}
-
-                {/*ICOON VOOR DE MANAGER*/}
+                {error &&
+                    <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
+                {loading && <span>Taken binnenhalen...</span>}
+                {data.length === 0 && !error && !loading && <span>Er zijn geen taken toegewezen</span>}
+                {data.length !== 0 &&
+                    data.map((task) => {
+                        return (
+                            <Task
+                                prio={task.priority}
+                                date={"Toegevoegd op: " + task.createdOn}
+                                status={task.status}
+                                title={task.title}
+                                onClick={() => {
+                                    history.push(`/openstaande-taken/${task.createdOn}`)
+                                }}
+                                key={task.createdOn}
+                            />
+                        )
+                    })
+                }
                 {user.function === "manager" && <button onClick={() => {
                     history.push("/openstaande-taken/toevoegen")
                 }} className={styles["add-button"]}/>}

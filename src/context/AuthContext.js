@@ -157,7 +157,7 @@ function AuthContextProvider({children}) {
     return (
         <AuthContext.Provider value={contextData}>
             {auth.status === 'done' && children}
-            {auth.status === 'pending' && <p className={styles.error}>Loading...</p>}
+            {auth.status === 'pending' && <p className={styles.error}>Even geduld...</p>}
             {auth.status === 'error' && <p className={styles.error}>Oeps, er ging iets mis! Ververs de pagina.</p>}
         </AuthContext.Provider>
     );

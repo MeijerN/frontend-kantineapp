@@ -38,6 +38,11 @@
     content: url(../../assets/sort_icon.svg);
 }
 
+.error {
+    text-align: center;
+    color: red;
+}
+
 /*!* --------------- 4.2 Add button ------------------------- *!*/
 
 .add-button {

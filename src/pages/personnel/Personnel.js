@@ -6,9 +6,13 @@ import Select from "react-select";
 import SelectElement from "../../components/selectElement/SelectElement";
 import Icon from "../../components/icon/Icon";
 import saveIcon from "../../assets/save_task_icon.svg";
+import {useForm} from "react-hook-form";
 
 
 function Personnel({navDrawer, toggleNavDrawer, setCurrentPage}) {
+
+    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
@@ -75,13 +79,21 @@ function Personnel({navDrawer, toggleNavDrawer, setCurrentPage}) {
             <h3 className={styles.h3}>Manager(s) toevoegen</h3>
             <ContentCard stylingClass="personnel">
                 <form className={styles.form} onSubmit="">
+                    {/*<SelectElement*/}
+                    {/*    id="select-priority"*/}
+                    {/*    name="priority"*/}
+                    {/*    options={volunteers}*/}
+                    {/*    placeholder="Selecteer vrijwilligers"*/}
+                    {/*    isSearchable={false}*/}
+                    {/*    isMulti={true}*/}
+                    {/*/>*/}
                     <SelectElement
-                        id="select-priority"
-                        name="priority"
+                        name="volunteers"
                         options={volunteers}
-                        placeholder="Selecteer vrijwilligers"
-                        isSearchable={false}
+                        controller={control}
                         isMulti={true}
+                        placeholder="Selecteer vrijwilligers"
+                        errorMessage="Selecteer minimaal een vrijwilliger"
                     />
                     <div className={styles["icon-container"]}>
                         <Icon

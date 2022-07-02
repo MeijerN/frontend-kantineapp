@@ -276,40 +276,22 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
             {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
             <ContentCard stylingClass="tasks">
                 <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
+                    date="Toegevoegd op: <datum>"
+                    status="Voltooid op: <datum>"
                     title="Lamp vervangen"
-                    isComplete={true}
+                    completedBy="Jan Petersen"
                 />
                 <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
+                    date="Toegevoegd op: <datum>"
+                    status="Voltooid op: <datum>"
                     title="Lamp vervangen"
-                    isComplete={true}
+                    completedBy="Jan Petersen"
                 />
                 <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
+                    date="Toegevoegd op: <datum>"
+                    status="Voltooid op: <datum>"
                     title="Lamp vervangen"
-                    isComplete={true}
-                />
-                <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
-                    title="Lamp vervangen"
-                    isComplete={true}
-                />
-                <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
-                    title="Lamp vervangen"
-                    isComplete={true}
-                />
-                <Task
-                    dateAdded="2-5-22"
-                    status="Voltooid op 2-4-22"
-                    title="Lamp vervangen"
-                    isComplete={true}
+                    completedBy="Jan Petersen"
                 />
             </ContentCard>
             </section>

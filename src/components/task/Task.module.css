@@ -41,7 +41,7 @@
     cursor: pointer;
 }
 
-.high {
+.hoog {
     position: absolute;
     background-color: hsl(0, 100%, 50%);
     width: 8px;
@@ -51,7 +51,7 @@
     border-radius: 8px 0 0 8px;
 }
 
-.medium {
+.middel {
     position: absolute;
     background-color: hsl(47, 98%, 49%);
     width: 8px;
@@ -61,7 +61,7 @@
     border-radius: 8px 0 0 8px;
 }
 
-.low {
+.laag {
     position: absolute;
     background-color: hsl(112, 100%, 50%);
     width: 8px;

@@ -124,7 +124,7 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// TODO: Opentask page taken laten binnenhalen. Maak 2 verschillende functies die voor verschillende functies aanroepbaar zijn?
+// TODO: task details werkend maken
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager

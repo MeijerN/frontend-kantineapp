@@ -10,56 +10,44 @@ import SelectElement from "../../components/selectElement/SelectElement";
 import {useForm} from 'react-hook-form';
 import {AuthContext} from "../../context/AuthContext";
 // Firestore imports
-import {doc, addDoc, getDoc, setDoc} from "firebase/firestore";
+import {addDoc} from "firebase/firestore";
 import {collection, query, where, getDocs} from "firebase/firestore";
 import {db} from '../../Firebase'
-
 
 function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     //Stage management
     const [volunteers, setVolunteers] = React.useState([]);
     const [error, toggleError] = React.useState(false);
-    const [loading, toggleLoading] = React.useState(true);
 
     const history = useHistory();
     const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
     const {user} = useContext(AuthContext);
-
-    // const {
-    //     control
-    // } = useForm();
-
-    // Select priorities dropdown values
-    // MOET UIT DE DATABASE GAAN KOMEN!!
-    const priorities = [
-        {label: "Lage prioriteit", value: "Laag"},
-        {label: "Gemiddelde prioriteit", value: "Middel"},
-        {label: "Hoge prioriteit", value: "Hoog"},
-    ];
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Taak toevoegen");
         toggleNavDrawer(false);
         toggleError(false);
-        toggleLoading(true);
 
         async function fetchVolunteers() {
             try {
-                let array = [];
+                const volunteersArray = [];
                 // Create a query for fetching only "vrijwilliger" users
                 const q = query(collection(db, "users"), where("function", "==", "vrijwilliger"));
                 // Execute query and push data to array
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
-                    array.push({
+                    volunteersArray.push({
                         label: `${doc.data().firstName} ${doc.data().lastName}`,
-                        value: `${doc.data().firstName} ${doc.data().lastName}`
+                        value: {
+                            firstName: doc.data().firstName,
+                            lastName: doc.data().lastName,
+                            id: doc.data().id,
+                        },
                     })
                 })
-                setVolunteers([...volunteers, ...array]);
-                toggleLoading(false);
+                setVolunteers([...volunteers, ...volunteersArray]);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -75,6 +63,7 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
             await addDoc(collection(db, "tasks"), {
                 title: data.title,
                 description: data.description,
+                status: "In afwachting",
                 priority: data.priority,
                 createdOn: Date.now(),
                 createdBy: user.id,
@@ -122,9 +111,9 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     <SelectElement
                         name="priority"
                         options={[
-                            {label: "Lage prioriteit", value: "Laag"},
-                            {label: "Gemiddelde prioriteit", value: "Middel"},
-                            {label: "Hoge prioriteit", value: "Hoog"},
+                            {label: "Lage prioriteit", value: "laag"},
+                            {label: "Gemiddelde prioriteit", value: "middel"},
+                            {label: "Hoge prioriteit", value: "hoog"},
                         ]}
                         controller={control}
                         stylingClass="select"
@@ -151,7 +140,7 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     {errors["priority"] && <p className={styles.error}>{errors["priority"].message}</p>}
                     {errors["volunteers"] && <p className={styles.error}>{errors["volunteers"].message}</p>}
                     {error && <span
-                        className={styles.error}>Oeps, er ging iets mis met het ophalen van de vrijwilligers</span>}
+                        className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
                 </form>
             </ContentCard>
             <img onClick={() => {
