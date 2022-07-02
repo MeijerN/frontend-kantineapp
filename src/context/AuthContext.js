@@ -111,28 +111,6 @@ function AuthContextProvider({children}) {
         }
     }
 
-    // HOOGSTWAARSCHIJNLIJK NIET NODIG
-    // function login(uid, email) {
-    //     console.log("Login authcontext triggered");
-    //     // 2. Haal, indien nodig, de gebruikersgegevens uit de backend op:
-    //     // async function getData() {
-    //     // };
-    //
-    //     // 3. Zet de gebruikersgegevens (MAAR NIET DE JWT) in de context state:
-    //     // toggleAuth({
-    //     //     ...auth,
-    //     //     isAuth: true,
-    //     //     user: {
-    //     //         email: decodedToken.email,
-    //     //         id: decodedToken.sub,
-    //     //     },
-    //     //     status: 'done',
-    //     // });
-    //
-    //     console.log('De gebruiker is ingelogd!');
-    //     // history.push('/profile');
-    // }
-
     // Log user out and let onAuthStateChange() handle the auth state
     async function logout() {
         try {

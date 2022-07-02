@@ -9,11 +9,14 @@ import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import SelectElement from "../../components/selectElement/SelectElement";
+import {useForm} from "react-hook-form";
 
 function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     const history = useHistory();
     const {id} = useParams();
+    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+
 
     // Select priorities dropdown values
     // MOET UIT DE DATABASE GAAN KOMEN!!
@@ -39,7 +42,10 @@ function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
         setCurrentPage("Taak bewerken");
         toggleNavDrawer(false);
 
-        // VRIJWILLIGERS EN PRIORITEITEN OPHALEN UIT DATABASE
+        // TODO:
+        // VRIJWILLIGERS OPHALEN UIT DATABASE (HERGEBRUIK VAN ADD TASK PAGE)
+        // DATA VAN DE TAAK OPHALEN EN ALS VALUE IN DE INPUTS ZETTEN
+        // HERGEBRUIK DE ADD TASK PAGINA ZOVEEL MOGELIJK (KAN BIJNA HELEMAAL, ALLEEN MOET ER EEN FETCH TASK DATA TOEGEVOEGD WORDEN IN DE ONMOUNT USEEFFECT)
 
     }, [])
 
@@ -68,22 +74,43 @@ function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                                   value="Waarde uit de database"/>
                     </label>
                     <SelectElement
-                        stylingClass={styles.select}
-                        id="select-priority"
                         name="priority"
-                        options={priorities}
-                        placeholder="Selecteer prioriteit"
-                        isSearchable={false}
+                        options={[
+                            {label: "Lage prioriteit", value: "laag"},
+                            {label: "Gemiddelde prioriteit", value: "middel"},
+                            {label: "Hoge prioriteit", value: "hoog"},
+                        ]}
+                        controller={control}
+                        stylingClass="select"
                         isMulti={false}
+                        placeholder="Selecteer prioriteit"
+                        errorMessage="Selecteer een prioriteit"
                     />
                     <SelectElement
-                        id="select-volunteers"
                         name="volunteers"
                         options={volunteers}
-                        placeholder="Selecteer vrijwilligers"
-                        isSearchable={false}
+                        controller={control}
                         isMulti={true}
+                        placeholder="Selecteer vrijwilligers"
+                        errorMessage="Selecteer minimaal een vrijwilliger"
                     />
+                    {/*<SelectElement*/}
+                    {/*    stylingClass={styles.select}*/}
+                    {/*    id="select-priority"*/}
+                    {/*    name="priority"*/}
+                    {/*    options={priorities}*/}
+                    {/*    placeholder="Selecteer prioriteit"*/}
+                    {/*    isSearchable={false}*/}
+                    {/*    isMulti={false}*/}
+                    {/*/>*/}
+                    {/*<SelectElement*/}
+                    {/*    id="select-volunteers"*/}
+                    {/*    name="volunteers"*/}
+                    {/*    options={volunteers}*/}
+                    {/*    placeholder="Selecteer vrijwilligers"*/}
+                    {/*    isSearchable={false}*/}
+                    {/*    isMulti={true}*/}
+                    {/*/>*/}
                     <div className={styles["icon-container"]}>
                         <Icon
                             text="Opslaan"

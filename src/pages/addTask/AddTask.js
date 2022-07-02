@@ -74,6 +74,7 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
             toggleError(true);
         }
         reset();
+        history.push("/openstaande-taken")
     }
 
     return (

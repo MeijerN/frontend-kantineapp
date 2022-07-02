@@ -9,10 +9,13 @@ import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import SelectElement from "../../components/selectElement/SelectElement";
+import {useForm} from "react-hook-form";
 
 function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     const history = useHistory();
+    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+
 
     // Specialities array
     // MOET UIT DE DATABASE GAAN KOMEN!!
@@ -71,12 +74,12 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         stylingClass="edit-profile"
                     />
                     <SelectElement
-                        id="select-volunteers"
                         name="specialties"
                         options={options}
                         placeholder="Selecteer specialiteiten"
-                        isSearchable={false}
                         isMulti={true}
+                        errorMessage="Selecteer minimaal een specialiteit"
+                        controller={control}
                     />
                     <div className={styles["icon-container"]}>
                         <Icon

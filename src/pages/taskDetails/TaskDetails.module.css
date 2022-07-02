@@ -70,8 +70,6 @@
     overflow: scroll;
     padding: 5px;
     font-size: 12px;
-    /*max-width: 500px;*/
-    /*align-self: center;*/
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: solid rgba(0, 0, 0, 0.1) 1px;
 
@@ -90,6 +88,23 @@
 .assigned-users {
     /*height: calc(100vh - 625px);*/
 
+}
+
+.error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+    /*border: solid red 1px;*/
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*border: solid red 1px;*/
 }
 
 /* --------------- 4.2 Buttons ------------------- */
