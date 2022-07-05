@@ -62,27 +62,19 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     // Execute query and push data to array
                     const querySnapshot = await getDocs(q);
                     querySnapshot.forEach((doc) => {
-                        console.log(doc.data());
                         tasksArray.push(doc.data());
                     })
                     setData([...data, ...tasksArray])
                 } else {
-                    // TODO: USER IS VRIJWILLIGER, HAAL ALLEEN DE VOLTOOIDE TAKEN VOOR DE VRIJWILLIGER OP
-                    // //Create a query for fetching tasks for signed in user only
-                    // const q = query(collection(db, "tasks"), where("assignedVolunteers", "array-contains", {
-                    //     firstName: user.firstName,
-                    //     id: user.id,
-                    //     lastName: user.lastName,
-                    // }));
-                    // // Execute query and push data to array
-                    // const querySnapshot = await getDocs(q);
-                    // querySnapshot.forEach((doc) => {
-                    //     // Filter out completed tasks
-                    //     if (!doc.data().status.includes("Voltooid")) {
-                    //         tasksArray.push(doc.data());
-                    //     }
-                    // })
+                    //Create a query for fetching tasks for signed in user only
+                    const q = query(collection(db, "tasks"), where("completedById", "==", user.id));
+                    // Execute query and push data to array
+                    const querySnapshot = await getDocs(q);
+                    querySnapshot.forEach((doc) => {
+                        tasksArray.push(doc.data());
+                    })
                 }
+                setData([...data, ...tasksArray]);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -94,9 +86,6 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
         fetchVolunteers();
 
     }, [])
-
-    console.log(loading);
-    console.log(data.length)
 
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
@@ -140,19 +129,25 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         </table>
                     </ContentCard>
                 }
+                {user.function === "vrijwilliger" &&
+                    <ContentCard stylingClass="time-registration">
+                        <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span
+                            className={styles.time}>{user.monthlyHours} uur</span> en <span
+                            className={styles.time}>... minuten</span></p>
+                    </ContentCard>
+                }
             </section>
-            {/*/!*CONTENT VOOR DE NORMALE USER*!/*/}
-            {/*/!*<ContentCard>*!/*/}
-            {/*/!*    <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span className={styles.time}>3 uur</span > en <span className={styles.time}>10 minuten</span></p>*!/*/}
-            {/*/!*</ContentCard>*!/*/}
             <section className={styles.section}>
                 <div className={styles["title-sort"]}>
                     <h3 className={styles.h3}>Voltooide taken</h3>
                     <figure className={styles.sort}/>
                 </div>
-                {/*CONTENT VOOR DE MANAGER*/}
+
                 <ContentCard stylingClass="tasks">
                     {data.length === 0 && !loading && <span>Er zijn geen voltooide taken</span>}
+                    {loading && !error && <span>Gegevens worden opgehaald...</span>}
+                    {error &&
+                        <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
                     {user.function === "manager" && data.length > 0 &&
                         data.map((task) => {
                             return (
@@ -166,27 +161,18 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             )
                         })
                     }
-                    {/*</ContentCard>*/}
-                    {/*CONTENT VOOR DE NORMALE GEBRUIKER*/}
-                    {/*<ContentCard stylingClass="tasks">*/}
-                    {/*    <Task*/}
-                    {/*        date="Toegevoegd op: <datum>"*/}
-                    {/*        status="Voltooid op: <datum>"*/}
-                    {/*        title="Lamp vervangen"*/}
-                    {/*        completedBy="Jan Petersen"*/}
-                    {/*    />*/}
-                    {/*    <Task*/}
-                    {/*        date="Toegevoegd op: <datum>"*/}
-                    {/*        status="Voltooid op: <datum>"*/}
-                    {/*        title="Lamp vervangen"*/}
-                    {/*        completedBy="Jan Petersen"*/}
-                    {/*    />*/}
-                    {/*    <Task*/}
-                    {/*        date="Toegevoegd op: <datum>"*/}
-                    {/*        status="Voltooid op: <datum>"*/}
-                    {/*        title="Lamp vervangen"*/}
-                    {/*        completedBy="Jan Petersen"*/}
-                    {/*    />*/}
+                    {user.function === "vrijwilliger" && data.length > 0 &&
+                        data.map((task) => {
+                            return (
+                                <Task
+                                    date={`Toegevoegd: ${task.createdOn}`}
+                                    status={task.status}
+                                    title={task.title}
+                                    key={task.createdOn}
+                                />
+                            )
+                        })
+                    }
                 </ContentCard>
             </section>
         </InnerOuterContainer>

@@ -1,5 +1,5 @@
 import styles from './EditProfile.module.css';
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import Select from 'react-select';
 import {useHistory} from "react-router-dom";
@@ -10,34 +10,15 @@ import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import SelectElement from "../../components/selectElement/SelectElement";
 import {useForm} from "react-hook-form";
+import {AuthContext} from "../../context/AuthContext";
+import {doc, updateDoc} from "firebase/firestore";
+import {db} from "../../Firebase";
 
 function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     const history = useHistory();
     const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
-
-
-    // Specialities array
-    // MOET UIT DE DATABASE GAAN KOMEN!!
-    const options = [
-        {value: 'sanitair', label: 'Sanitair'},
-        {value: 'elektra', label: 'Elektra'},
-        {value: 'schilderwerk', label: 'Schilderwerk'},
-        {value: 'bouwen', label: 'Bouwen'},
-        {value: 'dakwerk', label: 'Dakwerk'},
-        {value: 'slopen', label: 'Slopen'},
-        {value: 'tuin', label: 'Tuin'},
-    ]
-
-    // Remove blue border in <Select/> element when in focus
-    const customStyle = {
-        control: provided => ({
-            ...provided,
-            boxShadow: 'none',
-            border: "solid black 1px",
-            borderRadius: "8px",
-        })
-    }
+    const {user, auth, toggleAuth} = useContext(AuthContext);
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
@@ -45,41 +26,86 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
         toggleNavDrawer(false);
     }, [])
 
-    function handleOnSubmit(e) {
-        e.preventDefault();
-        console.log("Form is gesubmitted");
+    async function handleSave(data) {
+        console.log(data.specialties);
+        try {
+            // Create Firestore reference to task document
+            const taskRef = doc(db, "users", user.id);
+            // Update Firestore task document
+            await updateDoc(taskRef, {
+                firstName: data["first-name"],
+                lastName: data["last-name"],
+                email: data.email,
+                specialties: data.specialties,
+            });
+            toggleAuth({
+                ...auth,
+                user: {
+                    ...user,
+                    firstName: data["first-name"],
+                    lastName: data["last-name"],
+                    email: data.email,
+                    specialties: data.specialties,
+                },
+            })
+            history.push("/profiel")
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <h3 className={styles.h3}>Mijn gegevens</h3>
             <ContentCard stylingClass="edit-profile">
-                <form className={styles.form} onSubmit={handleOnSubmit}>
-                    <InputField
+                <form className={styles.form} onSubmit={handleSubmit(handleSave)}>
+                    <input
                         type="text"
                         placeholder="Voornaam"
-                        value="Niek"
-                        stylingClass="edit-profile"
+                        className={styles["edit-profile"]}
+                        {...register("first-name", {
+                            required: "Vul uw voornaam in",
+                        })}
+                        defaultValue={user.firstName}
                     />
-                    <InputField
+                    <input
                         type="text"
                         placeholder="Achternaam"
-                        value="Meijer"
-                        stylingClass="edit-profile"
+                        className={styles["edit-profile"]}
+                        {...register("last-name", {
+                            required: "Vul uw achternaam in",
+                        })}
+                        defaultValue={user.lastName}
                     />
-                    <InputField
+                    <input
                         type="email"
                         placeholder="Email"
-                        value="meyerniek@hotmail.com"
-                        stylingClass="edit-profile"
+                        className={styles["edit-profile"]}
+                        {...register("email", {
+                            required: "Vul uw email in",
+                            pattern: {
+                                value: /^\S+@\S+$/i,
+                                message: "Ongeldige email",
+                            }
+                        })}
+                        defaultValue={user.email}
                     />
+
                     <SelectElement
                         name="specialties"
-                        options={options}
-                        placeholder="Selecteer specialiteiten"
-                        isMulti={true}
-                        errorMessage="Selecteer minimaal een specialiteit"
+                        options={[
+                            {value: 'sanitair', label: 'Sanitair'},
+                            {value: 'elektra', label: 'Elektra'},
+                            {value: 'schilderwerk', label: 'Schilderwerk'},
+                            {value: 'bouwen', label: 'Bouwen'},
+                            {value: 'dakwerk', label: 'Dakwerk'},
+                            {value: 'slopen', label: 'Slopen'},
+                            {value: 'tuin', label: 'Tuin'},
+                        ]}
                         controller={control}
+                        isMulti={true}
+                        placeholder="Selecteer specialisaties"
+                        errorMessage="Selecteer minimaal een specialisatie"
                     />
                     <div className={styles["icon-container"]}>
                         <Icon
@@ -87,6 +113,10 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             image={saveIcon}
                         />
                     </div>
+                    {errors["first-name"] && <p className={styles.error}>{errors["first-name"].message}</p>}
+                    {errors["last-name"] && <p className={styles.error}>{errors["last-name"].message}</p>}
+                    {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+                    {errors["specialties"] && <p className={styles.error}>{errors["specialties"].message}</p>}
                 </form>
             </ContentCard>
             <img onClick={() => {

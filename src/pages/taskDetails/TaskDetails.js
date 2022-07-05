@@ -87,8 +87,9 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
             const taskRef = doc(db, "tasks", docId);
             //Update Firebase task document
             await updateDoc(taskRef, {
-                status: "Voltooid op: " + Date.now(),
+                status: "Voltooid: " + Date.now(),
                 completedBy: `${user.firstName} ${user.lastName}`,
+                completedById: user.id,
             });
             history.push("/openstaande-taken")
         } catch (e) {

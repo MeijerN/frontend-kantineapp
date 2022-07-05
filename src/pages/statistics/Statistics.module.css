@@ -41,6 +41,7 @@
 
 .p {
     font-weight: 300;
+    text-align: center;
 }
 
 .time {
@@ -65,6 +66,11 @@
 
 .sort::after {
     content: url(../../assets/sort_icon.svg);
+}
+
+.error {
+    text-align: center;
+    color: red;
 }
 
 /* --------------- 4.4 Tables (manager content)------------------------ */

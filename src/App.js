@@ -124,7 +124,7 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// TODO: vrijwilligers laden in overzicht
+//TODO: profielpagina
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager

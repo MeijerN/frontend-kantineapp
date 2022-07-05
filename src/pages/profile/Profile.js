@@ -1,16 +1,20 @@
 import styles from './Profile.module.css'
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import profilePicture from '../../assets/profile_picture.jpeg'
 import editIcon from '../../assets/edit_task_icon.svg'
 import {useHistory} from "react-router-dom";
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
+import {AuthContext} from "../../context/AuthContext";
 
 function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
-    const history = useHistory();
+    //Statemanagement
     const [uploadCard, toggleUploadCard] = React.useState(false);
+
+    const history = useHistory();
+    const {user} = useContext(AuthContext);
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
@@ -41,15 +45,14 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             </button>
                         </figure>
                         <div className={styles["name-container"]}>
-                            <p className={styles.name}>Niek</p>
-                            <p className={styles.name}>Meijer</p>
+                            <p className={styles.name}>{user.firstName}</p>
+                            <p className={styles.name}>{user.lastName}</p>
                         </div>
                     </div>
                     <div className={styles["bottom-section"]}>
-                        <p className={styles["profile-details"]}>Email: <span>meyerniek@hotmail.com</span></p>
-                        <p className={styles["profile-details"]}>Functie: <span>manager</span></p>
-                        <p className={styles["profile-details"]}>Specialiteiten: <span>ICT, schilderen, santair</span>
-                        </p>
+                        <p className={styles["profile-details"]}>Email: <span>{user.email}</span></p>
+                        <p className={styles["profile-details"]}>Functie: <span>{user.function}</span></p>
+                        <p className={styles["profile-details"]}>Specialiteiten: <span>{user.specialties}</span></p>
                     </div>
                 </section>
                 <figure className={styles["icon-container"]}>

@@ -39,11 +39,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     });
                 } else {
                     //Create a query for fetching tasks for signed in user only
-                    const q = query(collection(db, "tasks"), where("assignedVolunteers", "array-contains", {
-                        firstName: user.firstName,
-                        id: user.id,
-                        lastName: user.lastName,
-                    }));
+                    const q = query(collection(db, "tasks"), where("assignedVolunteersId", "array-contains", user.id));
                     // Execute query and push data to array
                     const querySnapshot = await getDocs(q);
                     querySnapshot.forEach((doc) => {

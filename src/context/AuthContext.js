@@ -40,6 +40,8 @@ function AuthContextProvider({children}) {
                                     email: userInformation.email,
                                     function: userInformation.function,
                                     specialties: userInformation.specialties,
+                                    monthlyHours: userInformation.monthlyHours,
+                                    totalHours: userInformation.totalHours,
                                 },
                                 status: 'done',
                             })
@@ -86,6 +88,8 @@ function AuthContextProvider({children}) {
                 email: data.email,
                 function: "vrijwilliger",
                 specialties: ["Geen specialiteiten toegevoegd"],
+                monthlyHours: 0,
+                totalHours: 0,
             });
             toggleAuth({
                 isAuth: true,
@@ -95,7 +99,9 @@ function AuthContextProvider({children}) {
                     lastName: data["last-name"],
                     email: data.email,
                     function: "vrijwilliger",
-                    specialties: ["Nog geen specialiteiten toegevoegd"],
+                    specialties: ["Geen specialiteiten toegevoegd"],
+                    monthlyHours: 0,
+                    totalHours: 0,
                 },
                 status: 'done',
             })
@@ -127,11 +133,12 @@ function AuthContextProvider({children}) {
     const contextData = {
         isAuth: auth.isAuth,
         user: auth.user,
-        // login: login,
+        auth: auth,
+        toggleAuth: toggleAuth,
         logout: logout,
         createUserInformation: createUserInformation,
     };
-
+    console.log(auth);
     return (
         <AuthContext.Provider value={contextData}>
             {auth.status === 'done' && children}
