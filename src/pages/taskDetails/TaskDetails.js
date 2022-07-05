@@ -82,7 +82,6 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
     async function handleCompleteButtonClick() {
         toggleError(false);
         toggleLoading(true);
-        console.log("knop aangeklikt");
         try {
             //Create task reference
             const taskRef = doc(db, "tasks", docId);
@@ -91,11 +90,7 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 status: "Voltooid op: " + Date.now(),
                 completedBy: `${user.firstName} ${user.lastName}`,
             });
-            setData({
-                ...data,
-                status: "Voltooid op: " + Date.now(),
-                completedBy: `${user.firstName} ${user.lastName}`,
-            })
+            history.push("/openstaande-taken")
         } catch (e) {
             console.log(e);
             toggleError(true);
@@ -106,7 +101,6 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
     async function handleDeleteButtonClick() {
         toggleError(false);
         toggleLoading(true);
-        console.log("knop aangeklikt");
         try {
             await deleteDoc(doc(db, "tasks", docId));
         } catch (e) {
@@ -132,7 +126,7 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
                             </p>
                         </label>
 
-                        <p className={styles.p}>Prioriteit: <span>{data.priority}</span></p>
+                        <p className={styles.p}>Prioriteit: <span>{data.priority.value}</span></p>
                         <label htmlFor="task-owners-table" className={styles["label-task-owners-table"]}>
                             Aangewezen vrijwilligers:
                             <p className={styles["assigned-users"]}>

@@ -59,7 +59,9 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     async function handleSave(data) {
         try {
+            console.log(data);
             // Create new firebase document with task information
+            console.log(data.volunteers)
             await addDoc(collection(db, "tasks"), {
                 title: data.title,
                 description: data.description,
@@ -77,6 +79,7 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
         history.push("/openstaande-taken")
     }
 
+    // console.log("volunteers:", volunteers[0])
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
             <ContentCard stylingClass="add-task">
@@ -112,9 +115,27 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     <SelectElement
                         name="priority"
                         options={[
-                            {label: "Lage prioriteit", value: "laag"},
-                            {label: "Gemiddelde prioriteit", value: "middel"},
-                            {label: "Hoge prioriteit", value: "hoog"},
+                            {
+                                label: "Lage prioriteit",
+                                value: {
+                                    label: "Lage prioriteit",
+                                    value: "laag",
+                                },
+                            },
+                            {
+                                label: "Gemiddelde prioriteit",
+                                value: {
+                                    label: "Gemiddelde prioriteit",
+                                    value: "middel",
+                                },
+                            },
+                            {
+                                label: "Hoge prioriteit",
+                                value: {
+                                    label: "Hoge prioriteit",
+                                    value: "hoog",
+                                },
+                            },
                         ]}
                         controller={control}
                         stylingClass="select"
@@ -122,6 +143,7 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         placeholder="Selecteer prioriteit"
                         errorMessage="Selecteer een prioriteit"
                     />
+
                     <SelectElement
                         name="volunteers"
                         options={volunteers}

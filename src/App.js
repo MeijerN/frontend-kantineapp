@@ -124,7 +124,7 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-// TODO: task details werkend maken
+// TODO: vrijwilligers laden in overzicht
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager
@@ -132,3 +132,4 @@ export default App;
 
 // IN DE GATEN HOUDEN:
 // TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen
+// TODO: helper functies maken van defaultValues in EditTask.js

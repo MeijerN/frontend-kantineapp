@@ -1,129 +1,219 @@
 import styles from './EditTask.module.css'
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
-import Select from 'react-select';
 import {useHistory, useParams} from "react-router-dom";
-import InputField from "../../components/inputField/InputField";
 import saveIcon from '../../assets/save_task_icon.svg';
 import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import SelectElement from "../../components/selectElement/SelectElement";
-import {useForm} from "react-hook-form";
+import {useForm} from 'react-hook-form';
+import {AuthContext} from "../../context/AuthContext";
+// Firestore imports
+import {addDoc, doc, updateDoc} from "firebase/firestore";
+import {collection, query, where, getDocs} from "firebase/firestore";
+import {db} from '../../Firebase'
 
 function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
+    //Stage management
+    const [volunteers, setVolunteers] = React.useState([]);
+    const [error, toggleError] = React.useState(false);
+    const [docId, setDocId] = React.useState();
+    const [data, setData] = React.useState({});
+    const [loading, toggleLoading] = React.useState(true);
+
+
     const history = useHistory();
-    const {id} = useParams();
     const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+    const {user} = useContext(AuthContext);
+    const {id} = useParams();
 
-
-    // Select priorities dropdown values
-    // MOET UIT DE DATABASE GAAN KOMEN!!
-    const priorities = [
-        {label: "Lage prioriteit", value: "Laag"},
-        {label: "Gemiddelde prioriteit", value: "Middel"},
-        {label: "Hoge prioriteit", value: "Hoog"},
-    ];
-
-    // Select volunteers dropdown values
-    // MOET UIT DE DATABASE GAAN KOMEN!!
-    const volunteers = [
-        {label: "Niek Meijer", value: "Niek Meijer"},
-        {label: "Gert van Pijkereren", value: "Gert van Pijkereren"},
-        {label: "Piet Dijkstra", value: "Piet Dijkstra"},
-        {label: "Els van Lunteren", value: "Els van Lunteren"},
-        {label: "Tom Bartels", value: "Tom Bartels"},
-
-    ]
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Taak bewerken");
         toggleNavDrawer(false);
+        toggleError(false);
 
-        // TODO:
-        // VRIJWILLIGERS OPHALEN UIT DATABASE (HERGEBRUIK VAN ADD TASK PAGE)
-        // DATA VAN DE TAAK OPHALEN EN ALS VALUE IN DE INPUTS ZETTEN
-        // HERGEBRUIK DE ADD TASK PAGINA ZOVEEL MOGELIJK (KAN BIJNA HELEMAAL, ALLEEN MOET ER EEN FETCH TASK DATA TOEGEVOEGD WORDEN IN DE ONMOUNT USEEFFECT)
+        async function fetchVolunteers() {
+            try {
+                const volunteersArray = [];
+                // Create a query for fetching only "vrijwilliger" users
+                const q = query(collection(db, "users"), where("function", "==", "vrijwilliger"));
+                // Execute query and push data to array
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                    volunteersArray.push({
+                        label: `${doc.data().firstName} ${doc.data().lastName}`,
+                        value: {
+                            firstName: doc.data().firstName,
+                            lastName: doc.data().lastName,
+                            id: doc.data().id,
+                        },
+                    })
+                })
+                setVolunteers([...volunteers, ...volunteersArray]);
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
+        }
 
+        async function fetchTaskDetails() {
+            try {
+                // Create a query to fetch task details on uniqe createdOn timestamp
+                const q = query(collection(db, "tasks"), where("createdOn", "==", parseInt(id, 10)));
+                // Execute query
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                    setData(doc.data());
+                    setDocId(doc.id);
+                });
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
+            toggleLoading(false);
+        }
+
+        fetchVolunteers();
+        fetchTaskDetails()
     }, [])
 
-
-    function handleOnSubmit() {
-        console.log("Form submit aangesproken");
+    async function handleSave(data) {
+        toggleError(false);
+        toggleLoading(true);
+        // Map over assigned volunteers input data and create array array for Firestore
+        const assignedVolunteersArray = data.volunteers.map((volunteer) => {
+            return (
+                {
+                    firstName: volunteer.value.firstName,
+                    lastName: volunteer.value.lastName,
+                    id: volunteer.value.id,
+                }
+            )
+        })
+        try {
+            // Create Firestore reference to task document
+            const taskRef = doc(db, "tasks", docId);
+            // Update Firestore task document
+            await updateDoc(taskRef, {
+                title: data.title,
+                description: data.description,
+                priority: {
+                    label: data.priority.label,
+                    value: data.priority.value,
+                },
+                assignedVolunteers: assignedVolunteersArray,
+            });
+            history.push("/openstaande-taken")
+        } catch (e) {
+            console.error(e);
+            toggleError(true);
+        }
+        reset();
+        toggleLoading(false);
     }
 
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
-            <ContentCard stylingClass="edit-task-details">
-                <form className={styles.form} onSubmit={handleOnSubmit}>
-                    <label htmlFor="title" className={styles["label-textarea-add-task"]}>
-                        Titel:
-                        <InputField
-                            stylingClass="edit-profile"
-                            type="text"
-                            placeholder=""
-                            value={id}
-                            id="title"
+            <ContentCard stylingClass="add-task">
+                {loading && !error ? <span className={styles.loading}>Gegevens worden opgehaald...</span>
+                    :
+                    <form className={styles.form} onSubmit={handleSubmit(handleSave)}>
+                        <label htmlFor="title" className={styles["label-textarea-edit-task"]}>
+                            Titel:
+                            <input
+                                className={styles["edit-task"]}
+                                type="text"
+                                id="title"
+                                {...register("title", {
+                                    required: "Vul de titel in",
+                                })}
+                                defaultValue={data.title}
+                            />
+                        </label>
+                        <label htmlFor="textarea-edit-task" className={styles["label-textarea-edit-task"]}>
+                            Omschrijving van de taak:
+                            <textarea
+                                className={styles["textarea-edit-task"]}
+                                id="description"
+                                {...register("description", {
+                                    required: {
+                                        value: true,
+                                        message: "Vul de titel in"
+                                    },
+                                    maxLength: {
+                                        value: 1000,
+                                        message: "Er mogen maximaal 1000 karakters gebruikt worden"
+                                    }
+                                })}
+                                defaultValue={data.description}
+                            />
+                        </label>
+
+                        <SelectElement
+                            name="priority"
+                            options={[
+                                {
+                                    label: "Lage prioriteit",
+                                    value: "laag",
+                                },
+                                {
+                                    label: "Gemiddelde prioriteit",
+                                    value: "middel",
+                                },
+                                {
+                                    label: "Hoge prioriteit",
+                                    value: "hoog",
+                                },
+                            ]}
+                            controller={control}
+                            stylingClass="select"
+                            isMulti={false}
+                            placeholder="Selecteer prioriteit"
+                            errorMessage="Selecteer een prioriteit"
+                            defaultValues={data.priority}
                         />
-                    </label>
-                    <label htmlFor="textarea-add-task" className={styles["label-textarea-edit-task"]}>
-                        Omschrijving van de taak:
-                        <textarea className={styles["textarea-edit-task"]} name="description" id="description"
-                                  value="Waarde uit de database"/>
-                    </label>
-                    <SelectElement
-                        name="priority"
-                        options={[
-                            {label: "Lage prioriteit", value: "laag"},
-                            {label: "Gemiddelde prioriteit", value: "middel"},
-                            {label: "Hoge prioriteit", value: "hoog"},
-                        ]}
-                        controller={control}
-                        stylingClass="select"
-                        isMulti={false}
-                        placeholder="Selecteer prioriteit"
-                        errorMessage="Selecteer een prioriteit"
-                    />
-                    <SelectElement
-                        name="volunteers"
-                        options={volunteers}
-                        controller={control}
-                        isMulti={true}
-                        placeholder="Selecteer vrijwilligers"
-                        errorMessage="Selecteer minimaal een vrijwilliger"
-                    />
-                    {/*<SelectElement*/}
-                    {/*    stylingClass={styles.select}*/}
-                    {/*    id="select-priority"*/}
-                    {/*    name="priority"*/}
-                    {/*    options={priorities}*/}
-                    {/*    placeholder="Selecteer prioriteit"*/}
-                    {/*    isSearchable={false}*/}
-                    {/*    isMulti={false}*/}
-                    {/*/>*/}
-                    {/*<SelectElement*/}
-                    {/*    id="select-volunteers"*/}
-                    {/*    name="volunteers"*/}
-                    {/*    options={volunteers}*/}
-                    {/*    placeholder="Selecteer vrijwilligers"*/}
-                    {/*    isSearchable={false}*/}
-                    {/*    isMulti={true}*/}
-                    {/*/>*/}
-                    <div className={styles["icon-container"]}>
-                        <Icon
-                            text="Opslaan"
-                            image={saveIcon}
+                        <SelectElement
+                            name="volunteers"
+                            options={volunteers}
+                            controller={control}
+                            isMulti={true}
+                            placeholder="Selecteer vrijwilligers"
+                            errorMessage="Selecteer minimaal een vrijwilliger"
+                            defaultValues={data.assignedVolunteers.map((volunteer) => {
+                                return {
+                                    label: `${volunteer.firstName} ${volunteer.lastName}`,
+                                    value: {
+                                        firstName: volunteer.firstName,
+                                        id: volunteer.id,
+                                        lastName: volunteer.lastName,
+                                    },
+                                }
+                            })}
                         />
-                    </div>
-                </form>
+
+                        <div className={styles["icon-container"]}>
+                            <Icon
+                                text="Opslaan"
+                                image={saveIcon}
+                            />
+                        </div>
+                        {errors["title"] && <p className={styles.error}>{errors["title"].message}</p>}
+                        {errors["description"] && <p className={styles.error}>{errors["description"].message}</p>}
+                        {errors["priority"] && <p className={styles.error}>{errors["priority"].message}</p>}
+                        {errors["volunteers"] && <p className={styles.error}>{errors["volunteers"].message}</p>}
+                        {error && <span
+                            className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
+                    </form>
+                }
             </ContentCard>
             <img onClick={() => {
                 history.goBack()
             }} className={styles["back-icon"]} src={backIcon} alt="back"/>
         </InnerOuterContainer>
-
     );
 }
 

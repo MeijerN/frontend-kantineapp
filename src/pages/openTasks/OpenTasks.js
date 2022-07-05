@@ -77,9 +77,10 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 {data.length === 0 && !error && !loading && <span>Er zijn geen taken toegewezen</span>}
                 {data.length !== 0 &&
                     data.map((task) => {
+                        // console.log(data)
                         return (
                             <Task
-                                prio={task.priority}
+                                prio={task.priority.value}
                                 date={"Toegevoegd op: " + task.createdOn}
                                 status={task.status}
                                 title={task.title}
