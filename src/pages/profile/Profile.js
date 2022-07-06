@@ -7,6 +7,10 @@ import {useHistory} from "react-router-dom";
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import {AuthContext} from "../../context/AuthContext";
+import {useForm} from "react-hook-form";
+//Firebase imports
+import { getStorage, ref } from "firebase/storage";
+import {storage} from "../../Firebase";
 
 function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
@@ -14,6 +18,7 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
     const [uploadCard, toggleUploadCard] = React.useState(false);
 
     const history = useHistory();
+    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
@@ -21,6 +26,17 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
         setCurrentPage("Profiel");
         toggleNavDrawer(false);
     }, [])
+
+    function handleFileUpload(data) {
+        console.log(data);
+        try {
+            const spaceRef = ref(storage, 'images/space.jpg');
+
+        } catch (e) {
+            console.error(e);
+
+        }
+    }
 
     return (
         <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
@@ -31,7 +47,12 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         {uploadCard &&
                             <span className={styles["file-upload"]}>
                                 <p className={styles["upload-title"]}>Selecteer een bestand</p>
-                                <input className={styles["input-file"]} type="file"/>
+                                <form onSubmit={handleSubmit(handleFileUpload)}>
+                                    <input className={styles["input-file"]} type="file" {...register("file", {
+                                        required: true,
+                                    })}/>
+                                    <button type="submit">Uploaden</button>
+                                </form>
                                 <button onClick={() => {
                                     toggleUploadCard(false)
                                 }} className={styles['cancel-button']}>Annuleren</button>
@@ -52,7 +73,8 @@ function Profile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     <div className={styles["bottom-section"]}>
                         <p className={styles["profile-details"]}>Email: <span>{user.email}</span></p>
                         <p className={styles["profile-details"]}>Functie: <span>{user.function}</span></p>
-                        <p className={styles["profile-details"]}>Specialiteiten: <span>{user.specialties}</span></p>
+                        <p className={styles["profile-details"]}>Specialiteiten: <span>{user.specialties.join(", ")}</span>
+                        </p>
                     </div>
                 </section>
                 <figure className={styles["icon-container"]}>

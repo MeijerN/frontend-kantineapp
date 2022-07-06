@@ -16,6 +16,9 @@ import {db} from "../../Firebase";
 
 function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
+    //State management
+    const [error, toggleError] = React.useState(false);
+
     const history = useHistory();
     const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
     const {user, auth, toggleAuth} = useContext(AuthContext);
@@ -27,8 +30,12 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, [])
 
     async function handleSave(data) {
-        console.log(data.specialties);
+        toggleError(false);
         try {
+            const specialtiesArray = [];
+            data.specialties.map((specialty) => {
+                specialtiesArray.push(specialty.value)
+            })
             // Create Firestore reference to task document
             const taskRef = doc(db, "users", user.id);
             // Update Firestore task document
@@ -36,7 +43,7 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 firstName: data["first-name"],
                 lastName: data["last-name"],
                 email: data.email,
-                specialties: data.specialties,
+                specialties: specialtiesArray,
             });
             toggleAuth({
                 ...auth,
@@ -45,12 +52,13 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     firstName: data["first-name"],
                     lastName: data["last-name"],
                     email: data.email,
-                    specialties: data.specialties,
+                    specialties: specialtiesArray,
                 },
             })
             history.push("/profiel")
         } catch (e) {
             console.error(e);
+            toggleError(true);
         }
     }
 
@@ -106,6 +114,16 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                         isMulti={true}
                         placeholder="Selecteer specialisaties"
                         errorMessage="Selecteer minimaal een specialisatie"
+                        defaultValues={user.specialties === "Geen specialisaties toegevoegd" ? ""
+                            :
+                            user.specialties.map((specialty) => {
+                                return (
+                                    {
+                                        label: specialty,
+                                        value: specialty,
+                                    }
+                                )
+                            })}
                     />
                     <div className={styles["icon-container"]}>
                         <Icon
@@ -117,6 +135,8 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
                     {errors["last-name"] && <p className={styles.error}>{errors["last-name"].message}</p>}
                     {errors.email && <p className={styles.error}>{errors.email.message}</p>}
                     {errors["specialties"] && <p className={styles.error}>{errors["specialties"].message}</p>}
+                    {error && <span
+                        className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
                 </form>
             </ContentCard>
             <img onClick={() => {

@@ -138,7 +138,7 @@ function AuthContextProvider({children}) {
         logout: logout,
         createUserInformation: createUserInformation,
     };
-    console.log(auth);
+
     return (
         <AuthContext.Provider value={contextData}>
             {auth.status === 'done' && children}

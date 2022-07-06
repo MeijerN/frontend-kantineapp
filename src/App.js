@@ -124,11 +124,10 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-//TODO: profielpagina
+//TODO: profielfoto uploaden
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager
-// TODO: Overzicht van personeel en haar kwaliteiten in Personeel pagina van manager
 
 // IN DE GATEN HOUDEN:
 // TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen

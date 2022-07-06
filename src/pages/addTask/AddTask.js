@@ -58,13 +58,12 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, [])
 
     async function handleSave(data) {
+        toggleError(false);
         try {
             const volunteersId = data.volunteers.map((volunteer) => {
                 return volunteer.id
             })
-
             // Create new firebase document with task information
-
             await addDoc(collection(db, "tasks"), {
                 title: data.title,
                 description: data.description,
@@ -74,7 +73,6 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
                 createdBy: user.id,
                 assignedVolunteers: data.volunteers,
                 assignedVolunteersId: volunteersId,
-
             });
         } catch (e) {
             console.error(e);

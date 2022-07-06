@@ -3,7 +3,6 @@ import React from 'react';
 import Select from "react-select";
 import {Controller, useForm} from "react-hook-form";
 
-
 function SelectElement({defaultValues, stylingClass, name, options, placeholder, isMulti, controller, errorMessage}) {
 
     // Filter given select options to the current selected values
