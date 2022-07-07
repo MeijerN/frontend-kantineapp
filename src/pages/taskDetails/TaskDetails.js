@@ -15,7 +15,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {collection, getDocs, query, where, doc, updateDoc, deleteDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
 
-function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function TaskDetails({setCurrentPage}) {
 
     //Stage management
     const [data, setData] = React.useState({});
@@ -30,7 +30,6 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Taak details");
-        toggleNavDrawer(false);
         toggleError(false);
         toggleLoading(true);
 
@@ -113,7 +112,7 @@ function TaskDetails({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }
 
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <ContentCard stylingClass="task-details">
                 {loading && !error ? <span className={styles.loading}>De gegevens worden opgehaald...</span>
                     :

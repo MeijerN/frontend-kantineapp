@@ -12,7 +12,7 @@ import deleteTaskIcon from "../../assets/delete_task_icon.svg"
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
 
-function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function Statistics({setCurrentPage}) {
 
     //State management
     const [volunteers, setVolunteers] = React.useState([]);
@@ -25,7 +25,6 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Statistieken");
-        toggleNavDrawer(false);
         toggleLoading(true);
         toggleError(false);
 
@@ -88,7 +87,7 @@ function Statistics({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, [])
 
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <section className={styles.section}>
                 <div className={styles["title-sort"]}>
                     {user.function === "manager" &&

@@ -14,7 +14,7 @@ import {addDoc, doc, updateDoc} from "firebase/firestore";
 import {collection, query, where, getDocs} from "firebase/firestore";
 import {db} from '../../Firebase'
 
-function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function EditTask({setCurrentPage}) {
 
     //Stage management
     const [volunteers, setVolunteers] = React.useState([]);
@@ -33,7 +33,6 @@ function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Taak bewerken");
-        toggleNavDrawer(false);
         toggleError(false);
 
         async function fetchVolunteers() {
@@ -117,7 +116,7 @@ function EditTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }
 
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <ContentCard stylingClass="add-task">
                 {loading && !error ? <span className={styles.loading}>Gegevens worden opgehaald...</span>
                     :

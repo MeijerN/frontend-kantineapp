@@ -17,6 +17,7 @@ import TaskDetails from "./pages/taskDetails/TaskDetails";
 import AddTask from "./pages/addTask/AddTask";
 import EditTask from "./pages/editTask/EditTask";
 import Personnel from "./pages/personnel/Personnel";
+import NavigationDrawer from "./components/navigationDrawer/NavigationDrawer";
 
 function App() {
 
@@ -37,82 +38,67 @@ function App() {
                 navDrawer={navDrawer}
                 toggleNavDrawer={toggleNavDrawer}
             />}
+            {isAuth && <NavigationDrawer
+                navDrawer={navDrawer}
+                toggleNavDrawer={toggleNavDrawer}
+            />}
             <Switch>
                 <Route exact path="/">
                     {!isAuth ?
                         <LoginPage
-                            toggleNavDrawer={toggleNavDrawer}
+                            toggleNavdrawer={toggleNavDrawer}
                         /> : <Redirect to="/openstaande-taken"/>
                     }
                 </Route>
                 <Route path="/registreren">
                     {!isAuth ?
                         <RegisterPage
-                            toggleNavDrawer={toggleNavDrawer}
                         /> : <Redirect to="/openstaande-taken"/>
                     }
                     <RegisterPage/>
                 </Route>
                 <PrivateRoute exact path="/openstaande-taken" isAuth={isAuth}>
                     <OpenTasksPage
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute path="/openstaande-taken/toevoegen" isAuth={isAuth}>
                     <AddTask
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute exact path="/openstaande-taken/:id" isAuth={isAuth}>
                     <TaskDetails
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute path="/openstaande-taken/:id/bewerken" isAuth={isAuth}>
                     <EditTask
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute path="/urenregistratie" isAuth={isAuth}>
                     <TimeRegistration
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute path="/personeel" isAuth={isAuth}>
                     <Personnel
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute path="/statistieken" isAuth={isAuth}>
                     <Statistics
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute exact path="/profiel" isAuth={isAuth}>
                     <Profile
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
                 <PrivateRoute path="/profiel-wijzigen" isAuth={isAuth}>
                     <EditProfile
-                        navDrawer={navDrawer}
-                        toggleNavDrawer={toggleNavDrawer}
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
@@ -124,7 +110,7 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-//TODO: profielfoto uploaden
+//
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager

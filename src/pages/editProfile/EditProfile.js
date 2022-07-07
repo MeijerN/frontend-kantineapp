@@ -14,7 +14,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {doc, updateDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
 
-function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function EditProfile({setCurrentPage}) {
 
     //State management
     const [error, toggleError] = React.useState(false);
@@ -26,7 +26,6 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Profiel wijzigen");
-        toggleNavDrawer(false);
     }, [])
 
     async function handleSave(data) {
@@ -63,7 +62,7 @@ function EditProfile({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }
 
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <h3 className={styles.h3}>Mijn gegevens</h3>
             <ContentCard stylingClass="edit-profile">
                 <form className={styles.form} onSubmit={handleSubmit(handleSave)}>

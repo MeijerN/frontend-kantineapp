@@ -4,16 +4,15 @@ import ContentCard from "../../components/contentCard/ContentCard";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 
 
-function TimeRegistration({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function TimeRegistration({setCurrentPage}) {
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Urenregistratie")
-        toggleNavDrawer(false);
     }, []);
 
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <h3 className={styles.h3}>Timer</h3>
             <ContentCard stylingClass="time-registration">
                 <p className={styles.p}>Je bent momenteel niet ingeklokt</p>

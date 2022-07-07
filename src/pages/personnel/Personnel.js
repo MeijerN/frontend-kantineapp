@@ -11,7 +11,7 @@ import {collection, doc, getDocs, query, updateDoc, where} from "firebase/firest
 import {db} from "../../Firebase";
 
 
-function Personnel({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function Personnel({setCurrentPage}) {
 
     //State management
     const [volunteers, setVolunteers] = React.useState([]);
@@ -25,7 +25,6 @@ function Personnel({navDrawer, toggleNavDrawer, setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Personeel")
-        toggleNavDrawer(false);
 
         async function fetchVolunteers() {
             try {
@@ -79,7 +78,7 @@ function Personnel({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }
 
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <h3 className={styles.h3}>Overzicht vrijwilligers</h3>
             <ContentCard stylingClass="table">
                 <table className={styles.table}>

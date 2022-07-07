@@ -14,7 +14,7 @@ import {addDoc} from "firebase/firestore";
 import {collection, query, where, getDocs} from "firebase/firestore";
 import {db} from '../../Firebase'
 
-function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function AddTask({setCurrentPage}) {
 
     //Stage management
     const [volunteers, setVolunteers] = React.useState([]);
@@ -27,7 +27,6 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Taak toevoegen");
-        toggleNavDrawer(false);
         toggleError(false);
 
         async function fetchVolunteers() {
@@ -84,7 +83,7 @@ function AddTask({navDrawer, toggleNavDrawer, setCurrentPage}) {
 
     // console.log("volunteers:", volunteers[0])
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <ContentCard stylingClass="add-task">
                 <form className={styles.form} onSubmit={handleSubmit(handleSave)}>
                     <label htmlFor="title" className={styles["label-textarea-add-task"]}>

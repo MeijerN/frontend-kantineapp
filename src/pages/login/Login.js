@@ -9,7 +9,7 @@ import {useForm} from "react-hook-form";
 import {authFirebase} from "../../Firebase";
 import {signInWithEmailAndPassword} from "firebase/auth"
 
-function LoginPage({toggleNavDrawer}) {
+function LoginPage({toggleNavdrawer}) {
 
     // Context management
     const [error, toggleError] = React.useState(false);
@@ -18,7 +18,7 @@ function LoginPage({toggleNavDrawer}) {
 
     // Close navbar after user logout
     useEffect(() => {
-        toggleNavDrawer(false);
+        toggleNavdrawer(false);
     }, [])
 
     async function loginUser(data) {

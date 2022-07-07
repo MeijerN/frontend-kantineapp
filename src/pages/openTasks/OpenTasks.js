@@ -8,7 +8,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
 
-function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
+function OpenTasksPage({setCurrentPage}) {
 
     // State management
     const [data, setData] = React.useState([]);
@@ -21,7 +21,6 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Openstaande taken");
-        toggleNavDrawer(false);
         toggleLoading(true);
         toggleError(false);
 
@@ -61,7 +60,7 @@ function OpenTasksPage({navDrawer, toggleNavDrawer, setCurrentPage}) {
     }, [])
 
     return (
-        <InnerOuterContainer navDrawer={navDrawer} toggleNavdrawer={toggleNavDrawer}>
+        <InnerOuterContainer>
             <div className={styles["title-sort"]}>
                 <h3 className={styles.h3}>Takenlijst</h3>
                 <figure className={styles.sort}/>
