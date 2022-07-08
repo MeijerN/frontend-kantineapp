@@ -45,4 +45,13 @@
     box-shadow: 0 4px 15px #360101;
 }
 
+.button:disabled {
+    color: hsla(61, 100%, 50%, 0.47);
+    background: hsla(0, 100%, 50%, 0.45);
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
 /* ------------------------------- 5. Media Queries -------------------------------- */

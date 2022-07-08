@@ -67,12 +67,12 @@ function App() {
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
-                <PrivateRoute exact path="/openstaande-taken/:id" isAuth={isAuth}>
+                <PrivateRoute exact path="/openstaande-taken/:title" isAuth={isAuth}>
                     <TaskDetails
                         setCurrentPage={setCurrentPage}
                     />
                 </PrivateRoute>
-                <PrivateRoute path="/openstaande-taken/:id/bewerken" isAuth={isAuth}>
+                <PrivateRoute path="/openstaande-taken/:title/bewerken" isAuth={isAuth}>
                     <EditTask
                         setCurrentPage={setCurrentPage}
                     />
@@ -118,3 +118,4 @@ export default App;
 // IN DE GATEN HOUDEN:
 // TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen
 // TODO: helper functies maken van defaultValues in EditTask.js
+// TODO: in de states waar DATA gebruikt is misschien iets duidelijkere naam kiezen?

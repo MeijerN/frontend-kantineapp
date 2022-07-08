@@ -14,6 +14,7 @@ import {AuthContext} from "../../context/AuthContext";
 //Firebase imports
 import {collection, getDocs, query, where, doc, updateDoc, deleteDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
+import createTaskDate from "../../helpers/createTaskDate";
 
 function TaskDetails({setCurrentPage}) {
 
@@ -24,7 +25,7 @@ function TaskDetails({setCurrentPage}) {
     const [loading, toggleLoading] = React.useState(true);
 
     const history = useHistory();
-    const {id} = useParams();
+    const {title} = useParams();
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
@@ -36,7 +37,7 @@ function TaskDetails({setCurrentPage}) {
         async function fetchTaskDetails() {
             try {
                 // Create a query to fetch task details on uniqe createdOn timestamp
-                const q = query(collection(db, "tasks"), where("createdOn", "==", parseInt(id, 10)));
+                const q = query(collection(db, "tasks"), where("title", "==", title));
                 // Execute query
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
@@ -52,10 +53,6 @@ function TaskDetails({setCurrentPage}) {
 
         fetchTaskDetails();
     }, [])
-
-    function handleEditButtonClick() {
-        history.push(`/openstaande-taken/${id}/bewerken`)
-    }
 
     async function handleAccepButtonClick() {
         toggleError(false);
@@ -86,7 +83,7 @@ function TaskDetails({setCurrentPage}) {
             const taskRef = doc(db, "tasks", docId);
             //Update Firebase task document
             await updateDoc(taskRef, {
-                status: "Voltooid: " + Date.now(),
+                status: "Voltooid: " + createTaskDate(Date.now()),
                 completedBy: `${user.firstName} ${user.lastName}`,
                 completedById: user.id,
             });
@@ -167,7 +164,7 @@ function TaskDetails({setCurrentPage}) {
                                         image={editIcon}
                                         alt="edit"
                                         onClick={() => {
-                                            history.push(`/openstaande-taken/${data.createdOn}/bewerken`)
+                                            history.push(`/openstaande-taken/${title}/bewerken`)
                                         }}
                                     />
                                     <Icon

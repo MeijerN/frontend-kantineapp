@@ -11,6 +11,7 @@ import deleteTaskIcon from "../../assets/delete_task_icon.svg"
 //Firebase imports
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
+import createTaskDate from "../../helpers/createTaskDate";
 
 function Statistics({setCurrentPage}) {
 
@@ -151,7 +152,7 @@ function Statistics({setCurrentPage}) {
                         data.map((task) => {
                             return (
                                 <Task
-                                    date={`Toegevoegd op: ${task.createdOn}`}
+                                    date={`Toegevoegd: ${createTaskDate(task.createdOn)}`}
                                     status={task.status}
                                     title={task.title}
                                     completedBy={task.completedBy}
@@ -164,7 +165,7 @@ function Statistics({setCurrentPage}) {
                         data.map((task) => {
                             return (
                                 <Task
-                                    date={`Toegevoegd: ${task.createdOn}`}
+                                    date={`Toegevoegd: ${createTaskDate(task.createdOn)}`}
                                     status={task.status}
                                     title={task.title}
                                     key={task.createdOn}

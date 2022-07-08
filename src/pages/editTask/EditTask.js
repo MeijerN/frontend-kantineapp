@@ -27,7 +27,7 @@ function EditTask({setCurrentPage}) {
     const history = useHistory();
     const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
     const {user} = useContext(AuthContext);
-    const {id} = useParams();
+    const {title} = useParams();
 
 
     useEffect(() => {
@@ -61,8 +61,9 @@ function EditTask({setCurrentPage}) {
 
         async function fetchTaskDetails() {
             try {
+
                 // Create a query to fetch task details on uniqe createdOn timestamp
-                const q = query(collection(db, "tasks"), where("createdOn", "==", parseInt(id, 10)));
+                const q = query(collection(db, "tasks"), where("title", "==", title));
                 // Execute query
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {

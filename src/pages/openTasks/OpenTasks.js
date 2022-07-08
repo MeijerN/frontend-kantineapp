@@ -5,8 +5,11 @@ import InnerOuterContainer from "../../components/innerOuterContainer/innerOuter
 import ContentCard from "../../components/contentCard/ContentCard";
 import {useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
+import createTaskDate from "../../helpers/createTaskDate";
+//Firebase imports
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
+import task from "../../components/task/Task";
 
 function OpenTasksPage({setCurrentPage}) {
 
@@ -48,7 +51,7 @@ function OpenTasksPage({setCurrentPage}) {
                         }
                     })
                 }
-                setData([...data, ...tasksArray]);
+                setData(tasksArray);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -72,15 +75,15 @@ function OpenTasksPage({setCurrentPage}) {
                 {data.length === 0 && !error && !loading && <span>Er zijn geen taken toegewezen</span>}
                 {data.length !== 0 &&
                     data.map((task) => {
-                        // console.log(data)
+
                         return (
                             <Task
                                 prio={task.priority.value}
-                                date={"Toegevoegd op: " + task.createdOn}
+                                date={"Toegevoegd op: " + createTaskDate(task.createdOn)}
                                 status={task.status}
                                 title={task.title}
                                 onClick={() => {
-                                    history.push(`/openstaande-taken/${task.createdOn}`)
+                                    history.push("/openstaande-taken/" + task.title)
                                 }}
                                 key={task.createdOn}
                             />
