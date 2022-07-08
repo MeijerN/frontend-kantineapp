@@ -1,8 +1,6 @@
-function getLocation(setLocation, setError, toggleLoading) {
+function getLocation(setError, toggleLoading, session, toggleWorkaround, registrationFunction) {
     toggleLoading(true);
     setError({error: false, message: ""})
-
-    navigator.geolocation.requestAuthorization();
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -13,10 +11,20 @@ function getLocation(setLocation, setError, toggleLoading) {
     }
 
     function showPosition(position) {
-        setLocation({
-            latitude: position.coords.latitude,
-            longtitude: position.coords.longitude,
-        })
+        if (position.coords.latitude > 52.518649 || position.coords.latitude < 52.519175 || position.coords.longitude > 6.267233 || position.coords.longitude < 6.268110) {
+            if(session.active) {
+                console.log("stop");
+                registrationFunction();
+            }
+            if(!session.active) {
+                console.log("Start");
+                registrationFunction();
+            }
+        } else {
+            setError({error: true, message: "Je bent niet bij de kantine, registratie kan niet gestart worden"});
+            toggleWorkaround(true);
+        }
+
         toggleLoading(false);
     }
 
@@ -24,7 +32,7 @@ function getLocation(setLocation, setError, toggleLoading) {
         switch (error.code) {
             case error.PERMISSION_DENIED:
                 console.log("User denied the request for Geolocation.");
-                setError({error: true, message: "De gebruiker heeft de locatiebepaling geweigerd"})
+                setError({error: true, message: "Locatiebepaling is geweigerd. Wijzig uw locatierechten"})
                 break;
             case error.POSITION_UNAVAILABLE:
                 console.log("Location information is unavailable.");
