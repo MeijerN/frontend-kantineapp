@@ -98,36 +98,6 @@ function RegisterPage() {
                         className={styles["login-registration"]}
                     />
 
-                    {/*<InputField*/}
-                    {/*    type="text"*/}
-                    {/*    placeholder="Voornaam"*/}
-                    {/*    stylingClass="login-registration"*/}
-                    {/*    {...register("first-name")}*/}
-                    {/*/>*/}
-                    {/*<InputField*/}
-                    {/*    type="text"*/}
-                    {/*    placeholder="Achternaam"*/}
-                    {/*    stylingClass="login-registration"*/}
-                    {/*    {...register("last-name")}*/}
-                    {/*/>*/}
-                    {/*<InputField*/}
-                    {/*    type="email"*/}
-                    {/*    placeholder="Email"*/}
-                    {/*    stylingClass="login-registration"*/}
-                    {/*    {...register("email")}*/}
-                    {/*/>*/}
-                    {/*<InputField*/}
-                    {/*    type="password"*/}
-                    {/*    placeholder="Wachtwoord"*/}
-                    {/*    stylingClass="login-registration"*/}
-                    {/*    {...register("password")}*/}
-                    {/*/>*/}
-                    {/*<InputField*/}
-                    {/*    type="password"*/}
-                    {/*    placeholder="Herhaal wachtwoord"*/}
-                    {/*    stylingClass="login-registration"*/}
-                    {/*    {...register("password-check")}*/}
-                    {/*/>*/}
                     <SubmitButton
                         text="Maak account aan"
                         disabled={submitButtonDisable}

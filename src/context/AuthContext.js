@@ -43,7 +43,7 @@ function AuthContextProvider({children}) {
                                     function: userInformation.function,
                                     specialties: userInformation.specialties,
                                     monthlyHours: userInformation.monthlyHours,
-                                    totalHours: userInformation.totalHours,
+                                    totalTime: userInformation.totalTime,
                                     profilePicture: userInformation.profilePicture,
                                 },
                                 status: 'done',
@@ -92,7 +92,7 @@ function AuthContextProvider({children}) {
                 function: "vrijwilliger",
                 specialties: ["Geen specialiteiten toegevoegd"],
                 monthlyHours: 0,
-                totalHours: 0,
+                totalTime: 0,
                 profilePicture: "profilePictures/default_profile_picture.jpeg",
             });
             toggleAuth({
@@ -105,7 +105,7 @@ function AuthContextProvider({children}) {
                     function: "vrijwilliger",
                     specialties: ["Geen specialiteiten toegevoegd"],
                     monthlyHours: 0,
-                    totalHours: 0,
+                    totalTime: 0,
                     profilePicture: "profilePictures/default_profile_picture.jpeg",
                 },
                 status: 'done',

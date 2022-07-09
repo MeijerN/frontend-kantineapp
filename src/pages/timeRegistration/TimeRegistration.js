@@ -14,10 +14,11 @@ function TimeRegistration({setCurrentPage}) {
     //State management
     const [error, setError] = React.useState({error: false, message: ""});
     const [loading, toggleLoading] = React.useState(false);
-    const [session, setSession] = React.useState({session:{active: false}});
+    const [session, setSession] = React.useState({session: {active: false}});
+    const [wrongLocationCard, toggleWrongLocationCard] = React.useState(false);
     const [workAround, toggleWorkAround] = React.useState(false);
 
-    const {user} = useContext(AuthContext);
+    const {user, auth, toggleAuth} = useContext(AuthContext);
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
@@ -30,14 +31,12 @@ function TimeRegistration({setCurrentPage}) {
                 const q = query(collection(db, "sessions"), where("session", "==", {active: true, id: user.id}));
                 // Update Firestore task document
                 const querySnapshot = await getDocs(q);
-                // console.log(querySnapshot.data());
                 querySnapshot.forEach((doc) => {
                     const sessionArray = [];
                     sessionArray.push(doc.data());
-                    console.log(sessionArray)
                     if (sessionArray.length === 1) {
-                        console.log(sessionArray)
                         setSession({
+                            docId: sessionArray[0].docId,
                             loginTime: sessionArray[0].loginTime,
                             session: {
                                 id: sessionArray[0].session.id,
@@ -46,7 +45,6 @@ function TimeRegistration({setCurrentPage}) {
                         })
                     }
                 })
-
             } catch (e) {
                 console.error(e);
                 setError({error: true, message: "Er is iets misgegaan bij het inklokken. Probeer het opnieuw"});
@@ -58,82 +56,158 @@ function TimeRegistration({setCurrentPage}) {
     }, []);
 
     async function startRegistration() {
-        const time = new Date().toLocaleString();
-        // Create new firebase document with user info and uid as document id
-        await addDoc(collection(db, "sessions"), {
-            loginTime: time,
-            session: {
-                id: user.id,
-                active: true,
-            },
-        });
-        setSession({
-            loginTime: time,
-            session: {
-                id: user.id,
-                active: true,
-            }
-        })
+        setError({error: false, message: ""})
+        try {
+            const time = new Date().toLocaleString();
+            // Create new firebase document with user info and uid as document id
+            const docRef = await addDoc(collection(db, "sessions"), {
+                loginTime: time,
+                session: {
+                    id: user.id,
+                    active: true,
+                },
+            });
+            // Update Firebase session document with docId for easy future lookups
+            const taskRef = doc(db, "sessions", docRef._key.path.segments[1]);
+            await updateDoc(taskRef, {
+                docId: docRef._key.path.segments[1],
+            });
+            setSession({
+                docId: docRef._key.path.segments[1],
+                loginTime: time,
+                session: {
+                    id: user.id,
+                    active: true,
+                }
+            })
+        } catch (e) {
+            console.error(e);
+            setError({error: true, message: "Er ging iets mis bij het starten van de registratie. Probeer het opnieuw"})
+        }
+        toggleWorkAround(false);
+        toggleLoading(false);
     }
 
-    async function stopRegistration() {
-        //TODO: hieronder de stappen
-        //Firebase:
-        // sessie updaten met logoutTime
-        // active naar false zetten
+    async function stopRegistration(wrongLocation) {
+        try {
+            // Create timestamp for logout
+            const logoutTime = new Date().toLocaleString();
 
-        // berekening maken met monthlyHours en totalHours in de state
-        // userdetails in firebase updaten
-        // state updaten
+            if (wrongLocation) {
+                // Update Firebase session document
+                // Create Firestore reference to session document
+                const sessionRef = doc(db, "sessions", session.docId);
+
+                // Update Firestore session document
+                await updateDoc(sessionRef, {
+                    logoutTime: logoutTime,
+                    wrongLocation: true,
+                    session: {
+                        id: user.id,
+                        active: false,
+                    },
+                });
+                setSession({
+                    session: {
+                        active: false,
+                    }
+                });
+                toggleWrongLocationCard(false);
+                toggleWorkAround(false);
+            } else {
+                // Update Firebase session document
+                // Create Firestore reference to session document
+                const sessionRef = doc(db, "sessions", session.docId);
+
+                // Update Firestore session document
+                await updateDoc(sessionRef, {
+                    logoutTime: logoutTime,
+                    session: {
+                        id: user.id,
+                        active: false,
+                    },
+                });
+
+                // Update totalTime in Firebase user information
+                // Create Firestore reference to task document
+                const userRef = doc(db, "users", user.id);
+                // Update Firestore task document
+                await updateDoc(userRef, {
+                    monthlyHours: 0,
+                    totalTime: user.totalTime + (new Date(logoutTime).getTime() - new Date(session.loginTime).getTime()) / 1000,
+                });
+                setSession({
+                    session: {
+                        active: false,
+                    }
+                });
+                toggleAuth({
+                    ...auth,
+                    user: {
+                        ...user,
+                        monthlyHours: 0,
+                        totalTime: user.totalTime + (new Date(logoutTime).getTime() - new Date(session.loginTime).getTime()) / 1000,
+                    },
+                })
+                toggleWorkAround(false);
+            }
+        } catch (e) {
+            console.error(e);
+            setError({
+                error: true,
+                message: "Er ging iets mis bij het afsluiten van de registratie. Probeer het opnieuw"
+            })
+
+        }
+        toggleLoading(false);
 
         // Timer weergeven op de pagina
         // Button weergeven als de locatie onjuiste is(voor de docenten) -> workaround state voor gebruiken
 
-
-        // console.log("Stopregistration");
-        // const q = query(collection(db, "sessions"), where(session.session, "==", {
-        //     active: true,
-        //     id: user.id
-        // }), where("active", "==", true));
-        // // Update Firestore task document
-        // const querySnapshot = await getDocs(q);
-        // querySnapshot.forEach((doc) => {
-        //     console.log(doc.data());
-        // })
-        // const time = new Date().toLocaleString();
-        // // Create new firebase document with user info and uid as document id
-        // await setDoc(doc(db, "sessions", user.id), {
-        //     loginTime: time,
-        //     active: true,
-        // });
-        // setSession({
-        //     loginTime: time,
-        //     active: true,
-        // })
     }
 
     return (
         <InnerOuterContainer>
             <h3 className={styles.h3}>Timer</h3>
             <ContentCard stylingClass="time-registration">
-                {loading && !error.error ? <span>Uw locatie wordt opgehaald...</span> :
+                {loading && !error.error ? <span className={styles.p}>Uw locatie wordt opgehaald...</span> :
                     <p className={styles.p}>Je bent momenteel niet ingeklokt</p>}
-
                 {error.error && <span className={styles.error}>{error.message}</span>}
 
                 {session.session.active ?
                     <button disabled={loading} onClick={() => {
-                        getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration)
+                        getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration, toggleWrongLocationCard)
                     }} className={styles.button} type="button">Uitklokken
                     </button>
                     :
                     <button disabled={loading} onClick={() => {
-                        getLocation(setError, toggleLoading, session, toggleWorkAround, startRegistration)
+                        getLocation(setError, toggleLoading, session, toggleWorkAround, startRegistration, toggleWrongLocationCard)
                     }} className={styles.button} type="button">Inklokken
                     </button>
                 }
-
+                {wrongLocationCard &&
+                    <span className={styles["wrong-location"]}>
+                        <p>Uw locatie is niet juist, de huidige registratie kan niet afgesloten worden.</p>
+                        <p className={styles.p}>Toch op de juiste locatie? Klik op 'Opnieuw proberen.' Vergeten uit te klokken? Klik dan op 'Uitklokken' en neem contact op met uw manager.</p>
+                        <div className={styles["button-container"]}>
+                            <button onClick={() => {
+                                getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration, toggleWrongLocationCard)
+                            }} className={styles["button-wrong-location"]}>Opnieuw proberen</button>
+                            <button onClick={() => {
+                                stopRegistration(true)
+                            }} className={styles["button-wrong-location"]}>Uitklokken</button>
+                        </div>
+                    </span>
+                }
             </ContentCard>
+            {workAround &&
+                <span className={styles["workaround"]}>
+                        <p>Content voor de beoordelaar</p>
+                        <p className={styles["workaround-text"]}>Met onderstaande knop kunt u de locatieverificatie omzeilen voor beoordelingsdoeleinden.</p>
+                    {session.session.active ? <button onClick={stopRegistration}>Uitklokken</button> :
+                        <button onClick={startRegistration}>Inklokken</button>}
+                    </span>
+            }
         </InnerOuterContainer>
     );
 }

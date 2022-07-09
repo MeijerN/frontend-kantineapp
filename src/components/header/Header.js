@@ -18,17 +18,32 @@ function Header({page, highPrioNumber, mediumPrioNumber, lowPrioNumber, openTask
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
-        const q = query(collection(db, "tasks"), where("status", "in", ["In afwachting", "In behandeling"]));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            const openTasks = [];
-            querySnapshot.forEach((doc) => {
-                openTasks.push(doc.data());
+        if (user.function === "manager") {
+            const q = query(collection(db, "tasks"), where("status", "in", ["In afwachting", "In behandeling"]));
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                const openTasks = [];
+                querySnapshot.forEach((doc) => {
+                    openTasks.push(doc.data());
+                });
+                setTasks(openTasks);
             });
-            setTasks(openTasks);
-        });
-        return function cleanUp() {
-            unsubscribe();
+            return function cleanUp() {
+                unsubscribe();
+            }
+        } else {
+            const q = query(collection(db, "tasks"), where("assignedVolunteersId", "array-contains", user.id), where("status", "in", ["In afwachting", "In behandeling"]));
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                const openTasks = [];
+                querySnapshot.forEach((doc) => {
+                    openTasks.push(doc.data());
+                });
+                setTasks(openTasks);
+            });
+            return function cleanUp() {
+                unsubscribe();
+            }
         }
+
     }, []);
 
     function handleOnClick() {

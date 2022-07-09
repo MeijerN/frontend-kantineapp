@@ -1,7 +1,8 @@
-function getLocation(setError, toggleLoading, session, toggleWorkaround, registrationFunction) {
+function getLocation(setError, toggleLoading, session, toggleWorkaround, registrationFunction, toggleWrongLocationCard) {
+    const sessionInformation = session;
     toggleLoading(true);
+    toggleWrongLocationCard(false);
     setError({error: false, message: ""})
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
@@ -11,21 +12,24 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
     }
 
     function showPosition(position) {
-        if (position.coords.latitude > 52.518649 || position.coords.latitude < 52.519175 || position.coords.longitude > 6.267233 || position.coords.longitude < 6.268110) {
-            if(session.active) {
-                console.log("stop");
-                registrationFunction();
-            }
-            if(!session.active) {
-                console.log("Start");
-                registrationFunction();
-            }
-        } else {
-            setError({error: true, message: "Je bent niet bij de kantine, registratie kan niet gestart worden"});
-            toggleWorkaround(true);
-        }
+        if (position.coords.latitude > 52.518649 && position.coords.latitude < 52.519175 && position.coords.longitude > 6.267233 && position.coords.longitude < 6.268110) {
+            console.log("Je bent in de kantine");
+            registrationFunction();
+        // if (position.coords.latitude > 52.512811 && position.coords.latitude < 52.514811 && position.coords.longitude > 6.267256 && position.coords.longitude < 6.267556) {
+        //     console.log("Je bent thuis");
+        //     registrationFunction();
 
-        toggleLoading(false);
+        } else {
+            if(sessionInformation.session.active) {
+                toggleWrongLocationCard(true);
+                toggleWorkaround(true);
+            } else {
+                setError({error: true, message: "Je locatie is niet juist, registratie kan niet gestart worden"});
+                toggleWorkaround(true);
+                toggleLoading(false);
+            }
+
+        }
     }
 
     function showError(error) {
@@ -33,17 +37,21 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
             case error.PERMISSION_DENIED:
                 console.log("User denied the request for Geolocation.");
                 setError({error: true, message: "Locatiebepaling is geweigerd. Wijzig uw locatierechten"})
+                toggleLoading(false);
                 break;
             case error.POSITION_UNAVAILABLE:
                 console.log("Location information is unavailable.");
                 setError({error: true, message: "Locatiebepaling is niet beschikbaar"})
+                toggleLoading(false);
                 break;
             case error.TIMEOUT:
                 console.log("The request to get user location timed out.");
                 setError({error: true, message: "Request time out"})
+                toggleLoading(false);
                 break;
             case error.UNKNOWN_ERROR:
                 console.log("An unknown error occurred.");
+                toggleLoading(false);
                 break;
         }
     }

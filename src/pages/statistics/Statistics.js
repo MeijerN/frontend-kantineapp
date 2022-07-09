@@ -12,12 +12,14 @@ import deleteTaskIcon from "../../assets/delete_task_icon.svg"
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
 import createTaskDate from "../../helpers/createTaskDate";
+import calculateHours from "../../helpers/calculateHours";
+import calculateMinutes from "../../helpers/calculateMinutes";
 
 function Statistics({setCurrentPage}) {
 
     //State management
     const [volunteers, setVolunteers] = React.useState([]);
-    const [data, setData] = React.useState([]);
+    const [tasks, setTasks] = React.useState([]);
     const [error, toggleError] = React.useState(false);
     const [loading, toggleLoading] = React.useState(false);
 
@@ -41,7 +43,7 @@ function Statistics({setCurrentPage}) {
                         firstName: doc.data().firstName,
                         lastName: doc.data().lastName,
                         monthlyHours: doc.data().monthlyHours,
-                        totalHours: doc.data().totalHours,
+                        totalTime: doc.data().totalTime,
                         id: doc.data().id,
                     })
                 })
@@ -64,7 +66,7 @@ function Statistics({setCurrentPage}) {
                     querySnapshot.forEach((doc) => {
                         tasksArray.push(doc.data());
                     })
-                    setData([...data, ...tasksArray])
+                    setTasks([...tasks, ...tasksArray])
                 } else {
                     //Create a query for fetching tasks for signed in user only
                     const q = query(collection(db, "tasks"), where("completedById", "==", user.id));
@@ -74,7 +76,7 @@ function Statistics({setCurrentPage}) {
                         tasksArray.push(doc.data());
                     })
                 }
-                setData([...data, ...tasksArray]);
+                setTasks([...tasks, ...tasksArray]);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -82,10 +84,23 @@ function Statistics({setCurrentPage}) {
             toggleLoading(false);
         }
 
+        // async function fetchHours() {
+        //     const q = query(collection(db, "sessions"), where("session", "==", {active: false, id: "WkWCdsDTqaNTYEtX9kONC9NbGSi1"}));
+        //     const querySnapshot = await getDocs(q);
+        //     querySnapshot.forEach((doc) => {
+        //         // console.log("Hours:", doc.data());
+        //         console.log(new Date(doc.data().loginTime).getMonth())
+        //
+        //     })
+        // }
+        //TODO: maandnummer toevoegen als field aan de sessie. Dit scheel een hele boel documents gets. Hier kan op gefilterd worden.
+
         fetchTasks()
         fetchVolunteers();
-
+        // fetchHours()
     }, [])
+
+    console.log(volunteers);
 
     return (
         <InnerOuterContainer>
@@ -108,8 +123,8 @@ function Statistics({setCurrentPage}) {
                             <tr>
                                 <th className={styles.th}>Voornaam</th>
                                 <th className={styles.th}>Achternaam</th>
-                                <th className={styles.th}>Uren p.m.</th>
-                                <th className={styles.th}>Uren totaal</th>
+                                <th className={styles.th}>Tijd p.m.</th>
+                                <th className={styles.th}>Totale tijd</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -119,8 +134,8 @@ function Statistics({setCurrentPage}) {
                                         <tr key={volunteer.id}>
                                             <td className={styles.td}>{volunteer.firstName}</td>
                                             <td className={styles.td}>{volunteer.lastName}</td>
-                                            <td className={styles.td}>{volunteer.monthlyHours}</td>
-                                            <td className={styles.td}>{volunteer.totalHours}</td>
+                                            <td className={styles.td}>{calculateHours(volunteer.totalTime)} u {calculateMinutes(volunteer.totalTime)} m</td>
+                                            <td className={styles.td}>{calculateHours(volunteer.totalTime)} u {calculateMinutes(volunteer.totalTime)} m</td>
                                         </tr>
                                     )
                                 })
@@ -132,8 +147,8 @@ function Statistics({setCurrentPage}) {
                 {user.function === "vrijwilliger" &&
                     <ContentCard stylingClass="time-registration">
                         <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span
-                            className={styles.time}>{user.monthlyHours} uur</span> en <span
-                            className={styles.time}>... minuten</span></p>
+                            className={styles.time}>{calculateHours(user.totalTime)} uur</span> en <span
+                            className={styles.time}>{calculateMinutes(user.totalTime)} minuten</span></p>
                     </ContentCard>
                 }
             </section>
@@ -144,12 +159,12 @@ function Statistics({setCurrentPage}) {
                 </div>
 
                 <ContentCard stylingClass="tasks">
-                    {data.length === 0 && !loading && <span>Er zijn geen voltooide taken</span>}
+                    {tasks.length === 0 && !loading && <span>Er zijn geen voltooide taken</span>}
                     {loading && !error && <span>Gegevens worden opgehaald...</span>}
                     {error &&
                         <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
-                    {user.function === "manager" && data.length > 0 &&
-                        data.map((task) => {
+                    {user.function === "manager" && tasks.length > 0 &&
+                        tasks.map((task) => {
                             return (
                                 <Task
                                     date={`Toegevoegd: ${createTaskDate(task.createdOn)}`}
@@ -161,8 +176,8 @@ function Statistics({setCurrentPage}) {
                             )
                         })
                     }
-                    {user.function === "vrijwilliger" && data.length > 0 &&
-                        data.map((task) => {
+                    {user.function === "vrijwilliger" && tasks.length > 0 &&
+                        tasks.map((task) => {
                             return (
                                 <Task
                                     date={`Toegevoegd: ${createTaskDate(task.createdOn)}`}
