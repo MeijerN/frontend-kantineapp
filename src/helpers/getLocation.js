@@ -14,7 +14,7 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
     function showPosition(position) {
         if (position.coords.latitude > 52.518649 && position.coords.latitude < 52.519175 && position.coords.longitude > 6.267233 && position.coords.longitude < 6.268110) {
             console.log("Je bent in de kantine");
-            registrationFunction();
+            registrationFunction(false);
         // if (position.coords.latitude > 52.512811 && position.coords.latitude < 52.514811 && position.coords.longitude > 6.267256 && position.coords.longitude < 6.267556) {
         //     console.log("Je bent thuis");
         //     registrationFunction();
@@ -26,10 +26,11 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
             } else {
                 setError({error: true, message: "Je locatie is niet juist, registratie kan niet gestart worden"});
                 toggleWorkaround(true);
-                toggleLoading(false);
+                // toggleLoading(false);
             }
 
         }
+        toggleLoading(false);
     }
 
     function showError(error) {

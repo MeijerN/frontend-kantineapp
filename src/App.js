@@ -110,7 +110,8 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-//Time registration --> weergeven van maandelijkse uren
+//TODO: timer in registration
+//TODO: bij belangrijke handelingen een popup maken --> voorbeeld task details
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager

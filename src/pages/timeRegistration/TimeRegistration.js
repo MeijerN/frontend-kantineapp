@@ -4,6 +4,7 @@ import ContentCard from "../../components/contentCard/ContentCard";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import getLocation from "../../helpers/getLocation";
 import {AuthContext} from "../../context/AuthContext";
+import SessionTimer from "../../components/sessionTimer/SessionTimer";
 //Firebase imports
 import {collection, doc, getDoc, getDocs, setDoc, updateDoc, where, query, addDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
@@ -37,7 +38,7 @@ function TimeRegistration({setCurrentPage}) {
                     if (sessionArray.length === 1) {
                         setSession({
                             docId: sessionArray[0].docId,
-                            loginTime: sessionArray[0].loginTime,
+                            loginTime: new Date(sessionArray[0].loginTime.seconds * 1000),
                             session: {
                                 id: sessionArray[0].session.id,
                                 active: sessionArray[0].session.active,
@@ -58,7 +59,7 @@ function TimeRegistration({setCurrentPage}) {
     async function startRegistration() {
         setError({error: false, message: ""})
         try {
-            const time = new Date().toLocaleString();
+            const time = new Date();
             // Create new firebase document with user info and uid as document id
             const docRef = await addDoc(collection(db, "sessions"), {
                 loginTime: time,
@@ -91,8 +92,7 @@ function TimeRegistration({setCurrentPage}) {
     async function stopRegistration(wrongLocation) {
         try {
             // Create timestamp for logout
-            const logoutTime = new Date().toLocaleString();
-
+            const logoutTime = new Date;
             if (wrongLocation) {
                 // Update Firebase session document
                 // Create Firestore reference to session document
@@ -100,6 +100,7 @@ function TimeRegistration({setCurrentPage}) {
 
                 // Update Firestore session document
                 await updateDoc(sessionRef, {
+                    month: new Date().getMonth(),
                     logoutTime: logoutTime,
                     wrongLocation: true,
                     session: {
@@ -112,8 +113,6 @@ function TimeRegistration({setCurrentPage}) {
                         active: false,
                     }
                 });
-                toggleWrongLocationCard(false);
-                toggleWorkAround(false);
             } else {
                 // Update Firebase session document
                 // Create Firestore reference to session document
@@ -121,6 +120,7 @@ function TimeRegistration({setCurrentPage}) {
 
                 // Update Firestore session document
                 await updateDoc(sessionRef, {
+                    month: new Date().getMonth(),
                     logoutTime: logoutTime,
                     session: {
                         id: user.id,
@@ -134,7 +134,7 @@ function TimeRegistration({setCurrentPage}) {
                 // Update Firestore task document
                 await updateDoc(userRef, {
                     monthlyHours: 0,
-                    totalTime: user.totalTime + (new Date(logoutTime).getTime() - new Date(session.loginTime).getTime()) / 1000,
+                    totalTime: user.totalTime + Math.floor((logoutTime.getTime() - session.loginTime.getTime()) / 1000),
                 });
                 setSession({
                     session: {
@@ -146,11 +146,13 @@ function TimeRegistration({setCurrentPage}) {
                     user: {
                         ...user,
                         monthlyHours: 0,
-                        totalTime: user.totalTime + (new Date(logoutTime).getTime() - new Date(session.loginTime).getTime()) / 1000,
+                        totalTime: user.totalTime + Math.floor((logoutTime.getTime() - session.loginTime.getTime()) / 1000),
                     },
                 })
                 toggleWorkAround(false);
             }
+            toggleWrongLocationCard(false);
+            toggleWorkAround(false);
         } catch (e) {
             console.error(e);
             setError({
@@ -160,10 +162,6 @@ function TimeRegistration({setCurrentPage}) {
 
         }
         toggleLoading(false);
-
-        // Timer weergeven op de pagina
-        // Button weergeven als de locatie onjuiste is(voor de docenten) -> workaround state voor gebruiken
-
     }
 
     return (
@@ -172,6 +170,7 @@ function TimeRegistration({setCurrentPage}) {
             <ContentCard stylingClass="time-registration">
                 {loading && !error.error ? <span className={styles.p}>Uw locatie wordt opgehaald...</span> :
                     <p className={styles.p}>Je bent momenteel niet ingeklokt</p>}
+                    <SessionTimer loginTime={1000}/>
                 {error.error && <span className={styles.error}>{error.message}</span>}
 
                 {session.session.active ?
@@ -204,7 +203,9 @@ function TimeRegistration({setCurrentPage}) {
                 <span className={styles["workaround"]}>
                         <p>Content voor de beoordelaar</p>
                         <p className={styles["workaround-text"]}>Met onderstaande knop kunt u de locatieverificatie omzeilen voor beoordelingsdoeleinden.</p>
-                    {session.session.active ? <button onClick={stopRegistration}>Uitklokken</button> :
+                    {session.session.active ? <button onClick={() => {
+                            stopRegistration(false)
+                        }}>Uitklokken</button> :
                         <button onClick={startRegistration}>Inklokken</button>}
                     </span>
             }

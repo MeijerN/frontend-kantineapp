@@ -10,6 +10,7 @@ import deleteTaskIcon from '../../assets/delete_task_icon.svg'
 import acceptTaskIcon from '../../assets/accept_task_icon.svg'
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import assignedVolunteerString from "../../helpers/assignedVolunteerString";
+import WarningPopup from "../../components/warningPopup/WarningPopup";
 import {AuthContext} from "../../context/AuthContext";
 //Firebase imports
 import {collection, getDocs, query, where, doc, updateDoc, deleteDoc} from "firebase/firestore";
@@ -23,6 +24,7 @@ function TaskDetails({setCurrentPage}) {
     const [docId, setDocId] = React.useState();
     const [error, toggleError] = React.useState(false);
     const [loading, toggleLoading] = React.useState(true);
+    const [warningPopup, toggleWarningPopup] = React.useState(false);
 
     const history = useHistory();
     const {title} = useParams();
@@ -171,7 +173,7 @@ function TaskDetails({setCurrentPage}) {
                                         text="Verwijderen"
                                         image={deleteTaskIcon}
                                         alt="delete"
-                                        onClick={handleDeleteButtonClick}
+                                        onClick={toggleWarningPopup}
                                     />
                                 </>
                             }
@@ -183,6 +185,11 @@ function TaskDetails({setCurrentPage}) {
             <img onClick={() => {
                 history.goBack()
             }} className={styles["back-icon"]} src={backIcon} alt="back"/>
+            {warningPopup &&
+                <WarningPopup
+                    toggleWarningPopup={toggleWarningPopup}
+                    handleButtonClick={handleDeleteButtonClick}
+                />}
         </InnerOuterContainer>
     );
 }

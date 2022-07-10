@@ -92,8 +92,6 @@ function Profile({setCurrentPage}) {
         toggleUploadCard(false);
     }
 
-
-
     return (
         <InnerOuterContainer>
             <h3 className={styles.h3}>Mijn gegevens</h3>

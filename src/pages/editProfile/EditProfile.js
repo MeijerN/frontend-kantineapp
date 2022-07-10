@@ -113,7 +113,7 @@ function EditProfile({setCurrentPage}) {
                         isMulti={true}
                         placeholder="Selecteer specialisaties"
                         errorMessage="Selecteer minimaal een specialisatie"
-                        defaultValues={user.specialties === "Geen specialisaties toegevoegd" ? ""
+                        defaultValues={user.specialties[0] === "Geen specialiteiten toegevoegd" ? ""
                             :
                             user.specialties.map((specialty) => {
                                 return (

@@ -19,6 +19,7 @@ function Statistics({setCurrentPage}) {
 
     //State management
     const [volunteers, setVolunteers] = React.useState([]);
+    const [monthlyHours, setMonthlyHours] = React.useState(0);
     const [tasks, setTasks] = React.useState([]);
     const [error, toggleError] = React.useState(false);
     const [loading, toggleLoading] = React.useState(false);
@@ -33,26 +34,54 @@ function Statistics({setCurrentPage}) {
 
         async function fetchVolunteers() {
             try {
-                const volunteersArray = [];
-                // Create a query for fetching only "vrijwilliger" users
-                const q = query(collection(db, "users"), where("function", "==", "vrijwilliger"));
-                // Execute query and push data to array
-                const querySnapshot = await getDocs(q);
-                querySnapshot.forEach((doc) => {
-                    volunteersArray.push({
-                        firstName: doc.data().firstName,
-                        lastName: doc.data().lastName,
-                        monthlyHours: doc.data().monthlyHours,
-                        totalTime: doc.data().totalTime,
-                        id: doc.data().id,
+                if (user.function === "manager") {
+                    //Fetch all volunteers
+                    const volunteersArray = [];
+                    // Create a query for fetching only volunteers
+                    const q = query(collection(db, "users"), where("function", "==", "vrijwilliger"));
+                    // Execute query and push data to array
+                    const querySnapshot = await getDocs(q);
+                    querySnapshot.forEach((doc) => {
+                        volunteersArray.push({
+                            firstName: doc.data().firstName,
+                            lastName: doc.data().lastName,
+                            totalTime: doc.data().totalTime,
+                            id: doc.data().id,
+                        })
                     })
-                })
-                setVolunteers([...volunteers, ...volunteersArray]);
+
+                    // Loop over volunteers and calculate and append montly hours to the volunteer state
+                    const volunteersWithHours = [];
+                    for (let i = 0; i < volunteersArray.length; i++) {
+                        const q = await query(collection(db, "sessions"), where("session", "==", {
+                            active: false,
+                            id: volunteersArray[i].id
+                        }), where("month", "==", new Date().getMonth()));
+                        const querySnapshot = await getDocs(q);
+                        let monthlyTimeAllVolunteers = 0;
+                        querySnapshot.forEach((doc) => {
+                            monthlyTimeAllVolunteers += Math.floor((doc.data().logoutTime - doc.data().loginTime));
+                        })
+                        volunteersWithHours.push({...volunteersArray[i], monthlyHours: monthlyTimeAllVolunteers});
+                    }
+                    setVolunteers(volunteersWithHours);
+                } else {
+                    // User is a volunteer, fetch and calculate monthly hour data
+                    const q = await query(collection(db, "sessions"), where("session", "==", {
+                        active: false,
+                        id: user.id
+                    }), where("month", "==", new Date().getMonth()));
+                    const querySnapshot = await getDocs(q);
+                    let monthlyTimeVolunteer = 0;
+                    querySnapshot.forEach((doc) => {
+                        monthlyTimeVolunteer += Math.floor((doc.data().logoutTime - doc.data().loginTime));
+                    })
+                    setMonthlyHours(monthlyTimeVolunteer)
+                }
             } catch (e) {
                 console.error(e);
                 toggleError(true);
             }
-            toggleLoading(false);
         }
 
         async function fetchTasks() {
@@ -81,26 +110,12 @@ function Statistics({setCurrentPage}) {
                 console.error(e);
                 toggleError(true);
             }
-            toggleLoading(false);
         }
-
-        // async function fetchHours() {
-        //     const q = query(collection(db, "sessions"), where("session", "==", {active: false, id: "WkWCdsDTqaNTYEtX9kONC9NbGSi1"}));
-        //     const querySnapshot = await getDocs(q);
-        //     querySnapshot.forEach((doc) => {
-        //         // console.log("Hours:", doc.data());
-        //         console.log(new Date(doc.data().loginTime).getMonth())
-        //
-        //     })
-        // }
-        //TODO: maandnummer toevoegen als field aan de sessie. Dit scheel een hele boel documents gets. Hier kan op gefilterd worden.
 
         fetchTasks()
         fetchVolunteers();
-        // fetchHours()
+        toggleLoading(false);
     }, [])
-
-    console.log(volunteers);
 
     return (
         <InnerOuterContainer>
@@ -118,37 +133,43 @@ function Statistics({setCurrentPage}) {
                 </div>
                 {user.function === "manager" &&
                     <ContentCard stylingClass="table">
-                        <table className={styles.table}>
-                            <thead className={styles.thead}>
-                            <tr>
-                                <th className={styles.th}>Voornaam</th>
-                                <th className={styles.th}>Achternaam</th>
-                                <th className={styles.th}>Tijd p.m.</th>
-                                <th className={styles.th}>Totale tijd</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {volunteers.length > 0 &&
-                                volunteers.map((volunteer) => {
-                                    return (
-                                        <tr key={volunteer.id}>
-                                            <td className={styles.td}>{volunteer.firstName}</td>
-                                            <td className={styles.td}>{volunteer.lastName}</td>
-                                            <td className={styles.td}>{calculateHours(volunteer.totalTime)} u {calculateMinutes(volunteer.totalTime)} m</td>
-                                            <td className={styles.td}>{calculateHours(volunteer.totalTime)} u {calculateMinutes(volunteer.totalTime)} m</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                            </tbody>
-                        </table>
+                        {loading && !error ? <span>Gegevens worden opgehaald...</span>
+                            :
+                            <table className={styles.table}>
+                                <thead className={styles.thead}>
+                                <tr>
+                                    <th className={styles.th}>Voornaam</th>
+                                    <th className={styles.th}>Achternaam</th>
+                                    <th className={styles.th}>Tijd p.m.</th>
+                                    <th className={styles.th}>Totale tijd</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {volunteers.length > 0 &&
+                                    volunteers.map((volunteer) => {
+                                        return (
+                                            <tr key={volunteer.id}>
+                                                <td className={styles.td}>{volunteer.firstName}</td>
+                                                <td className={styles.td}>{volunteer.lastName}</td>
+                                                <td className={styles.td}>{calculateHours(volunteer.monthlyHours)} u {calculateMinutes(volunteer.monthlyHours)} m</td>
+                                                <td className={styles.td}>{calculateHours(volunteer.totalTime)} u {calculateMinutes(volunteer.totalTime)} m</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                                </tbody>
+                            </table>}
+
                     </ContentCard>
                 }
                 {user.function === "vrijwilliger" &&
                     <ContentCard stylingClass="time-registration">
-                        <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span
-                            className={styles.time}>{calculateHours(user.totalTime)} uur</span> en <span
-                            className={styles.time}>{calculateMinutes(user.totalTime)} minuten</span></p>
+                        {loading && !error ? <span>Gegevens worden opgehaald...</span>
+                            :
+                            <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span
+                                className={styles.time}>{calculateHours(monthlyHours)} uur</span> en <span
+                                className={styles.time}>{calculateMinutes(monthlyHours)} minuten</span></p>}
+
                     </ContentCard>
                 }
             </section>
@@ -159,11 +180,11 @@ function Statistics({setCurrentPage}) {
                 </div>
 
                 <ContentCard stylingClass="tasks">
-                    {tasks.length === 0 && !loading && <span>Er zijn geen voltooide taken</span>}
                     {loading && !error && <span>Gegevens worden opgehaald...</span>}
+                    {tasks.length === 0 && !loading && !error && <span>Er zijn geen voltooide taken</span>}
                     {error &&
                         <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
-                    {user.function === "manager" && tasks.length > 0 &&
+                    {user.function === "manager" && tasks.length > 0 && !loading &&
                         tasks.map((task) => {
                             return (
                                 <Task
