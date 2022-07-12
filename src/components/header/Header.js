@@ -43,7 +43,6 @@ function Header({page, highPrioNumber, mediumPrioNumber, lowPrioNumber, openTask
                 unsubscribe();
             }
         }
-
     }, []);
 
     function handleOnClick() {

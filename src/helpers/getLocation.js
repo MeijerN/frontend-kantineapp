@@ -15,6 +15,7 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
         if (position.coords.latitude > 52.518649 && position.coords.latitude < 52.519175 && position.coords.longitude > 6.267233 && position.coords.longitude < 6.268110) {
             console.log("Je bent in de kantine");
             registrationFunction(false);
+            
         // if (position.coords.latitude > 52.512811 && position.coords.latitude < 52.514811 && position.coords.longitude > 6.267256 && position.coords.longitude < 6.267556) {
         //     console.log("Je bent thuis");
         //     registrationFunction();
@@ -30,7 +31,7 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
             }
 
         }
-        toggleLoading(false);
+        // toggleLoading(false);
     }
 
     function showError(error) {

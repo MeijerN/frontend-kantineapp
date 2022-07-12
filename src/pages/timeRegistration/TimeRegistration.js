@@ -4,11 +4,10 @@ import ContentCard from "../../components/contentCard/ContentCard";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import getLocation from "../../helpers/getLocation";
 import {AuthContext} from "../../context/AuthContext";
-import SessionTimer from "../../components/sessionTimer/SessionTimer";
+
 //Firebase imports
 import {collection, doc, getDoc, getDocs, setDoc, updateDoc, where, query, addDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
-
 
 function TimeRegistration({setCurrentPage}) {
 
@@ -18,6 +17,7 @@ function TimeRegistration({setCurrentPage}) {
     const [session, setSession] = React.useState({session: {active: false}});
     const [wrongLocationCard, toggleWrongLocationCard] = React.useState(false);
     const [workAround, toggleWorkAround] = React.useState(false);
+    const [timer, setTimer] = React.useState("00:00:00");
 
     const {user, auth, toggleAuth} = useContext(AuthContext);
 
@@ -55,6 +55,29 @@ function TimeRegistration({setCurrentPage}) {
 
         fetchActiveRegistration();
     }, []);
+
+    //Start timer interval on session.loginTime state change
+    useEffect(() => {
+        const interval = setInterval(() => {
+                if(!session.loginTime) {
+                    clearInterval(interval);
+                } else {
+                    const format = {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    }
+                    const calculatedTimeInSeconds = (Math.floor(new Date().getTime() / 1000) - (Math.floor(new Date(session.loginTime).getTime() / 1000)));
+                    const hours = Math.floor(calculatedTimeInSeconds / 3600);
+                    const minutes = Math.floor(calculatedTimeInSeconds / 60) % 60;
+                    const seconds = Math.floor(calculatedTimeInSeconds % 60);
+
+                    setTimer(`${hours.toLocaleString("nl-NL", format)}:${minutes.toLocaleString("nl-NL", format)}:${seconds.toLocaleString("nl-NL", format)}`);
+                }
+        }, 1000);
+        return function cleanUp() {
+            clearInterval(interval);
+        }
+    }, [session.loginTime]);
 
     async function startRegistration() {
         setError({error: false, message: ""})
@@ -168,9 +191,9 @@ function TimeRegistration({setCurrentPage}) {
         <InnerOuterContainer>
             <h3 className={styles.h3}>Timer</h3>
             <ContentCard stylingClass="time-registration">
-                {loading && !error.error ? <span className={styles.p}>Uw locatie wordt opgehaald...</span> :
-                    <p className={styles.p}>Je bent momenteel niet ingeklokt</p>}
-                    <SessionTimer loginTime={1000}/>
+                {loading && !error.error && <span className={styles.p}>Uw locatie wordt opgehaald...</span>}
+                {session.loginTime && !loading && !error.error && <span className={styles.counter}>{timer}</span>}
+                {!session.loginTime && !loading && !error.error && <p className={styles.p}>Je bent momenteel niet ingeklokt</p>}
                 {error.error && <span className={styles.error}>{error.message}</span>}
 
                 {session.session.active ?
@@ -187,7 +210,7 @@ function TimeRegistration({setCurrentPage}) {
                 {wrongLocationCard &&
                     <span className={styles["wrong-location"]}>
                         <p>Uw locatie is niet juist, de huidige registratie kan niet afgesloten worden.</p>
-                        <p className={styles.p}>Toch op de juiste locatie? Klik op 'Opnieuw proberen.' Vergeten uit te klokken? Klik dan op 'Uitklokken' en neem contact op met uw manager.</p>
+                        <p className={styles.p}>Toch op de juiste locatie? Klik op 'Opnieuw proberen.' Vergeten uit te klokken? Klik dan op 'Uitklokken' en neem contact op met uw manager. De huidige uren worden nog niet bijgeschreven.</p>
                         <div className={styles["button-container"]}>
                             <button onClick={() => {
                                 getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration, toggleWrongLocationCard)
