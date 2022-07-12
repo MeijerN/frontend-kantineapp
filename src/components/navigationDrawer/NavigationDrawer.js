@@ -41,7 +41,7 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
     }
 
     return (
-        <nav className={navDrawer === true ? styles["side-nav-open"] : styles["side-nav-closed"]}>
+        <nav className={navDrawer ? styles["side-nav-open"] : styles["side-nav-closed"]}>
             <header className={styles.header}>
                 <img
                     className={styles["close-menu"]}

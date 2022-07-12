@@ -6,6 +6,9 @@ import ContentCard from "../../components/contentCard/ContentCard";
 import {useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import createTaskDate from "../../helpers/createTaskDate";
+import sortOnTitle from "../../helpers/sortOnTitle";
+import sortOnDate from "../../helpers/sortOnDate";
+import sortOnPriority from "../../helpers/sortOnPriority";
 //Firebase imports
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
@@ -14,9 +17,10 @@ import task from "../../components/task/Task";
 function OpenTasksPage({setCurrentPage}) {
 
     // State management
-    const [data, setData] = React.useState([]);
+    const [tasks, setTasks] = React.useState([]);
     const [loading, toggleLoading] = React.useState(true);
     const [error, toggleError] = React.useState(false);
+    const [sortCard, toggleSortCard] = React.useState(false);
 
     const {user} = useContext(AuthContext);
     const history = useHistory();
@@ -51,7 +55,9 @@ function OpenTasksPage({setCurrentPage}) {
                         }
                     })
                 }
-                setData(tasksArray);
+                // Sort standard on priority
+                sortOnPriority(tasksArray);
+                setTasks(tasksArray);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -66,15 +72,21 @@ function OpenTasksPage({setCurrentPage}) {
         <InnerOuterContainer>
             <div className={styles["title-sort"]}>
                 <h3 className={styles.h3}>Takenlijst</h3>
-                <figure className={styles.sort}/>
+                <figure onClick={() => {toggleSortCard(true)}} className={styles.sort}/>
+                <span className={sortCard ? styles["sort-popup-open"] : styles["sort-popup-closed"]}>
+                    <p>Sorteer op</p>
+                    <button onClick={() => {toggleSortCard(false); sortOnTitle(tasks)}} className={styles.button}>Titel</button>
+                    <button onClick={() => {toggleSortCard(false); sortOnPriority(tasks)}} className={styles.button}>Prioriteit</button>
+                    <button onClick={() => {toggleSortCard(false); sortOnDate(tasks)}} className={styles.button}>Datum toegev.</button>
+                </span>
             </div>
             <ContentCard stylingClass="tasks">
                 {error &&
                     <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
                 {loading && <span>Taken binnenhalen...</span>}
-                {data.length === 0 && !error && !loading && <span>Er zijn geen taken toegewezen</span>}
-                {data.length !== 0 &&
-                    data.map((task) => {
+                {tasks.length === 0 && !error && !loading && <span>Er zijn geen taken toegewezen</span>}
+                {tasks.length !== 0 &&
+                    tasks.map((task) => {
 
                         return (
                             <Task

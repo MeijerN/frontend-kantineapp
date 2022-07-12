@@ -124,7 +124,6 @@ function Statistics({setCurrentPage}) {
                     {user.function === "manager" &&
                         <>
                             <h3 className={styles.h3}>Urenoverzicht</h3>
-                            <figure className={styles.sort}/>
                         </>
                     }
                     {user.function === "vrijwilliger" &&

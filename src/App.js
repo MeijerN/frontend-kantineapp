@@ -110,10 +110,9 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-//TODO: timer in registration
-//TODO: bij belangrijke handelingen een popup maken --> voorbeeld task details
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
+// TODO: sort implementeren in statistieken pagina: gebruikers moeten standaard gesorteerd zijn in tabel --> personeel: gebruikers moeten standaard gesorteerd zijn in tabel
 // TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager
 
 // IN DE GATEN HOUDEN:
