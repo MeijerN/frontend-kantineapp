@@ -68,6 +68,10 @@
     content: url(../../assets/sort_icon.svg);
 }
 
+.sort:hover {
+    cursor: pointer;
+}
+
 .error {
     text-align: center;
     color: red;

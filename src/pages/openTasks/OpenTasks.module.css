@@ -44,37 +44,6 @@
     cursor: pointer;
 }
 
-.sort-popup-open {
-    position: absolute;
-    right: 0;
-    top: 20px;
-    padding: 10px 10px 10px 10px;
-    height: 150px;
-    width: fit-content;
-    background-color: rgb(255, 255, 255);
-    border-radius: 8px;
-    border: solid rgba(3, 2, 2, 0.59) 1px;
-    z-index: 1;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /*align-items: center;*/
-}
-
-.sort-popup-closed {
-    position: absolute;
-    right: 0;
-    top: 20px;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-}
-
-.button {
-    padding: 2px;
-}
-
 .error {
     text-align: center;
     color: red;

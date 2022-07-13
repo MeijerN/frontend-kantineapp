@@ -8,12 +8,15 @@ import Icon from "../../components/icon/Icon";
 import taskDoneIcon from "../../assets/task_done_icon.svg";
 import editIcon from "../../assets/edit_task_icon.svg";
 import deleteTaskIcon from "../../assets/delete_task_icon.svg"
-//Firebase imports
-import {collection, getDocs, query, where} from "firebase/firestore";
-import {db} from "../../Firebase";
+import sortOnFirstName from "../../helpers/sortOnFirstName";
 import createTaskDate from "../../helpers/createTaskDate";
 import calculateHours from "../../helpers/calculateHours";
 import calculateMinutes from "../../helpers/calculateMinutes";
+import SortPopup from "../../components/sortPopup/SortPopup";
+import sortOnCompletedDate from "../../helpers/sortOnCompletedDate";
+//Firebase imports
+import {collection, getDocs, query, where} from "firebase/firestore";
+import {db} from "../../Firebase";
 
 function Statistics({setCurrentPage}) {
 
@@ -23,6 +26,7 @@ function Statistics({setCurrentPage}) {
     const [tasks, setTasks] = React.useState([]);
     const [error, toggleError] = React.useState(false);
     const [loading, toggleLoading] = React.useState(false);
+    const [sortCard, toggleSortCard] = React.useState(false);
 
     const {user} = useContext(AuthContext);
 
@@ -48,7 +52,8 @@ function Statistics({setCurrentPage}) {
                             totalTime: doc.data().totalTime,
                             id: doc.data().id,
                         })
-                    })
+                    });
+                    sortOnFirstName(volunteersArray);
 
                     // Loop over volunteers and calculate and append montly hours to the volunteer state
                     const volunteersWithHours = [];
@@ -95,6 +100,7 @@ function Statistics({setCurrentPage}) {
                     querySnapshot.forEach((doc) => {
                         tasksArray.push(doc.data());
                     })
+
                     setTasks([...tasks, ...tasksArray])
                 } else {
                     //Create a query for fetching tasks for signed in user only
@@ -175,7 +181,19 @@ function Statistics({setCurrentPage}) {
             <section className={styles.section}>
                 <div className={styles["title-sort"]}>
                     <h3 className={styles.h3}>Voltooide taken</h3>
-                    <figure className={styles.sort}/>
+                    <figure onClick={() => {toggleSortCard(true)}} className={styles.sort}/>
+                    <SortPopup
+                        sortCard={sortCard}
+                        toggleSortCard={toggleSortCard}
+                        tasks={tasks}
+                        children={<button
+                            onClick={() => {toggleSortCard(false);
+                                sortOnCompletedDate(tasks)}}
+                            className="styles.button"
+                        >
+                            Datum volt.
+                        </button>}
+                    />
                 </div>
 
                 <ContentCard stylingClass="tasks">

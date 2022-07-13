@@ -112,8 +112,8 @@ export default App;
 //WAAR WAS IK GEBLEVEN?
 
 // TE IMPLEMENTEREN FUNCTIONALITEIT
-// TODO: sort implementeren in statistieken pagina: gebruikers moeten standaard gesorteerd zijn in tabel --> personeel: gebruikers moeten standaard gesorteerd zijn in tabel
-// TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager
+// TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager []
+// TODO: helper maken die op de profile page de user.specialties state meekrijgt en deze aanpast -> Dakwerk, elektra (eerste woord hoofdletter)
 
 // IN DE GATEN HOUDEN:
 // TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen

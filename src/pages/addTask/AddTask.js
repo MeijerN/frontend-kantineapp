@@ -68,7 +68,7 @@ function AddTask({setCurrentPage}) {
                 description: data.description,
                 status: "In afwachting",
                 priority: data.priority,
-                createdOn: new Date().toLocaleString(),
+                createdOn: new Date().toString(),
                 createdBy: user.id,
                 assignedVolunteers: data.volunteers,
                 assignedVolunteersId: volunteersId,

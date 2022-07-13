@@ -131,7 +131,7 @@ function Profile({setCurrentPage}) {
                     </div>
                     <div className={styles["bottom-section"]}>
                         <p className={styles["profile-details"]}>Email: <span>{user.email}</span></p>
-                        <p className={styles["profile-details"]}>Functie: <span>{user.function}</span></p>
+                        <p className={styles["profile-details"]}>Functie: <span>{user.function.charAt(0).toUpperCase() + user.function.slice(1)}</span></p>
                         <p className={styles["profile-details"]}>Specialiteiten: <span>{user.specialties.join(", ")}</span>
                         </p>
                     </div>

@@ -86,6 +86,7 @@ function TaskDetails({setCurrentPage}) {
             //Update Firebase task document
             await updateDoc(taskRef, {
                 status: "Voltooid: " + createTaskDate(Date.now()),
+                completedOn: new Date().toString(),
                 completedBy: `${user.firstName} ${user.lastName}`,
                 completedById: user.id,
             });

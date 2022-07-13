@@ -6,9 +6,8 @@ import ContentCard from "../../components/contentCard/ContentCard";
 import {useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import createTaskDate from "../../helpers/createTaskDate";
-import sortOnTitle from "../../helpers/sortOnTitle";
-import sortOnDate from "../../helpers/sortOnDate";
 import sortOnPriority from "../../helpers/sortOnPriority";
+import SortPopup from "../../components/sortPopup/SortPopup";
 //Firebase imports
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
@@ -73,12 +72,11 @@ function OpenTasksPage({setCurrentPage}) {
             <div className={styles["title-sort"]}>
                 <h3 className={styles.h3}>Takenlijst</h3>
                 <figure onClick={() => {toggleSortCard(true)}} className={styles.sort}/>
-                <span className={sortCard ? styles["sort-popup-open"] : styles["sort-popup-closed"]}>
-                    <p>Sorteer op</p>
-                    <button onClick={() => {toggleSortCard(false); sortOnTitle(tasks)}} className={styles.button}>Titel</button>
-                    <button onClick={() => {toggleSortCard(false); sortOnPriority(tasks)}} className={styles.button}>Prioriteit</button>
-                    <button onClick={() => {toggleSortCard(false); sortOnDate(tasks)}} className={styles.button}>Datum toegev.</button>
-                </span>
+                <SortPopup
+                    sortCard={sortCard}
+                    toggleSortCard={toggleSortCard}
+                    tasks={tasks}
+                />
             </div>
             <ContentCard stylingClass="tasks">
                 {error &&

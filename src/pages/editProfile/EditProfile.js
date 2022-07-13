@@ -33,7 +33,14 @@ function EditProfile({setCurrentPage}) {
         try {
             const specialtiesArray = [];
             data.specialties.map((specialty) => {
-                specialtiesArray.push(specialty.value)
+                if(specialty.value) {
+                    if (specialtiesArray.length === 0) {
+                        specialtiesArray.push(specialty.value)
+                    }
+                    specialtiesArray.push(specialty.value);
+                } else {
+                    specialtiesArray.push(specialty)
+                }
             })
             // Create Firestore reference to task document
             const taskRef = doc(db, "users", user.id);
