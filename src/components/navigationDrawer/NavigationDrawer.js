@@ -2,7 +2,6 @@ import React, {useContext, useEffect} from 'react';
 import styles from './NavigationDrawer.module.css'
 import SVDLogo from '../../assets/SVDlogo.png'
 import closeMenuIcon from '../../assets/close_menu.svg'
-import profilePicture from '../../assets/profile_picture.jpeg'
 import NavigationDrawerItem from "../navigationDrawerItem/NavigationDrawerItem";
 import {AuthContext} from "../../context/AuthContext";
 //Firebase imports

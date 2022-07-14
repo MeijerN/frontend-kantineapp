@@ -9,6 +9,7 @@ import saveIcon from "../../assets/save_task_icon.svg";
 import {useForm} from "react-hook-form";
 import {collection, doc, getDocs, query, updateDoc, where} from "firebase/firestore";
 import {db} from "../../Firebase";
+import specialtiesString from "../../helpers/specialtiesString";
 
 
 function Personnel({setCurrentPage}) {
@@ -96,7 +97,7 @@ function Personnel({setCurrentPage}) {
                                 <tr key={volunteer.value.id}>
                                     <td className={styles.td}>{volunteer.value.firstName}</td>
                                     <td className={styles.td}>{volunteer.value.lastName}</td>
-                                    <td className={styles.td}>{volunteer.value.specialties.join(", ")}</td>
+                                    <td className={styles.td}>{specialtiesString(volunteer.value.specialties)}</td>
                                 </tr>
                             )
                         })

@@ -34,9 +34,6 @@ function EditProfile({setCurrentPage}) {
             const specialtiesArray = [];
             data.specialties.map((specialty) => {
                 if(specialty.value) {
-                    if (specialtiesArray.length === 0) {
-                        specialtiesArray.push(specialty.value)
-                    }
                     specialtiesArray.push(specialty.value);
                 } else {
                     specialtiesArray.push(specialty)

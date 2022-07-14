@@ -188,6 +188,7 @@ function TaskDetails({setCurrentPage}) {
             }} className={styles["back-icon"]} src={backIcon} alt="back"/>
             {warningPopup &&
                 <WarningPopup
+                    text="Deze actie zal de taak definitief verwijderen."
                     toggleWarningPopup={toggleWarningPopup}
                     handleButtonClick={handleDeleteButtonClick}
                 />}
