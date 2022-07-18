@@ -116,7 +116,7 @@
     width: 100%;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: flex-start;
 
     /*border: solid red 1px;*/

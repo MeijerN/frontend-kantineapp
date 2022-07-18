@@ -100,12 +100,11 @@
 }
 
 .icon-container {
-    flex-basis: 10%;
     min-width: 100%;
     margin-top: 20px;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
     /*border: solid blue 1px;*/

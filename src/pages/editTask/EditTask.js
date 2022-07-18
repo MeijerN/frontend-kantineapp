@@ -20,7 +20,7 @@ function EditTask({setCurrentPage}) {
     const [volunteers, setVolunteers] = React.useState([]);
     const [error, toggleError] = React.useState(false);
     const [docId, setDocId] = React.useState();
-    const [data, setData] = React.useState({});
+    const [tasks, setTasks] = React.useState({});
     const [loading, toggleLoading] = React.useState(true);
 
 
@@ -67,7 +67,7 @@ function EditTask({setCurrentPage}) {
                 // Execute query
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
-                    setData(doc.data());
+                    setTasks(doc.data());
                     setDocId(doc.id);
                 });
             } catch (e) {
@@ -131,7 +131,7 @@ function EditTask({setCurrentPage}) {
                                 {...register("title", {
                                     required: "Vul de titel in",
                                 })}
-                                defaultValue={data.title}
+                                defaultValue={tasks.title}
                             />
                         </label>
                         <label htmlFor="textarea-edit-task" className={styles["label-textarea-edit-task"]}>
@@ -149,7 +149,7 @@ function EditTask({setCurrentPage}) {
                                         message: "Er mogen maximaal 1000 karakters gebruikt worden"
                                     }
                                 })}
-                                defaultValue={data.description}
+                                defaultValue={tasks.description}
                             />
                         </label>
 
@@ -174,7 +174,7 @@ function EditTask({setCurrentPage}) {
                             isMulti={false}
                             placeholder="Selecteer prioriteit"
                             errorMessage="Selecteer een prioriteit"
-                            defaultValues={data.priority}
+                            defaultValues={tasks.priority}
                         />
                         <SelectElement
                             name="volunteers"
@@ -183,7 +183,7 @@ function EditTask({setCurrentPage}) {
                             isMulti={true}
                             placeholder="Selecteer vrijwilligers"
                             errorMessage="Selecteer minimaal een vrijwilliger"
-                            defaultValues={data.assignedVolunteers.map((volunteer) => {
+                            defaultValues={tasks.assignedVolunteers.map((volunteer) => {
                                 return {
                                     label: `${volunteer.firstName} ${volunteer.lastName}`,
                                     value: {

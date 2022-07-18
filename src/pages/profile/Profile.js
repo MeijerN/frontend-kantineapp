@@ -14,7 +14,7 @@ import {getStorage, ref} from "firebase/storage";
 import {authFirebase, db, storage} from "../../Firebase";
 import {uploadBytes} from "firebase/storage";
 import {deleteObject, getDownloadURL} from "firebase/storage";
-import {deleteDoc, doc, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, updateDoc, query, where} from "firebase/firestore";
 import WarningPopup from "../../components/warningPopup/WarningPopup";
 import {deleteUser} from "firebase/auth";
 
@@ -37,7 +37,6 @@ function Profile({setCurrentPage}) {
         setCurrentPage("Profiel");
 
         async function fetchProfilePicture() {
-
             const pictureReference = await getDownloadURL(ref(storage, user.profilePicture))
             setProfilePictureUrl(pictureReference)
         }
@@ -102,25 +101,38 @@ function Profile({setCurrentPage}) {
 
     async function handleDeleteAccountClick() {
         try {
-            const user = authFirebase.currentUser;
-            await deleteUser(user);
-
-            // TODO: verwijder gegevens van de user: sessies, profielfoto
+            // Delete user from Firebase authentication
+            const userFirebase = authFirebase.currentUser;
+            await deleteUser(userFirebase);
+            // Delete Firebase user details documents
+            await deleteDoc(doc(db, "users", user.id));
+            // Delete Firebase user sessions
+            const q = query(collection(db, "sessions"), where("session.id", "==", user.id));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                deleteDoc(doc.ref);
+            });
+            // Delete Firebase profile picture if picture is NOT default picture
+            if (user.profilePicture !== "profilePictures/default_profile_picture.jpeg") {
+                const profilePictureRef = ref(storage, user.profilePicture);
+                await deleteObject(profilePictureRef);
+            }
         } catch (e) {
-            console.error(e);
-            setError({
-                error: true,
-                message: "Er is iets misgegaan met het verwijderen van het account. Probeer het opnieuw"
-            })
+            if (e.message.includes("auth/requires-recent-login")) {
+                setError({
+                    error: true,
+                    message: "Wegens veiligheidskwesties moet er opnieuw ingelogd worden om dit account te verwijderen"
+                })
+                toggleWarningPopup(false);
+            } else {
+                console.error(e);
+                setError({
+                    error: true,
+                    message: "Er is iets misgegaan met het verwijderen van het account. Probeer het opnieuw"
+                })
+                toggleWarningPopup(false);
+            }
         }
-
-
-        deleteUser(user).then(() => {
-            // User deleted.
-        }).catch((error) => {
-            // An error ocurred
-            // ...
-        });
     }
 
     return (

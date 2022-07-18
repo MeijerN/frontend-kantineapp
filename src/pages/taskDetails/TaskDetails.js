@@ -20,7 +20,7 @@ import createTaskDate from "../../helpers/createTaskDate";
 function TaskDetails({setCurrentPage}) {
 
     //Stage management
-    const [data, setData] = React.useState({});
+    const [tasks, setTasks] = React.useState({});
     const [docId, setDocId] = React.useState();
     const [error, toggleError] = React.useState(false);
     const [loading, toggleLoading] = React.useState(true);
@@ -43,7 +43,7 @@ function TaskDetails({setCurrentPage}) {
                 // Execute query
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
-                    setData(doc.data());
+                    setTasks(doc.data());
                     setDocId(doc.id);
                 });
             } catch (e) {
@@ -66,8 +66,8 @@ function TaskDetails({setCurrentPage}) {
             await updateDoc(taskRef, {
                 status: "In behandeling",
             });
-            setData({
-                ...data,
+            setTasks({
+                ...tasks,
                 status: "In behandeling",
             })
         } catch (e) {
@@ -117,27 +117,27 @@ function TaskDetails({setCurrentPage}) {
                 {loading && !error ? <span className={styles.loading}>De gegevens worden opgehaald...</span>
                     :
                     <>
-                        <p className={styles.status}><span className={styles["dot-low"]}/> {data.status}</p>
-                        <h3>{data.title}</h3>
+                        <p className={styles.status}><span className={styles["dot-low"]}/> {tasks.status}</p>
+                        <h3>{tasks.title}</h3>
                         <label htmlFor="textarea-task-details" className={styles["label-textarea-task-details"]}>
                             Beschrijving:
                             <p className={styles["textarea-task-details"]}>
-                                {data.description}
+                                {tasks.description}
                             </p>
                         </label>
 
-                        <p className={styles.p}>Prioriteit: <span>{data.priority.value}</span></p>
+                        <p className={styles.p}>Prioriteit: <span>{tasks.priority.value}</span></p>
                         <label htmlFor="task-owners-table" className={styles["label-task-owners-table"]}>
                             Aangewezen vrijwilligers:
                             <p className={styles["assigned-users"]}>
-                                {Object.keys(data).length > 0 &&
-                                    assignedVolunteerString(data.assignedVolunteers, user)
+                                {Object.keys(tasks).length > 0 &&
+                                    assignedVolunteerString(tasks.assignedVolunteers, user)
                                 }
                             </p>
                         </label>
 
                         <div className={styles["icon-container"]}>
-                            {user.function === "vrijwilliger" && data.status === "In afwachting" &&
+                            {user.function === "vrijwilliger" && tasks.status === "In afwachting" &&
                                 <Icon
                                     text="In behandeling nemen"
                                     image={acceptTaskIcon}
@@ -145,7 +145,7 @@ function TaskDetails({setCurrentPage}) {
                                     onClick={handleAccepButtonClick}
                                 />
                             }
-                            {user.function === "vrijwilliger" && data.status === "In behandeling" &&
+                            {user.function === "vrijwilliger" && tasks.status === "In behandeling" &&
                                 <Icon
                                     text="Voltooien"
                                     image={taskDoneIcon}

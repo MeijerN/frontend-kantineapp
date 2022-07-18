@@ -55,7 +55,6 @@ function App() {
                         <RegisterPage
                         /> : <Redirect to="/openstaande-taken"/>
                     }
-                    <RegisterPage/>
                 </Route>
                 <PrivateRoute exact path="/openstaande-taken" isAuth={isAuth}>
                     <OpenTasksPage
@@ -110,11 +109,9 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-
-// TE IMPLEMENTEREN FUNCTIONALITEIT
-// TODO: Users moeten zichzelf kunnen verwijderen in profiel i.p.v. de manager. Zie profile.js []
+//TODO: Testen --> Rustig alles doorlopen: nieuwe users maken, taken maken/wijzigen/verwijderen, users weer verwijderen en checken of alles verwijderd wordt
+//TODO: Elke bestand nalopen en borders weghalen en formateren --> Imports scheiden, en elementen onder elkaar zetten.
 
 // IN DE GATEN HOUDEN:
 // TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen
 // TODO: helper functies maken van defaultValues in EditTask.js
-// TODO: in de states waar DATA gebruikt is misschien iets duidelijkere naam kiezen?

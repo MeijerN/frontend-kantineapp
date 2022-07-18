@@ -18,16 +18,10 @@
 /* --------------- 4.1 Icons ------------------------- */
 
 .figure {
-    /*max-width: 75px;*/
-
     display: flex;
     flex-direction: column;
     align-items: center;
     /*border: solid blue 1px;*/
-}
-
-.figure:nth-child(2) {
-    margin: 0 20px 0 20px;
 }
 
 .icon {
