@@ -51,6 +51,12 @@
 
 /*!* --------------- 4.2 Add button ------------------------- *!*/
 
+.add-button-container {
+    position: sticky;
+    bottom: -10px;
+    align-self: flex-start;
+}
+
 .add-button {
     background-color: hsl(0, 100%, 50%);
     height: 50px;
@@ -58,10 +64,6 @@
     border-radius: 50%;
     border: 1px solid red;
     box-shadow: 0 4px 15px #360101;
-
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
 }
 .add-button::before {
     content: " ";

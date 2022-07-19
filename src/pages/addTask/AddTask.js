@@ -13,6 +13,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {addDoc} from "firebase/firestore";
 import {collection, query, where, getDocs} from "firebase/firestore";
 import {db} from '../../Firebase'
+import sortOnFirstName from "../../helpers/sortOnFirstName";
 
 function AddTask({setCurrentPage}) {
 
@@ -46,6 +47,7 @@ function AddTask({setCurrentPage}) {
                         },
                     })
                 })
+                sortOnFirstName(volunteersArray);
                 setVolunteers([...volunteers, ...volunteersArray]);
             } catch (e) {
                 console.error(e);
@@ -94,6 +96,10 @@ function AddTask({setCurrentPage}) {
                             id="title"
                             {...register("title", {
                                 required: "Vul de titel in",
+                                maxLength: {
+                                value: 40,
+                                message: "Titel mag maximaal 40 karakters bevatten",
+                            },
                             })}
                         />
                     </label>

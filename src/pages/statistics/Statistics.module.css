@@ -21,9 +21,15 @@
 /* ------------------------------- 4. Areas ---------------------------------------- */
 /* --------------- 4.1 Sections ------------------------- */
 
-.section {
-    height: 50%;
+.section-top {
+    height: 40%;
 
+    display: flex;
+    flex-direction: column;
+}
+
+.section-bottom {
+    height: 60%;
     display: flex;
     flex-direction: column;
 }

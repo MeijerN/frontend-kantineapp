@@ -18,7 +18,7 @@
 /* ------------------------------- 3. Layout ----------------------------------- */
 
 .main {
-    padding: 50px 20px 0 20px;
+    padding: 0 20px 0 20px;
     min-height: 100vh;
 
     /*    !*Fix for mobile keyboard issue*!*/
@@ -27,7 +27,7 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 
     /*border: solid green 2px;*/

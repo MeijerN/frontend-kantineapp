@@ -109,9 +109,11 @@ function App() {
 export default App;
 
 //WAAR WAS IK GEBLEVEN?
-//TODO: Testen --> Rustig alles doorlopen: nieuwe users maken, taken maken/wijzigen/verwijderen, users weer verwijderen en checken of alles verwijderd wordt
-//TODO: Elke bestand nalopen en borders weghalen en formateren --> Imports scheiden, en elementen onder elkaar zetten.
+//TODO: Elke bestand nalopen en borders weghalen en formateren --> Imports scheiden, en elementen onder elkaar zetten. Kijk hierbij ook naar eslint in de console voor controle
 
 // IN DE GATEN HOUDEN:
 // TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen
-// TODO: helper functies maken van defaultValues in EditTask.js
+
+//WINDOWS: set HTTPS=true&&set SSL_CRT_FILE=cert.pem&&set SSL_KEY_FILE=key.pem&&react-scripts start
+
+//MAC: xport HTTPS=true&&SSL_CRT_FILE=cert.pem&&SSL_KEY_FILE=key.pem react-scripts start

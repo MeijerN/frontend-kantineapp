@@ -92,7 +92,7 @@
 
 @media screen and (min-width: 576px) {
     .main {
-        padding: 0 20px 0 20px;
+        padding: 100px 20px 0 20px;
         min-height: 100vh;
 
         /*    !*Fix for mobile keyboard background jump issue*!*/
@@ -101,7 +101,7 @@
 
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
 
         /*border: solid green 2px;*/
     }

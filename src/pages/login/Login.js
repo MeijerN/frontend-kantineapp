@@ -41,13 +41,17 @@ function LoginPage({toggleNavdrawer}) {
                         type="text"
                         placeholder="Email"
                         className={styles["login-registration"]}
-                        {...register("email")}
+                        {...register("email", {
+                            required: "Vul uw email in",
+                        })}
                     />
                     <input
                         type="password"
                         placeholder="Wachtwoord"
                         className={styles["login-registration"]}
-                        {...register("password")}
+                        {...register("password", {
+                            required: "Vul uw wachtwoord in",
+                        })}
                     />
                     {/*<InputField*/}
                     {/*    type="text"*/}
@@ -64,6 +68,8 @@ function LoginPage({toggleNavdrawer}) {
                     <SubmitButton
                         text="Inloggen"
                     />
+                    {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+                    {errors.password && <p className={styles.error}>{errors.password.message}</p>}
                     {error && <span className={styles.error}>Er ging iets verkeerd, controleer uw gegevens</span>}
                 </form>
                 <p className={styles.p}>Nog geen account? Registreer <Link to="/registreren">hier</Link></p>

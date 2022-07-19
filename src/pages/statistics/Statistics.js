@@ -87,6 +87,7 @@ function Statistics({setCurrentPage}) {
                 console.error(e);
                 toggleError(true);
             }
+            toggleLoading(false);
         }
 
         async function fetchTasks() {
@@ -100,7 +101,6 @@ function Statistics({setCurrentPage}) {
                     querySnapshot.forEach((doc) => {
                         tasksArray.push(doc.data());
                     })
-
                     setTasks([...tasks, ...tasksArray])
                 } else {
                     //Create a query for fetching tasks for signed in user only
@@ -116,16 +116,16 @@ function Statistics({setCurrentPage}) {
                 console.error(e);
                 toggleError(true);
             }
+            toggleLoading(false);
         }
 
-        fetchTasks()
+        fetchTasks();
         fetchVolunteers();
-        toggleLoading(false);
     }, [])
 
     return (
         <InnerOuterContainer>
-            <section className={styles.section}>
+            <section className={styles["section-top"]}>
                 <div className={styles["title-sort"]}>
                     {user.function === "manager" &&
                         <>
@@ -178,17 +178,21 @@ function Statistics({setCurrentPage}) {
                     </ContentCard>
                 }
             </section>
-            <section className={styles.section}>
+            <section className={styles["section-bottom"]}>
                 <div className={styles["title-sort"]}>
                     <h3 className={styles.h3}>Voltooide taken</h3>
-                    <figure onClick={() => {toggleSortCard(true)}} className={styles.sort}/>
+                    <figure onClick={() => {
+                        toggleSortCard(true)
+                    }} className={styles.sort}/>
                     <SortPopup
                         sortCard={sortCard}
                         toggleSortCard={toggleSortCard}
                         tasks={tasks}
                         children={<button
-                            onClick={() => {toggleSortCard(false);
-                                sortOnCompletedDate(tasks)}}
+                            onClick={() => {
+                                toggleSortCard(false);
+                                sortOnCompletedDate(tasks)
+                            }}
                             className="styles.button"
                         >
                             Datum volt.
@@ -214,7 +218,7 @@ function Statistics({setCurrentPage}) {
                             )
                         })
                     }
-                    {user.function === "vrijwilliger" && tasks.length > 0 &&
+                    {user.function === "vrijwilliger" && tasks.length > 0 && !loading &&
                         tasks.map((task) => {
                             return (
                                 <Task

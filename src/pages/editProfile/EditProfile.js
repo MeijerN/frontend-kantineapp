@@ -11,8 +11,11 @@ import InnerOuterContainer from "../../components/innerOuterContainer/innerOuter
 import SelectElement from "../../components/selectElement/SelectElement";
 import {useForm} from "react-hook-form";
 import {AuthContext} from "../../context/AuthContext";
+
 import {doc, updateDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
+import {updateEmail} from "firebase/auth";
+import {authFirebase} from "../../Firebase";
 
 function EditProfile({setCurrentPage}) {
 
@@ -31,23 +34,28 @@ function EditProfile({setCurrentPage}) {
     async function handleSave(data) {
         toggleError(false);
         try {
+            // Collect specialties from user input
             const specialtiesArray = [];
             data.specialties.map((specialty) => {
-                if(specialty.value) {
+                // If data is comming from new select input
+                if (specialty.value) {
                     specialtiesArray.push(specialty.value);
+                    // If data is unaltered and comming from Firebase
                 } else {
                     specialtiesArray.push(specialty)
                 }
             })
-            // Create Firestore reference to task document
+            // Create Firestore reference to user details document
             const taskRef = doc(db, "users", user.id);
-            // Update Firestore task document
+            // Update Firestore user details document
             await updateDoc(taskRef, {
                 firstName: data["first-name"],
                 lastName: data["last-name"],
                 email: data.email,
                 specialties: specialtiesArray,
             });
+            // Update user email in Firebase Authentication for login purposes
+            await updateEmail(authFirebase.currentUser, data.email.toLowerCase());
             toggleAuth({
                 ...auth,
                 user: {

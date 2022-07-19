@@ -71,7 +71,9 @@ function OpenTasksPage({setCurrentPage}) {
         <InnerOuterContainer>
             <div className={styles["title-sort"]}>
                 <h3 className={styles.h3}>Takenlijst</h3>
-                <figure onClick={() => {toggleSortCard(true)}} className={styles.sort}/>
+                <figure onClick={() => {
+                    toggleSortCard(true)
+                }} className={styles.sort}/>
                 <SortPopup
                     sortCard={sortCard}
                     toggleSortCard={toggleSortCard}
@@ -100,9 +102,14 @@ function OpenTasksPage({setCurrentPage}) {
                         )
                     })
                 }
-                {user.function === "manager" && <button onClick={() => {
-                    history.push("/openstaande-taken/toevoegen")
-                }} className={styles["add-button"]}/>}
+                {user.function === "manager" &&
+                    <div className={styles["add-button-container"]}>
+                        <button
+                            onClick={() => {history.push("/openstaande-taken/toevoegen")}}
+                            className={styles["add-button"]}
+                        />
+                    </div>
+                }
             </ContentCard>
         </InnerOuterContainer>
     );

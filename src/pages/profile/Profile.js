@@ -35,10 +35,12 @@ function Profile({setCurrentPage}) {
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Profiel");
+        toggleLoading(true);
 
         async function fetchProfilePicture() {
             const pictureReference = await getDownloadURL(ref(storage, user.profilePicture))
             setProfilePictureUrl(pictureReference)
+            toggleLoading(false);
         }
 
         fetchProfilePicture()
@@ -46,9 +48,11 @@ function Profile({setCurrentPage}) {
 
     // Fetch new profile picture on user profile picture change
     useEffect(() => {
+        toggleLoading(true);
         async function fetchProfilePicture() {
             const pictureReference = await getDownloadURL(ref(storage, user.profilePicture))
             setProfilePictureUrl(pictureReference)
+            toggleLoading(false);
         }
 
         fetchProfilePicture()
@@ -160,13 +164,14 @@ function Profile({setCurrentPage}) {
 
                             </span>
                         }
-                        <figure className={styles["profile-picture-container"]}>
-                            <img className={styles.img} src={profilePictureUrl} alt="profiel"/>
-                            <button type="button" onClick={() => {
-                                toggleUploadCard(true)
-                            }} disabled={uploadCard} className={styles["edit-profile-button"]}>Wijzig
-                            </button>
-                        </figure>
+                        {loading && !error ? <span>Profielfoto wordt opgehaald...</span>
+                            :<figure className={styles["profile-picture-container"]}>
+                                <img className={styles.img} src={profilePictureUrl} alt="profiel"/>
+                                <button type="button" onClick={() => {
+                                    toggleUploadCard(true)
+                                }} disabled={uploadCard} className={styles["edit-profile-button"]}>Wijzig
+                                </button>
+                            </figure>}
                         <div className={styles["name-container"]}>
                             <p className={styles.name}>{user.firstName}</p>
                             <p className={styles.name}>{user.lastName}</p>

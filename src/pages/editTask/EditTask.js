@@ -130,6 +130,10 @@ function EditTask({setCurrentPage}) {
                                 id="title"
                                 {...register("title", {
                                     required: "Vul de titel in",
+                                    maxLength: {
+                                        value: 40,
+                                        message: "Titel mag maximaal 40 karakters bevatten",
+                                    },
                                 })}
                                 defaultValue={tasks.title}
                             />

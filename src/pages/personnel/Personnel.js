@@ -10,6 +10,7 @@ import {useForm} from "react-hook-form";
 import {collection, doc, getDocs, query, updateDoc, where} from "firebase/firestore";
 import {db} from "../../Firebase";
 import specialtiesString from "../../helpers/specialtiesString";
+import sortOnFirstName from "../../helpers/sortOnFirstName";
 
 
 function Personnel({setCurrentPage}) {
@@ -19,14 +20,12 @@ function Personnel({setCurrentPage}) {
     const [error, toggleError] = React.useState(false);
     const [loading, toggleLoading] = React.useState(false);
 
-
     const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
-
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
         setCurrentPage("Personeel")
-
+        toggleLoading(true);
         async function fetchVolunteers() {
             try {
                 const volunteersArray = [];
@@ -45,11 +44,13 @@ function Personnel({setCurrentPage}) {
                         },
                     })
                 })
+                sortOnFirstName(volunteersArray);
                 setVolunteers([...volunteers, ...volunteersArray]);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
             }
+            toggleLoading(false);
         }
 
         fetchVolunteers();
@@ -82,7 +83,9 @@ function Personnel({setCurrentPage}) {
         <InnerOuterContainer>
             <h3 className={styles.h3}>Overzicht vrijwilligers</h3>
             <ContentCard stylingClass="table">
-                <table className={styles.table}>
+                {loading && !error ? <span>Gegevens worden opgehaald...</span>
+                    :
+                    <table className={styles.table}>
                     <thead className={styles.thead}>
                     <tr>
                         <th className={styles.th}>Voornaam</th>
@@ -103,7 +106,8 @@ function Personnel({setCurrentPage}) {
                         })
                     }
                     </tbody>
-                </table>
+                </table>}
+
             </ContentCard>
             <h3 className={styles.h3}>Manager toevoegen</h3>
             <ContentCard stylingClass="personnel">
