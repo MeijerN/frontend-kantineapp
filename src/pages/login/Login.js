@@ -13,6 +13,7 @@ function LoginPage({toggleNavdrawer}) {
 
     // Context management
     const [error, toggleError] = React.useState(false);
+    const [submitButtonDisable, toggleSubmitButtonDisable] = React.useState(false);
 
     const {register, handleSubmit, reset, formState: {errors}, watch} = useForm();
 
@@ -23,6 +24,7 @@ function LoginPage({toggleNavdrawer}) {
 
     async function loginUser(data) {
         toggleError(false);
+        toggleSubmitButtonDisable(true);
         try {
             //Log user in and let onAuthStateChange handle the auth state(in Authcontext)
             await signInWithEmailAndPassword(authFirebase, data.email, data.password);
@@ -30,6 +32,7 @@ function LoginPage({toggleNavdrawer}) {
             toggleError(true);
             console.error(e);
         }
+        toggleSubmitButtonDisable(true);
     }
 
     return (
@@ -67,6 +70,7 @@ function LoginPage({toggleNavdrawer}) {
                     {/*/>*/}
                     <SubmitButton
                         text="Inloggen"
+                        disabled={submitButtonDisable}
                     />
                     {errors.email && <p className={styles.error}>{errors.email.message}</p>}
                     {errors.password && <p className={styles.error}>{errors.password.message}</p>}

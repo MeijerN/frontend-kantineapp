@@ -99,7 +99,7 @@ function RegisterPage() {
                     />
 
                     <SubmitButton
-                        text="Maak account aan"
+                        text="Acount aanmaken"
                         disabled={submitButtonDisable}
                     />
                     {errors["first-name"] && <p className={styles.error}>{errors["first-name"].message}</p>}
