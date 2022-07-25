@@ -66,7 +66,7 @@
 
 ### About The Project
 
-<img src="screenshot_tasks.jpg" alt="Logo" height="550"> &nbsp;&nbsp; <img src="screenshot_menu.jpg" alt="Logo" height="550"> &nbsp;&nbsp; <img src="screenshot_time_registration.png" alt="Logo" height="550">
+<img src="screenshot_tasks.jpg" alt="Logo" height="520"> &nbsp;&nbsp; <img src="screenshot_menu.jpg" alt="Logo" height="520"> &nbsp;&nbsp; <img src="screenshot_time_registration.png" alt="Logo" height="520">
 
 This application is a school project and is developed for the course Frontend Development. The KantineApp is an mobile
 focused application for the sportsclub SV Dalfsen which lacks the tools to manage the workflow and keep track of the
