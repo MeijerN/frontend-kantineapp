@@ -46,17 +46,17 @@
     <li>
       <a href="#About-The-Project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#Built-with">Built With</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#Getting-Started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#Prerequisites">Prerequisites</a></li>
+        <li><a href="#Installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#Usage">Usage</a></li>
   </ol>
 club vrijwilligers</details>
 
@@ -64,7 +64,7 @@ club vrijwilligers</details>
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+### About The Project
 
 <img src="screenshot_tasks.jpg" alt="Logo" height="600"> &nbsp;&nbsp; <img src="screenshot_menu.jpg" alt="Logo" height="600"> &nbsp;&nbsp; <img src="screenshot_time_registration.png" alt="Logo" height="600">
 
@@ -94,7 +94,7 @@ for Dutch audience and is therefore written in Dutch.
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+### Getting Started
 
 To get the KantineApp up and running follow the steps below.
 
@@ -145,7 +145,7 @@ In order to install the required packets you have to install npm.
 
 <!-- USAGE EXAMPLES -->
 
-## Usage
+### Usage
 
 ### `npm start`
 
