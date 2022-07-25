@@ -58,7 +58,7 @@
     </li>
     <li><a href="#Usage">Usage</a></li>
   </ol>
-club vrijwilligers</details>
+</details>
 
 
 
@@ -77,7 +77,8 @@ the right location to start the registration.
 <br><br>
 To achieve this the Google Firebase backend was used. The various functionalities that Google Firebase has to offer have
 been used, such as Firebase Authentication, Firebase Firestore and Firebase Storage. This application has been developed
-for Dutch audience and is therefore written in Dutch.
+for Dutch audience and is therefore written in Dutch. After installation the user can register as a volunteer. Demo
+accounts for both volunteers and managers are provided in the `accounts.txt` file included in the `.zip` file.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -114,7 +115,7 @@ In order to install the required packets you have to install npm.
    ```
 
 2. Copy and paste the right start script command (line 19) in `package.json` for enabeling HTTPS protocol. This is
-   required in order to use the Geolocation API.<br><br>
+   required in order to use the Geolocation API. Certificate import is not nessesary. You will receive a browser security warning which you can ignore.<br><br>
     - For macOS users: Open `package.json` and replace `XXX`
       for `xport HTTPS=true&&SSL_CRT_FILE=cert.pem&&SSL_KEY_FILE=key.pem react-scripts start`.<br><br>
     - For Windows users: Open `package.json` and replace `XXX`
