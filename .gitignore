@@ -4,7 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-/.idea
 
 # testing
 /coverage
@@ -13,6 +12,8 @@
 /build
 
 # misc
+/.idea
+.env
 .DS_Store
 .env.local
 .env.development.local

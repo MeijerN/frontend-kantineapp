@@ -3,7 +3,6 @@ import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import Select from 'react-select';
 import {useHistory} from "react-router-dom";
-import InputField from "../../components/inputField/InputField";
 import saveIcon from '../../assets/save_task_icon.svg';
 import backIcon from '../../assets/back_icon.svg';
 import Icon from "../../components/icon/Icon";

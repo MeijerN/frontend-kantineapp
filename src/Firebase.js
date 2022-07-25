@@ -5,25 +5,17 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
 // import { doc, setDoc } from "firebase/firestore";
 
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAUUsERFFQwRatxq08c1ub2mP4hAK80ZKA",
-    authDomain: "kantineapp-f3d33.firebaseapp.com",
-    projectId: "kantineapp-f3d33",
-    storageBucket: "kantineapp-f3d33.appspot.com",
-    messagingSenderId: "982267777143",
-    appId: "1:982267777143:web:a6133ecd4b530d9462f672"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const authFirebase = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-
-
-

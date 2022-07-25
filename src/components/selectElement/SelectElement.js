@@ -50,6 +50,7 @@ function SelectElement({defaultValues, stylingClass, name, options, placeholder,
                             placeholder={placeholder}
                             className={styles[(stylingClass)]}
                             isSearchable={false}
+                            maxMenuHeight={80}
                         />
                     )}
                 />
@@ -69,6 +70,7 @@ function SelectElement({defaultValues, stylingClass, name, options, placeholder,
                             placeholder={placeholder}
                             className={styles[(stylingClass)]}
                             isSearchable={false}
+                            maxMenuHeight={80}
                         />
                     )}
                 />

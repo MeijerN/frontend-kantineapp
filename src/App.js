@@ -20,7 +20,6 @@ import Personnel from "./pages/personnel/Personnel";
 import NavigationDrawer from "./components/navigationDrawer/NavigationDrawer";
 
 function App() {
-
     //Context management
     const {isAuth} = useContext(AuthContext);
 
@@ -31,10 +30,6 @@ function App() {
         <>
             {isAuth && <Header
                 page={currentPage}
-                highPrioNumber="1"
-                mediumPrioNumber="2"
-                lowPrioNumber="3"
-                openTasksNumber="4"
                 navDrawer={navDrawer}
                 toggleNavDrawer={toggleNavDrawer}
             />}
@@ -111,9 +106,5 @@ export default App;
 //WAAR WAS IK GEBLEVEN?
 //TODO: Elke bestand nalopen en borders weghalen en formateren --> Imports scheiden, en elementen onder elkaar zetten. Kijk hierbij ook naar eslint in de console voor controle
 
-// IN DE GATEN HOUDEN:
-// TODO: Bekijk of het InputField component nog gebruikt wordt, zo niet dan op het LAATST verwijderen
-
 //WINDOWS: set HTTPS=true&&set SSL_CRT_FILE=cert.pem&&set SSL_KEY_FILE=key.pem&&react-scripts start
-
 //MAC: xport HTTPS=true&&SSL_CRT_FILE=cert.pem&&SSL_KEY_FILE=key.pem react-scripts start

@@ -10,7 +10,7 @@ import {db} from "../../Firebase";
 import {collection, query, where, onSnapshot} from "firebase/firestore";
 
 
-function Header({page, highPrioNumber, mediumPrioNumber, lowPrioNumber, openTasksNumber, navDrawer, toggleNavDrawer}) {
+function Header({page, navDrawer, toggleNavDrawer}) {
 
     //State management
     const [tasks, setTasks] = React.useState([]);
