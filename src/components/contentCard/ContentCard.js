@@ -1,4 +1,4 @@
-import styles from './ContentCard.module.css'
+import styles from './ContentCard.module.css';
 import React from 'react';
 
 function ContentCard({children, stylingClass}) {

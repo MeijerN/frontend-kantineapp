@@ -26,8 +26,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /*border: solid green 2px;*/
 }
 
 /* ------------------------------- 4. Areas ---------------------------------------- */
@@ -46,8 +44,6 @@
     align-items: center;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.62);
-
-    /*border: solid blue 2px;*/
 }
 
 .h1 {
@@ -56,15 +52,12 @@
     font-size: 35px;
     text-align: center;
     color: hsl(0, 0%, 90%);
-
-    /*border: solid pink 2px;*/
 }
 
 .form {
     display: flex;
     flex-direction: column;
     min-width: 100%;
-    /*border: solid purple 2px;*/
 }
 
 .login-registration {
@@ -87,7 +80,6 @@
 }
 
 
-
 /* ------------------------------- 5. Media Queries -------------------------------- */
 
 @media screen and (min-width: 576px) {
@@ -102,7 +94,5 @@
         display: flex;
         justify-content: center;
         align-items: flex-start;
-
-        /*border: solid green 2px;*/
     }
 }

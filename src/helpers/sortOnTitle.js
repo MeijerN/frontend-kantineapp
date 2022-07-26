@@ -1,8 +1,7 @@
 function sortOnTitle(tasks) {
     tasks.sort((a, b) => {
-        let ta = a.title.toLowerCase(),
-            tb = b.title.toLowerCase();
-
+        const ta = a.title.toLowerCase();
+        const tb = b.title.toLowerCase();
         if (ta < tb) {
             return -1;
         }

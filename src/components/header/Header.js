@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import styles from './Header.module.css'
 import navigationHamburger from '../../assets/navigation_hamburger.svg'
 import {AuthContext} from "../../context/AuthContext";
@@ -9,7 +9,6 @@ import createCurrentDate from "../../helpers/createCurrentDate";
 import {db} from "../../Firebase";
 import {collection, query, where, onSnapshot} from "firebase/firestore";
 
-
 function Header({page, navDrawer, toggleNavDrawer}) {
 
     //State management
@@ -18,18 +17,20 @@ function Header({page, navDrawer, toggleNavDrawer}) {
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
+        // Fetch all open tasks from Firebase
         if (user.function === "manager") {
             const q = query(collection(db, "tasks"), where("status", "in", ["In afwachting", "In behandeling"]));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 const openTasks = [];
                 querySnapshot.forEach((doc) => {
                     openTasks.push(doc.data());
-                });
+                })
                 setTasks(openTasks);
             });
             return function cleanUp() {
                 unsubscribe();
             }
+            // Fetch all open tasks for the current volunteer from Firebase
         } else {
             const q = query(collection(db, "tasks"), where("assignedVolunteersId", "array-contains", user.id), where("status", "in", ["In afwachting", "In behandeling"]));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -38,12 +39,12 @@ function Header({page, navDrawer, toggleNavDrawer}) {
                     openTasks.push(doc.data());
                 });
                 setTasks(openTasks);
-            });
+            })
             return function cleanUp() {
                 unsubscribe();
             }
         }
-    }, []);
+    }, [])
 
     function handleOnClick() {
         toggleNavDrawer(!navDrawer);
@@ -53,12 +54,18 @@ function Header({page, navDrawer, toggleNavDrawer}) {
         <header className={styles.header}>
             <div className={styles["content-container"]}>
                 <section className={styles["left-side"]}>
-                    <img className={styles.img} src={navigationHamburger} onClick={handleOnClick} alt="navigation-menu"
-                         width="30px"
-                         height="30px"/>
+                    <img
+                        className={styles.img}
+                        src={navigationHamburger}
+                        onClick={handleOnClick}
+                        alt="navigation-menu"
+                        width="30px"
+                        height="30px"
+                    />
                     <h1 className={styles.h1}>{page}</h1>
                     <p className={styles.date}>{createCurrentDate()}</p>
                 </section>
+
                 <section className={styles["right-side"]}>
                     <div className={styles["priorities-overview-container"]}>
                         <div className={styles["prio-container"]}>

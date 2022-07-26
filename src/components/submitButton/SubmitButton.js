@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Submitbutton.module.css'
+import styles from './Submitbutton.module.css';
 
-function SubmitButton({text, onSubmit}) {
+function SubmitButton({text}) {
     return (
         <button
             className={styles.button}
@@ -10,6 +10,6 @@ function SubmitButton({text, onSubmit}) {
             {text}
         </button>
     );
-};
+}
 
 export default SubmitButton;

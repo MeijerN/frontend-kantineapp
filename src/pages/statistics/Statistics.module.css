@@ -6,11 +6,11 @@
         3.1 Reusables
         3.2 Other
     4. Areas
-        4.2 Sections
-        4.3 Titles
-        4.4 Contentcard montly hours overview
-        4.5 Contentcard completed tasks
-        4.6 Table (manager content)
+        4.1 Sections
+        4.2 Titles
+        4.3 Contentcard montly hours overview
+        4.4 Contentcard completed tasks
+        4.5 Table (manager content)
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -34,7 +34,7 @@
     flex-direction: column;
 }
 
-/* --------------- 4.1 Title ------------------------- */
+/* --------------- 4.2 Title ------------------------- */
 
 
 .h3 {
@@ -43,7 +43,7 @@
 }
 
 
-/* --------------- 4.2 Contentcard monthly hours overview ------------------- */
+/* --------------- 4.3 Contentcard monthly hours overview ------------------- */
 
 .p {
     font-weight: 300;
@@ -55,13 +55,12 @@
     font-weight: 700;
 }
 
-/* --------------- 4.3 Contentcard completed tasks --------------------------- */
+/* --------------- 4.4 Contentcard completed tasks --------------------------- */
 
 .title-sort {
     display: flex;
     justify-content: center;
     position: relative;
-    /*border: solid pink 2px;*/
 }
 
 .sort {
@@ -83,13 +82,12 @@
     color: red;
 }
 
-/* --------------- 4.4 Tables (manager content)------------------------ */
+/* --------------- 4.5 Tables (manager content)------------------------ */
 
-.table{
+.table {
     border-collapse: collapse;
     width: 100%;
     max-width: 500px;
-    /*border: solid purple 1px;*/
 }
 
 .thead {
@@ -99,11 +97,9 @@
     height: 30px;
 
     background-color: white;
-    /*border: solid green 1px;*/
 }
 
 .td {
-    /*border: 1px solid #dddddd;*/
     border-bottom: solid red 1px;
     text-align: left;
     padding: 3px;

@@ -1,8 +1,8 @@
-import styles from './Profile.module.css'
+import styles from './Profile.module.css';
 import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
-import editIcon from '../../assets/edit_task_icon.svg'
-import deleteAccountIcon from '../../assets/delete_account.svg'
+import editIcon from '../../assets/edit_task_icon.svg';
+import deleteAccountIcon from '../../assets/delete_account.svg';
 import {useHistory} from "react-router-dom";
 import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
@@ -10,7 +10,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {useForm} from "react-hook-form";
 import specialtiesString from "../../helpers/specialtiesString";
 //Firebase imports
-import {getStorage, ref} from "firebase/storage";
+import {ref} from "firebase/storage";
 import {authFirebase, db, storage} from "../../Firebase";
 import {uploadBytes} from "firebase/storage";
 import {deleteObject, getDownloadURL} from "firebase/storage";
@@ -28,7 +28,7 @@ function Profile({setCurrentPage}) {
     const [warningPopup, toggleWarningPopup] = React.useState(false);
 
     const history = useHistory();
-    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+    const {register, formState: {errors}, handleSubmit} = useForm();
     const {user, auth, toggleAuth} = useContext(AuthContext);
 
 
@@ -38,8 +38,8 @@ function Profile({setCurrentPage}) {
         toggleLoading(true);
 
         async function fetchProfilePicture() {
-            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture))
-            setProfilePictureUrl(pictureReference)
+            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture));
+            setProfilePictureUrl(pictureReference);
             toggleLoading(false);
         }
 
@@ -49,9 +49,10 @@ function Profile({setCurrentPage}) {
     // Fetch new profile picture on user profile picture change
     useEffect(() => {
         toggleLoading(true);
+
         async function fetchProfilePicture() {
-            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture))
-            setProfilePictureUrl(pictureReference)
+            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture));
+            setProfilePictureUrl(pictureReference);
             toggleLoading(false);
         }
 
@@ -66,12 +67,11 @@ function Profile({setCurrentPage}) {
             setError({error: true, message: "Alleen afbeeldingen zijn toegestaan"});
         }
         if (data.file[0].size > 4000000) {
-            setError({error: true, message: "De afbeelding mag niet groter zijn dan 4 MB"})
+            setError({error: true, message: "De afbeelding mag niet groter zijn dan 4 MB"});
         }
         try {
             const imageRef = ref(storage, 'profilePictures/' + user.id + "_" + data.file[0].name);
             await uploadBytes(imageRef, data.file[0]);
-
             // Change profile picture url in Firebase user information
             // Create Firestore reference to task document
             const taskRef = doc(db, "users", user.id);
@@ -93,11 +93,10 @@ function Profile({setCurrentPage}) {
                     ...user,
                     profilePicture: 'profilePictures/' + user.id + "_" + data.file[0].name,
                 },
-            })
-
+            });
         } catch (e) {
             console.error(e);
-            setError({error: true, message: "Het uploaden is niet gelukt. Probeer opnieuw"})
+            setError({error: true, message: "Het uploaden is niet gelukt. Probeer opnieuw"});
         }
         toggleLoading(false);
         toggleUploadCard(false);
@@ -126,14 +125,14 @@ function Profile({setCurrentPage}) {
                 setError({
                     error: true,
                     message: "Wegens veiligheidskwesties moet er opnieuw ingelogd worden om dit account te verwijderen"
-                })
+                });
                 toggleWarningPopup(false);
             } else {
                 console.error(e);
                 setError({
                     error: true,
                     message: "Er is iets misgegaan met het verwijderen van het account. Probeer het opnieuw"
-                })
+                });
                 toggleWarningPopup(false);
             }
         }
@@ -149,27 +148,45 @@ function Profile({setCurrentPage}) {
                             <span className={styles["file-upload"]}>
                                 <p className={styles["upload-title"]}>Selecteer een bestand</p>
                                 <form className={styles.form} onSubmit={handleSubmit(handleFileUpload)}>
-                                    <input className={styles["input-file"]}
-                                           type="file" {...register("file", {required: "Selecteer een bestand"})}/>
+                                    <input
+                                        className={styles["input-file"]}
+                                        type="file" {...register("file", {required: "Selecteer een bestand"})}
+                                    />
                                     <div className={styles["buttons-container"]}>
-                                        <button className={styles.button} type="submit">Uploaden</button>
-                                        <button onClick={() => {
-                                            toggleUploadCard(false)
-                                        }} className={styles.button}>Annuleren</button>
+                                        <button
+                                            className={styles.button}
+                                            type="submit">Uploaden
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                toggleUploadCard(false);
+                                            }}
+                                            className={styles.button}>Annuleren
+                                        </button>
                                     </div>
                                     {errors["file"] && <p className={styles.error}>{errors["file"].message}</p>}
                                     {error.error && <span className={styles.error}>{error.message}</span>}
                                     {loading && !error.error && <span>Even geduld...</span>}
                                 </form>
-
                             </span>
                         }
                         {loading && !error ? <span>Profielfoto wordt opgehaald...</span>
-                            :<figure className={styles["profile-picture-container"]}>
-                                <img className={styles.img} src={profilePictureUrl} alt="profiel"/>
-                                <button type="button" onClick={() => {
-                                    toggleUploadCard(true)
-                                }} disabled={uploadCard} className={styles["edit-profile-button"]}>Wijzig
+                            :
+                            <figure className={styles["profile-picture-container"]}>
+                                <img
+                                    className={styles.img}
+                                    src={profilePictureUrl}
+                                    alt="profiel"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        toggleUploadCard(true)
+                                    }}
+                                    disabled={uploadCard}
+                                    className={styles["edit-profile-button"]}
+                                >
+                                    Wijzig
                                 </button>
                             </figure>}
                         <div className={styles["name-container"]}>
@@ -179,10 +196,8 @@ function Profile({setCurrentPage}) {
                     </div>
                     <div className={styles["bottom-section"]}>
                         <p className={styles["profile-details"]}>Email: <span>{user.email}</span></p>
-                        <p className={styles["profile-details"]}>Functie: <span>{user.function.charAt(0).toUpperCase() + user.function.slice(1)}</span>
-                        </p>
-                        <p className={styles["profile-details"]}>Specialiteiten: <span>{specialtiesString(user.specialties)}</span>
-                        </p>
+                        <p className={styles["profile-details"]}>Functie: <span>{user.function.charAt(0).toUpperCase() + user.function.slice(1)}</span></p>
+                        <p className={styles["profile-details"]}>Specialiteiten: <span>{specialtiesString(user.specialties)}</span></p>
                     </div>
                 </section>
                 <figure className={styles["icon-container"]}>
@@ -204,13 +219,13 @@ function Profile({setCurrentPage}) {
                     />
                 </figure>
                 {error.error && <span className={styles.error}>{error.message}</span>}
-
                 {warningPopup &&
                     <WarningPopup
                         text="Deze actie zal uw account en bijbehorende geregistreerde uren definitief verwijderen."
                         toggleWarningPopup={toggleWarningPopup}
                         handleButtonClick={handleDeleteAccountClick}
-                    />}
+                    />
+                }
             </ContentCard>
         </InnerOuterContainer>
     );

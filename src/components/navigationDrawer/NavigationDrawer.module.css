@@ -7,7 +7,7 @@
         4.1 Navigation drawer closed
         4.2 Navigation drawer open
         4.3 Header
-        4.4. Menu list
+        4.4 Menu list
         4.5 Logo bottom
 ////////////////////////*/
 
@@ -36,8 +36,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    /*border: solid red 1px;*/
 }
 
 /* --------------- 4.2 Navigation drawer open ------------------------- */
@@ -56,8 +54,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    /*border: solid red 1px;*/
 }
 
 /* --------------- 4.3 Header ------------------------- */
@@ -71,8 +67,6 @@
     display: flex;
     align-items: flex-end;
     position: relative;
-
-    /*border: solid lightblue 1px;*/
 }
 
 .close-menu {
@@ -83,22 +77,16 @@
 }
 
 .profile-picture-container {
-    margin-right: 20px ;
+    margin-right: 20px;
     width: 85px;
     height: 85px;
     flex-shrink: 0;
-
-    /*border: solid red 1px;*/
 }
 
 .profile-picture {
     width: 100%;
     height: 100%;
     border-radius: 8px;
-}
-
-.details-container {
-    /*border: solid blue 1px;*/
 }
 
 .details-container h1, .details-container p {
@@ -115,7 +103,7 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
 }
 
 
@@ -127,14 +115,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /*border: solid purple 2px;*/
 }
 
 /* --------------- 4.5 Logo bottom ------------------------- */
 
 .SVD-logo-container {
     padding: 0 0 10px 25px;
-    /*border: solid yellow 1px;*/
 }
 
 .SVD-logo-container img {
@@ -157,7 +143,5 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
-        /*border: solid red 1px;*/
     }
 }

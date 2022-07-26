@@ -7,11 +7,8 @@
         3.2 Other
     4. Areas
         4.1 Title
-        4.2 Add managers card
-        4.3 Work
-        4.4 Services
-        4.5 Contact
-        4.6 Footer
+        4.2 Volunteers table
+        4.3 Add manager card
     5. Media Queries
 ////////////////////////*/
 /* ------------------------------- 1. Global Styles -------------------------------- */
@@ -27,50 +24,12 @@
     margin: 20px 0 5px 0;
 }
 
-/* --------------- 4.2 Ad managers card ------------------- */
+/* --------------- 4.2 Volunteers table ------------------- */
 
-.form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.icon-container {
-    margin-top: 20px;
-    min-width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    /*border: solid red 1px;*/
-}
-
-.error {
-    /*text-align: center;*/
-    color: red;
-}
-
-.loading {
-    /*text-align: center;*/
-    align-self: center;
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*transform: translate(-50%, -50%);*/
-    /*border: solid red 1px;*/
-}
-/* --------------- 4.3 Work --------------------------- */
-/* --------------- 4.4 Services------------------------ */
-/* --------------- 4.5 Contact ------------------------ */
-/* --------------- 4.6 Footer ------------------------- */
-/* ------------------------------- 5. Media Queries -------------------------------- */
-
-.table{
+.table {
     border-collapse: collapse;
     width: 100%;
     max-width: 500px;
-    /*border: solid purple 1px;*/
 }
 
 .thead {
@@ -78,13 +37,10 @@
     top: 0;
     vertical-align: bottom;
     height: 30px;
-
     background-color: white;
-    /*border: solid green 1px;*/
 }
 
 .td {
-    /*border: 1px solid #dddddd;*/
     border-bottom: solid red 1px;
     text-align: left;
     padding: 3px;
@@ -100,3 +56,30 @@
     font-size: 12px;
     color: red;
 }
+
+/* --------------- 4.3 Ad managers card ------------------- */
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-container {
+    margin-top: 20px;
+    min-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error {
+    color: red;
+}
+
+.loading {
+    align-self: center;
+}
+
+/* ------------------------------- 5. Media Queries -------------------------------- */

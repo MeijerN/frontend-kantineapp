@@ -1,4 +1,4 @@
-import styles from './AddTask.module.css'
+import styles from './AddTask.module.css';
 import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import {useHistory} from "react-router-dom";
@@ -9,10 +9,11 @@ import InnerOuterContainer from "../../components/innerOuterContainer/innerOuter
 import SelectElement from "../../components/selectElement/SelectElement";
 import {useForm} from 'react-hook-form';
 import {AuthContext} from "../../context/AuthContext";
+import priorityOptions from "../../helpers/priorityOptions";
 // Firestore imports
 import {addDoc} from "firebase/firestore";
 import {collection, query, where, getDocs} from "firebase/firestore";
-import {db} from '../../Firebase'
+import {db} from '../../Firebase';
 import sortOnFirstName from "../../helpers/sortOnFirstName";
 
 function AddTask({setCurrentPage}) {
@@ -22,7 +23,7 @@ function AddTask({setCurrentPage}) {
     const [error, toggleError] = React.useState(false);
 
     const history = useHistory();
-    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+    const {register, reset, formState: {errors}, control, handleSubmit} = useForm();
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
@@ -46,7 +47,7 @@ function AddTask({setCurrentPage}) {
                             id: doc.data().id,
                         },
                     })
-                })
+                });
                 sortOnFirstName(volunteersArray);
                 setVolunteers([...volunteers, ...volunteersArray]);
             } catch (e) {
@@ -63,7 +64,7 @@ function AddTask({setCurrentPage}) {
         try {
             const volunteersId = data.volunteers.map((volunteer) => {
                 return volunteer.id
-            })
+            });
             // Create new firebase document with task information
             await addDoc(collection(db, "tasks"), {
                 title: data.title,
@@ -83,7 +84,6 @@ function AddTask({setCurrentPage}) {
         history.push("/openstaande-taken")
     }
 
-    // console.log("volunteers:", volunteers[0])
     return (
         <InnerOuterContainer>
             <ContentCard stylingClass="add-task">
@@ -97,9 +97,9 @@ function AddTask({setCurrentPage}) {
                             {...register("title", {
                                 required: "Vul de titel in",
                                 maxLength: {
-                                value: 40,
-                                message: "Titel mag maximaal 40 karakters bevatten",
-                            },
+                                    value: 40,
+                                    message: "Titel mag maximaal 40 karakters bevatten",
+                                },
                             })}
                         />
                     </label>
@@ -122,36 +122,13 @@ function AddTask({setCurrentPage}) {
                     </label>
                     <SelectElement
                         name="priority"
-                        options={[
-                            {
-                                label: "Lage prioriteit",
-                                value: {
-                                    label: "Lage prioriteit",
-                                    value: "laag",
-                                },
-                            },
-                            {
-                                label: "Gemiddelde prioriteit",
-                                value: {
-                                    label: "Gemiddelde prioriteit",
-                                    value: "middel",
-                                },
-                            },
-                            {
-                                label: "Hoge prioriteit",
-                                value: {
-                                    label: "Hoge prioriteit",
-                                    value: "hoog",
-                                },
-                            },
-                        ]}
+                        options={priorityOptions()}
                         controller={control}
                         stylingClass="select"
                         isMulti={false}
                         placeholder="Selecteer prioriteit"
                         errorMessage="Selecteer een prioriteit"
                     />
-
                     <SelectElement
                         name="volunteers"
                         options={volunteers}
@@ -170,13 +147,17 @@ function AddTask({setCurrentPage}) {
                     {errors["description"] && <p className={styles.error}>{errors["description"].message}</p>}
                     {errors["priority"] && <p className={styles.error}>{errors["priority"].message}</p>}
                     {errors["volunteers"] && <p className={styles.error}>{errors["volunteers"].message}</p>}
-                    {error && <span
-                        className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
+                    {error && <span className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
                 </form>
             </ContentCard>
-            <img onClick={() => {
-                history.goBack()
-            }} className={styles["back-icon"]} src={backIcon} alt="back"/>
+            <img
+                onClick={() => {
+                    history.goBack()
+                }}
+                className={styles["back-icon"]}
+                src={backIcon}
+                alt="back"
+            />
         </InnerOuterContainer>
     );
 }

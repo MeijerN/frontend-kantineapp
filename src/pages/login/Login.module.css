@@ -29,8 +29,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /*border: solid green 2px;*/
 }
 
 /* ------------------------------- 4. Areas ---------------------------------------- */
@@ -40,8 +38,6 @@
 .h1 {
     font-weight: 800;
     font-size: 48px;
-
-    /*border: solid pink 2px;*/
 }
 
 /* --------------- 4.2 Login form ------------------------- */
@@ -60,15 +56,12 @@
     align-items: center;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.62);
-
-    /*border: solid blue 2px;*/
 }
 
 .form {
     display: flex;
     flex-direction: column;
     min-width: 100%;
-    /*border: solid purple 2px;*/
 }
 
 .login-registration {
@@ -90,8 +83,6 @@
     font-size: 14px;
     font-weight: 300;
     color: hsl(0, 0%, 90%);
-
-    /*border: solid red 1px;*/
 }
 
 .p a {
@@ -119,11 +110,9 @@
         justify-content: flex-start;
         align-items: center;
         min-height: 100vh;
-
-        /*border: solid green 2px;*/
     }
 }
 
-    .h1 {
-        font-size: 48px;
-    }
+.h1 {
+    font-size: 48px;
+}

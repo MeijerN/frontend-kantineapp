@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 function PrivateRoute({isAuth, children, ...rest}) {
     return (
         <Route {...rest}>
-            {isAuth === true ? children : <Redirect to="/"/> }
+            {isAuth === true ? children : <Redirect to="/"/>}
         </Route>
     );
 }

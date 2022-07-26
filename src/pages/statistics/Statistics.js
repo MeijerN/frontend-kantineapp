@@ -1,13 +1,9 @@
-import styles from './Statistics.module.css'
+import styles from './Statistics.module.css';
 import React, {useContext, useEffect} from 'react';
 import Task from "../../components/task/Task";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import ContentCard from "../../components/contentCard/ContentCard";
 import {AuthContext} from "../../context/AuthContext";
-import Icon from "../../components/icon/Icon";
-import taskDoneIcon from "../../assets/task_done_icon.svg";
-import editIcon from "../../assets/edit_task_icon.svg";
-import deleteTaskIcon from "../../assets/delete_task_icon.svg"
 import sortOnFirstName from "../../helpers/sortOnFirstName";
 import createTaskDate from "../../helpers/createTaskDate";
 import calculateHours from "../../helpers/calculateHours";
@@ -51,7 +47,7 @@ function Statistics({setCurrentPage}) {
                             lastName: doc.data().lastName,
                             totalTime: doc.data().totalTime,
                             id: doc.data().id,
-                        })
+                        });
                     });
                     sortOnFirstName(volunteersArray);
 
@@ -66,7 +62,7 @@ function Statistics({setCurrentPage}) {
                         let monthlyTimeAllVolunteers = 0;
                         querySnapshot.forEach((doc) => {
                             monthlyTimeAllVolunteers += Math.floor((doc.data().logoutTime - doc.data().loginTime));
-                        })
+                        });
                         volunteersWithHours.push({...volunteersArray[i], monthlyHours: monthlyTimeAllVolunteers});
                     }
                     setVolunteers(volunteersWithHours);
@@ -80,7 +76,7 @@ function Statistics({setCurrentPage}) {
                     let monthlyTimeVolunteer = 0;
                     querySnapshot.forEach((doc) => {
                         monthlyTimeVolunteer += Math.floor((doc.data().logoutTime - doc.data().loginTime));
-                    })
+                    });
                     setMonthlyHours(monthlyTimeVolunteer)
                 }
             } catch (e) {
@@ -100,8 +96,8 @@ function Statistics({setCurrentPage}) {
                     const querySnapshot = await getDocs(q);
                     querySnapshot.forEach((doc) => {
                         tasksArray.push(doc.data());
-                    })
-                    setTasks([...tasks, ...tasksArray])
+                    });
+                    setTasks([...tasks, ...tasksArray]);
                 } else {
                     //Create a query for fetching tasks for signed in user only
                     const q = query(collection(db, "tasks"), where("completedById", "==", user.id));
@@ -109,7 +105,7 @@ function Statistics({setCurrentPage}) {
                     const querySnapshot = await getDocs(q);
                     querySnapshot.forEach((doc) => {
                         tasksArray.push(doc.data());
-                    })
+                    });
                 }
                 setTasks([...tasks, ...tasksArray]);
             } catch (e) {
@@ -128,9 +124,7 @@ function Statistics({setCurrentPage}) {
             <section className={styles["section-top"]}>
                 <div className={styles["title-sort"]}>
                     {user.function === "manager" &&
-                        <>
-                            <h3 className={styles.h3}>Urenoverzicht</h3>
-                        </>
+                        <h3 className={styles.h3}>Urenoverzicht</h3>
                     }
                     {user.function === "vrijwilliger" &&
                         <h3 className={styles.h3}>Maandelijks urenoverzicht</h3>
@@ -159,12 +153,11 @@ function Statistics({setCurrentPage}) {
                                                 <td className={styles.td}>{calculateHours(volunteer.monthlyHours)} u {calculateMinutes(volunteer.monthlyHours)} m</td>
                                                 <td className={styles.td}>{calculateHours(volunteer.totalTime)} u {calculateMinutes(volunteer.totalTime)} m</td>
                                             </tr>
-                                        )
+                                        );
                                     })
                                 }
                                 </tbody>
                             </table>}
-
                     </ContentCard>
                 }
                 {user.function === "vrijwilliger" &&
@@ -173,8 +166,9 @@ function Statistics({setCurrentPage}) {
                             :
                             <p className={styles.p}>Je geregisteerde tijd voor deze maand is: <span
                                 className={styles.time}>{calculateHours(monthlyHours)} uur</span> en <span
-                                className={styles.time}>{calculateMinutes(monthlyHours)} minuten</span></p>}
-
+                                className={styles.time}>{calculateMinutes(monthlyHours)} minuten</span>
+                            </p>
+                        }
                     </ContentCard>
                 }
             </section>
@@ -182,29 +176,28 @@ function Statistics({setCurrentPage}) {
                 <div className={styles["title-sort"]}>
                     <h3 className={styles.h3}>Voltooide taken</h3>
                     <figure onClick={() => {
-                        toggleSortCard(true)
+                        toggleSortCard(true);
                     }} className={styles.sort}/>
                     <SortPopup
                         sortCard={sortCard}
                         toggleSortCard={toggleSortCard}
                         tasks={tasks}
-                        children={<button
-                            onClick={() => {
-                                toggleSortCard(false);
-                                sortOnCompletedDate(tasks)
-                            }}
-                            className="styles.button"
-                        >
-                            Datum volt.
-                        </button>}
+                        children={
+                            <button
+                                onClick={() => {
+                                    toggleSortCard(false);
+                                    sortOnCompletedDate(tasks);
+                                }}
+                                className="styles.button"
+                            >
+                                Datum volt.
+                            </button>}
                     />
                 </div>
-
                 <ContentCard stylingClass="tasks">
                     {loading && !error && <span>Gegevens worden opgehaald...</span>}
                     {tasks.length === 0 && !loading && !error && <span>Er zijn geen voltooide taken</span>}
-                    {error &&
-                        <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
+                    {error && <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
                     {user.function === "manager" && tasks.length > 0 && !loading &&
                         tasks.map((task) => {
                             return (
@@ -215,7 +208,7 @@ function Statistics({setCurrentPage}) {
                                     completedBy={task.completedBy}
                                     key={task.createdOn}
                                 />
-                            )
+                            );
                         })
                     }
                     {user.function === "vrijwilliger" && tasks.length > 0 && !loading &&
@@ -227,7 +220,7 @@ function Statistics({setCurrentPage}) {
                                     title={task.title}
                                     key={task.createdOn}
                                 />
-                            )
+                            );
                         })
                     }
                 </ContentCard>

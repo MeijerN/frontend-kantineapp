@@ -1,9 +1,8 @@
 import React, {useContext} from "react";
 import './App.css';
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import {AuthContext} from "./context/AuthContext";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
-
 // Import pages
 import LoginPage from './pages/login/Login';
 import RegisterPage from './pages/register/Register';
@@ -102,9 +101,3 @@ function App() {
 }
 
 export default App;
-
-//WAAR WAS IK GEBLEVEN?
-//TODO: Elke bestand nalopen en borders weghalen en formateren --> Imports scheiden, en elementen onder elkaar zetten. Kijk hierbij ook naar eslint in de console voor controle
-
-//WINDOWS: set HTTPS=true&&set SSL_CRT_FILE=cert.pem&&set SSL_KEY_FILE=key.pem&&react-scripts start
-//MAC: xport HTTPS=true&&SSL_CRT_FILE=cert.pem&&SSL_KEY_FILE=key.pem react-scripts start

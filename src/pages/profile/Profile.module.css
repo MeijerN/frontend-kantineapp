@@ -24,16 +24,12 @@
 
     display: flex;
     flex-direction: column;
-
-    /*border: solid lightseagreen 2px;*/
 }
 
 .top-section {
     flex-basis: 60%;
     display: flex;
     justify-content: space-around;
-
-    /*border: solid #e80000 2px;*/
 }
 
 .profile-picture-container {
@@ -43,7 +39,6 @@
     align-items: center;
     flex-basis: 40%;
     max-width: 200px;
-    /*border: solid red 1px;*/
 }
 
 .img {
@@ -57,10 +52,9 @@
     padding: 2px;
     border-radius: 2px;
     border-width: 1px;
-    /*border: solid blue 1px;*/
 }
 
-.name-container{
+.name-container {
     flex-basis: 60%;
     max-width: 200px;
     padding: 5px;
@@ -68,8 +62,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    /*border: solid purple 1px;*/
 }
 
 .name {
@@ -90,8 +82,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
-    /*border: solid #1c5d0e 2px;*/
 }
 
 .h3 {
@@ -106,8 +96,6 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
-    /*border: solid blue 1px;*/
 }
 
 /* ------------------------------- 4.2 File upload card -------------------------------- */
@@ -153,7 +141,6 @@
 
 .button {
     padding: 2px;
-    /*margin-top: 20px;*/
 }
 
 .error {

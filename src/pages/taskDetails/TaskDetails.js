@@ -1,13 +1,13 @@
-import styles from './TaskDetails.module.css'
+import styles from './TaskDetails.module.css';
 import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
-import editIcon from '../../assets/edit_task_icon.svg'
+import editIcon from '../../assets/edit_task_icon.svg';
 import {useHistory, useParams} from "react-router-dom";
 import backIcon from "../../assets/back_icon.svg";
 import Icon from "../../components/icon/Icon";
-import taskDoneIcon from '../../assets/task_done_icon.svg'
-import deleteTaskIcon from '../../assets/delete_task_icon.svg'
-import acceptTaskIcon from '../../assets/accept_task_icon.svg'
+import taskDoneIcon from '../../assets/task_done_icon.svg';
+import deleteTaskIcon from '../../assets/delete_task_icon.svg';
+import acceptTaskIcon from '../../assets/accept_task_icon.svg';
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import assignedVolunteerString from "../../helpers/assignedVolunteerString";
 import WarningPopup from "../../components/warningPopup/WarningPopup";
@@ -69,7 +69,7 @@ function TaskDetails({setCurrentPage}) {
             setTasks({
                 ...tasks,
                 status: "In behandeling",
-            })
+            });
         } catch (e) {
             console.log(e);
             toggleError(true);
@@ -108,7 +108,7 @@ function TaskDetails({setCurrentPage}) {
             toggleError(true);
         }
         toggleLoading(false);
-        history.push("/openstaande-taken")
+        history.push("/openstaande-taken");
     }
 
     return (
@@ -117,25 +117,22 @@ function TaskDetails({setCurrentPage}) {
                 {loading && !error ? <span className={styles.loading}>De gegevens worden opgehaald...</span>
                     :
                     <>
-                        <p className={styles.status}><span className={styles["dot-low"]}/> {tasks.status}</p>
+                        <p className={styles.status}>{tasks.status}</p>
                         <h3>{tasks.title}</h3>
                         <label htmlFor="textarea-task-details" className={styles["label-textarea-task-details"]}>
                             Beschrijving:
-                            <p className={styles["textarea-task-details"]}>
-                                {tasks.description}
-                            </p>
+                            <p className={styles["textarea-task-details"]}>{tasks.description}</p>
                         </label>
-
                         <p className={styles.p}>Prioriteit: <span>{tasks.priority.value}</span></p>
                         <label htmlFor="task-owners-table" className={styles["label-task-owners-table"]}>
                             Aangewezen vrijwilligers:
-                            <p className={styles["assigned-users"]}>
+                            <p
+                                className={styles["assigned-users"]}
+                            >
                                 {Object.keys(tasks).length > 0 &&
-                                    assignedVolunteerString(tasks.assignedVolunteers, user)
-                                }
+                                    assignedVolunteerString(tasks.assignedVolunteers, user)}
                             </p>
                         </label>
-
                         <div className={styles["icon-container"]}>
                             {user.function === "vrijwilliger" && tasks.status === "In afwachting" &&
                                 <Icon
@@ -183,9 +180,14 @@ function TaskDetails({setCurrentPage}) {
                 }
                 {error && <span className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
             </ContentCard>
-            <img onClick={() => {
-                history.goBack()
-            }} className={styles["back-icon"]} src={backIcon} alt="back"/>
+            <img
+                onClick={() => {
+                    history.goBack()
+                }}
+                className={styles["back-icon"]}
+                src={backIcon}
+                alt="back"
+            />
             {warningPopup &&
                 <WarningPopup
                     text="Deze actie zal de taak definitief verwijderen."

@@ -1,8 +1,7 @@
-import styles from './Personnel.module.css'
+import styles from './Personnel.module.css';
 import React, {useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
-import Select from "react-select";
 import SelectElement from "../../components/selectElement/SelectElement";
 import Icon from "../../components/icon/Icon";
 import saveIcon from "../../assets/save_task_icon.svg";
@@ -20,12 +19,13 @@ function Personnel({setCurrentPage}) {
     const [error, toggleError] = React.useState(false);
     const [loading, toggleLoading] = React.useState(false);
 
-    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+    const {formState: {errors}, control, handleSubmit} = useForm();
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
-        setCurrentPage("Personeel")
+        setCurrentPage("Personeel");
         toggleLoading(true);
+
         async function fetchVolunteers() {
             try {
                 const volunteersArray = [];
@@ -42,7 +42,7 @@ function Personnel({setCurrentPage}) {
                             id: doc.data().id,
                             specialties: doc.data().specialties,
                         },
-                    })
+                    });
                 })
                 sortOnFirstName(volunteersArray);
                 setVolunteers([...volunteers, ...volunteersArray]);
@@ -86,28 +86,27 @@ function Personnel({setCurrentPage}) {
                 {loading && !error ? <span>Gegevens worden opgehaald...</span>
                     :
                     <table className={styles.table}>
-                    <thead className={styles.thead}>
-                    <tr>
-                        <th className={styles.th}>Voornaam</th>
-                        <th className={styles.th}>Achternaam</th>
-                        <th className={styles.th}>Specialiteiten</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {volunteers.length > 0 &&
-                        volunteers.map((volunteer) => {
-                            return (
-                                <tr key={volunteer.value.id}>
-                                    <td className={styles.td}>{volunteer.value.firstName}</td>
-                                    <td className={styles.td}>{volunteer.value.lastName}</td>
-                                    <td className={styles.td}>{specialtiesString(volunteer.value.specialties)}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                    </tbody>
-                </table>}
-
+                        <thead className={styles.thead}>
+                        <tr>
+                            <th className={styles.th}>Voornaam</th>
+                            <th className={styles.th}>Achternaam</th>
+                            <th className={styles.th}>Specialiteiten</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volunteers.length > 0 &&
+                            volunteers.map((volunteer) => {
+                                return (
+                                    <tr key={volunteer.value.id}>
+                                        <td className={styles.td}>{volunteer.value.firstName}</td>
+                                        <td className={styles.td}>{volunteer.value.lastName}</td>
+                                        <td className={styles.td}>{specialtiesString(volunteer.value.specialties)}</td>
+                                    </tr>
+                                );
+                            })
+                        }
+                        </tbody>
+                    </table>}
             </ContentCard>
             <h3 className={styles.h3}>Manager toevoegen</h3>
             <ContentCard stylingClass="personnel">
@@ -133,8 +132,7 @@ function Personnel({setCurrentPage}) {
                     }
                     {errors["volunteers"] && <p className={styles.error}>{errors["volunteers"].message}</p>}
                 </form>
-                {error && <span
-                    className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
+                {error && <span className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
             </ContentCard>
         </InnerOuterContainer>
     );

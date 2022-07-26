@@ -1,4 +1,4 @@
-import styles from './NavigationDrawerItem.module.css'
+import styles from './NavigationDrawerItem.module.css';
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
@@ -16,6 +16,6 @@ function NavigationDrawerItem({text, path, onClick}) {
             /NavLink>
         </li>
     );
-};
+}
 
 export default NavigationDrawerItem;

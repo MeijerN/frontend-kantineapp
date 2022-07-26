@@ -1,17 +1,12 @@
 import React, {useContext} from 'react';
 import styles from './Register.module.css';
-import SubmitButton from '../../components/submitButton/SubmitButton'
-import {Link, useHistory} from "react-router-dom";
+import SubmitButton from '../../components/submitButton/SubmitButton';
+import {useHistory} from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import {AuthContext} from "../../context/AuthContext";
 // Firebase imports
 import {authFirebase} from "../../Firebase";
 import {createUserWithEmailAndPassword} from "firebase/auth";
-import {db} from '../../Firebase'
-import {doc, setDoc} from "firebase/firestore";
-import SelectElement from "../../components/selectElement/SelectElement";
-import Select from "react-select";
-
 
 function RegisterPage() {
 

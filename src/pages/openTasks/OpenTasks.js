@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react';
 import styles from './OpenTasks.module.css';
-import Task from '../../components/task/Task'
+import Task from '../../components/task/Task';
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import ContentCard from "../../components/contentCard/ContentCard";
 import {useHistory} from "react-router-dom";
@@ -11,7 +11,6 @@ import SortPopup from "../../components/sortPopup/SortPopup";
 //Firebase imports
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../Firebase";
-import task from "../../components/task/Task";
 
 function OpenTasksPage({setCurrentPage}) {
 
@@ -52,7 +51,7 @@ function OpenTasksPage({setCurrentPage}) {
                         if (!doc.data().status.includes("Voltooid")) {
                             tasksArray.push(doc.data());
                         }
-                    })
+                    });
                 }
                 // Sort standard on priority
                 sortOnPriority(tasksArray);
@@ -71,9 +70,12 @@ function OpenTasksPage({setCurrentPage}) {
         <InnerOuterContainer>
             <div className={styles["title-sort"]}>
                 <h3 className={styles.h3}>Takenlijst</h3>
-                <figure onClick={() => {
-                    toggleSortCard(true)
-                }} className={styles.sort}/>
+                <figure
+                    onClick={() => {
+                        toggleSortCard(true);
+                    }}
+                    className={styles.sort}
+                />
                 <SortPopup
                     sortCard={sortCard}
                     toggleSortCard={toggleSortCard}
@@ -81,13 +83,11 @@ function OpenTasksPage({setCurrentPage}) {
                 />
             </div>
             <ContentCard stylingClass="tasks">
-                {error &&
-                    <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
+                {error && <span className={styles.error}>Oeps, er ging iets mis met het ophalen van de taken. Probeer het opnieuw</span>}
                 {loading && <span>Taken binnenhalen...</span>}
                 {tasks.length === 0 && !error && !loading && <span>Er zijn geen taken toegewezen</span>}
                 {tasks.length !== 0 &&
                     tasks.map((task) => {
-
                         return (
                             <Task
                                 prio={task.priority.value}
@@ -99,13 +99,15 @@ function OpenTasksPage({setCurrentPage}) {
                                 }}
                                 key={task.createdOn}
                             />
-                        )
+                        );
                     })
                 }
                 {user.function === "manager" &&
                     <div className={styles["add-button-container"]}>
                         <button
-                            onClick={() => {history.push("/openstaande-taken/toevoegen")}}
+                            onClick={() => {
+                                history.push("/openstaande-taken/toevoegen")
+                            }}
                             className={styles["add-button"]}
                         />
                     </div>

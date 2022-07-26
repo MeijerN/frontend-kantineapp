@@ -1,7 +1,7 @@
 import styles from './SelectElement.module.css'
 import React from 'react';
 import Select from "react-select";
-import {Controller, useForm} from "react-hook-form";
+import {Controller} from "react-hook-form";
 
 function SelectElement({defaultValues, stylingClass, name, options, placeholder, isMulti, controller, errorMessage}) {
 
@@ -15,7 +15,7 @@ function SelectElement({defaultValues, stylingClass, name, options, placeholder,
         let filteredOptions = [];
         options.map((option) => {
             if (!currentValues.includes(option.label)) {
-                filteredOptions.push(option)
+                filteredOptions.push(option);
             }
         })
         return filteredOptions;

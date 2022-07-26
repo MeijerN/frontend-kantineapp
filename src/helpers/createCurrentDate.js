@@ -5,7 +5,7 @@ function createCurrentDate() {
         month: 'long',
         day: 'numeric',
     };
-    return new Date().toLocaleDateString('nl-NL', shortOptions)
+    return new Date().toLocaleDateString('nl-NL', shortOptions);
 }
 
 export default createCurrentDate;

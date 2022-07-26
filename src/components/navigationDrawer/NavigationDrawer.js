@@ -18,18 +18,18 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
 
     useEffect(() => {
         async function fetchProfilePicture() {
-            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture))
-            setProfilePictureUrl(pictureReference)
+            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture));
+            setProfilePictureUrl(pictureReference);
         }
 
-        fetchProfilePicture()
+        fetchProfilePicture();
     }, [])
 
     // Fetch new profile picture on user profile picture change
     useEffect(() => {
         async function fetchProfilePicture() {
-            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture))
-            setProfilePictureUrl(pictureReference)
+            const pictureReference = await getDownloadURL(ref(storage, user.profilePicture));
+            setProfilePictureUrl(pictureReference);
         }
 
         fetchProfilePicture()
@@ -51,8 +51,11 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                     onClick={closeNav}
                 />
                 <figure className={styles["profile-picture-container"]}>
-                    <img className={styles["profile-picture"]} src={profilePictureUrl} alt="profile"/>
-
+                    <img
+                        className={styles["profile-picture"]}
+                        src={profilePictureUrl}
+                        alt="profile"
+                    />
                 </figure>
                 <div className={styles["details-container"]}>
                     <h1>{user.firstName}</h1>
@@ -64,29 +67,39 @@ function NavigationDrawer({navDrawer, toggleNavDrawer}) {
                 <NavigationDrawerItem
                     text="Openstaande taken"
                     path="/openstaande-taken"
-                    onClick={() => {toggleNavDrawer(false)}}
+                    onClick={() => {
+                        toggleNavDrawer(false);
+                    }}
                 />
                 {user.function === "manager" ?
                     <NavigationDrawerItem
                         text="Personeel"
                         path="/personeel"
-                        onClick={() => {toggleNavDrawer(false)}}
+                        onClick={() => {
+                            toggleNavDrawer(false);
+                        }}
                     /> :
                     <NavigationDrawerItem
                         text="Urenregistratie"
                         path="/urenregistratie"
-                        onClick={() => {toggleNavDrawer(false)}}
+                        onClick={() => {
+                            toggleNavDrawer(false);
+                        }}
                     />
                 }
                 <NavigationDrawerItem
                     text="Statistieken"
                     path="/statistieken"
-                    onClick={() => {toggleNavDrawer(false)}}
+                    onClick={() => {
+                        toggleNavDrawer(false)
+                    }}
                 />
                 <NavigationDrawerItem
                     text="Profiel"
                     path="/profiel"
-                    onClick={() => {toggleNavDrawer(false)}}
+                    onClick={() => {
+                        toggleNavDrawer(false)
+                    }}
                 />
                 <NavigationDrawerItem
                     text="Uitloggen"

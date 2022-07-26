@@ -1,15 +1,14 @@
 import React from 'react';
-import styles from './Task.module.css'
+import styles from './Task.module.css';
 
 function Task({prio, date, status, title, completedBy, ...rest}) {
 
     // Dynamically switch between cursor pointer (open task) and no pointer (completed task)
     let styling = "";
     if (status.includes("Voltooid")) {
-        styling =  "completed-task";
-    }
-    else {
-        styling =  "task";
+        styling = "completed-task";
+    } else {
+        styling = "task";
     }
 
     return (
@@ -21,6 +20,6 @@ function Task({prio, date, status, title, completedBy, ...rest}) {
             {completedBy && <p className={styles["completed-by"]}>Voltooid door: {completedBy}</p>}
         </div>
     );
-};
+}
 
 export default Task;

@@ -1,7 +1,6 @@
 import styles from './EditProfile.module.css';
 import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
-import Select from 'react-select';
 import {useHistory} from "react-router-dom";
 import saveIcon from '../../assets/save_task_icon.svg';
 import backIcon from '../../assets/back_icon.svg';
@@ -10,7 +9,8 @@ import InnerOuterContainer from "../../components/innerOuterContainer/innerOuter
 import SelectElement from "../../components/selectElement/SelectElement";
 import {useForm} from "react-hook-form";
 import {AuthContext} from "../../context/AuthContext";
-
+import specialtiesOptions from "../../helpers/specialtiesOptions";
+// Firebase imports
 import {doc, updateDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
 import {updateEmail} from "firebase/auth";
@@ -22,7 +22,7 @@ function EditProfile({setCurrentPage}) {
     const [error, toggleError] = React.useState(false);
 
     const history = useHistory();
-    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
+    const {register, formState: {errors}, control, handleSubmit} = useForm();
     const {user, auth, toggleAuth} = useContext(AuthContext);
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function EditProfile({setCurrentPage}) {
                 } else {
                     specialtiesArray.push(specialty)
                 }
-            })
+            });
             // Create Firestore reference to user details document
             const taskRef = doc(db, "users", user.id);
             // Update Firestore user details document
@@ -64,8 +64,8 @@ function EditProfile({setCurrentPage}) {
                     email: data.email,
                     specialties: specialtiesArray,
                 },
-            })
-            history.push("/profiel")
+            });
+            history.push("/profiel");
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -108,18 +108,9 @@ function EditProfile({setCurrentPage}) {
                         })}
                         defaultValue={user.email}
                     />
-
                     <SelectElement
                         name="specialties"
-                        options={[
-                            {value: 'sanitair', label: 'Sanitair'},
-                            {value: 'elektra', label: 'Elektra'},
-                            {value: 'schilderwerk', label: 'Schilderwerk'},
-                            {value: 'bouwen', label: 'Bouwen'},
-                            {value: 'dakwerk', label: 'Dakwerk'},
-                            {value: 'slopen', label: 'Slopen'},
-                            {value: 'tuin', label: 'Tuin'},
-                        ]}
+                        options={specialtiesOptions()}
                         controller={control}
                         isMulti={true}
                         placeholder="Selecteer specialisaties"
@@ -132,7 +123,7 @@ function EditProfile({setCurrentPage}) {
                                         label: specialty,
                                         value: specialty,
                                     }
-                                )
+                                );
                             })}
                     />
                     <div className={styles["icon-container"]}>
@@ -145,13 +136,17 @@ function EditProfile({setCurrentPage}) {
                     {errors["last-name"] && <p className={styles.error}>{errors["last-name"].message}</p>}
                     {errors.email && <p className={styles.error}>{errors.email.message}</p>}
                     {errors["specialties"] && <p className={styles.error}>{errors["specialties"].message}</p>}
-                    {error && <span
-                        className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
+                    {error && <span className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
                 </form>
             </ContentCard>
-            <img onClick={() => {
-                history.goBack()
-            }} className={styles["back-icon"]} src={backIcon} alt="back"/>
+            <img
+                onClick={() => {
+                    history.goBack()
+                }}
+                className={styles["back-icon"]}
+                src={backIcon}
+                alt="back"
+            />
         </InnerOuterContainer>
     );
 }

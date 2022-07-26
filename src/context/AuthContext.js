@@ -1,13 +1,12 @@
 import React, {createContext, useEffect, useState} from 'react';
-import styles from './AuthContext.module.css'
+import styles from './AuthContext.module.css';
 // Firebase imports
 import {doc, setDoc, getDoc} from "firebase/firestore";
-import {authFirebase, db, storage} from "../Firebase";
+import {authFirebase, db} from "../Firebase";
 import {deleteUser, onAuthStateChanged, signOut} from "firebase/auth";
 import {useHistory} from "react-router-dom";
-import {getDownloadURL} from "@firebase/storage";
-import {ref} from "firebase/storage";
 
+// Create context
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
@@ -25,7 +24,6 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(authFirebase, (user) => {
             if (user) {
-
                 async function getUserInformation() {
                     try {
                         const docRef = doc(db, "users", user.uid);
@@ -47,22 +45,23 @@ function AuthContextProvider({children}) {
                                     profilePicture: userInformation.profilePicture,
                                 },
                                 status: 'done',
-                            })
+                            });
 
                         } else {
                             toggleAuth({
                                 ...auth,
                                 status: "error",
-                            })
+                            });
                         }
                     } catch (e) {
                         console.error(e);
                         toggleAuth({
                             ...auth,
                             status: "error",
-                        })
+                        });
                     }
                 }
+
                 getUserInformation();
             } else {
                 // No user was logged in or user just logged out
@@ -109,7 +108,7 @@ function AuthContextProvider({children}) {
                     profilePicture: "profilePictures/default_profile_picture.jpeg",
                 },
                 status: 'done',
-            })
+            });
             history.push("/openstaande-taken");
         } catch (e) {
             console.error(e);
@@ -118,7 +117,7 @@ function AuthContextProvider({children}) {
             toggleAuth({
                 ...auth,
                 status: "error",
-            })
+            });
         }
     }
 
@@ -131,7 +130,7 @@ function AuthContextProvider({children}) {
             toggleAuth({
                 ...auth,
                 status: "error",
-            })
+            });
         }
     }
 

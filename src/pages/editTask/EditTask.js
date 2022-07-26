@@ -1,4 +1,4 @@
-import styles from './EditTask.module.css'
+import styles from './EditTask.module.css';
 import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import {useHistory, useParams} from "react-router-dom";
@@ -8,9 +8,9 @@ import Icon from "../../components/icon/Icon";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
 import SelectElement from "../../components/selectElement/SelectElement";
 import {useForm} from 'react-hook-form';
-import {AuthContext} from "../../context/AuthContext";
+import priorityOptions from "../../helpers/priorityOptions";
 // Firestore imports
-import {addDoc, doc, updateDoc} from "firebase/firestore";
+import {doc, updateDoc} from "firebase/firestore";
 import {collection, query, where, getDocs} from "firebase/firestore";
 import {db} from '../../Firebase'
 
@@ -25,8 +25,7 @@ function EditTask({setCurrentPage}) {
 
 
     const history = useHistory();
-    const {register, reset, formState: {errors}, watch, control, handleSubmit} = useForm();
-    const {user} = useContext(AuthContext);
+    const {register, reset, formState: {errors}, control, handleSubmit} = useForm();
     const {title} = useParams();
 
 
@@ -50,8 +49,8 @@ function EditTask({setCurrentPage}) {
                             lastName: doc.data().lastName,
                             id: doc.data().id,
                         },
-                    })
-                })
+                    });
+                });
                 setVolunteers([...volunteers, ...volunteersArray]);
             } catch (e) {
                 console.error(e);
@@ -61,7 +60,6 @@ function EditTask({setCurrentPage}) {
 
         async function fetchTaskDetails() {
             try {
-
                 // Create a query to fetch task details on uniqe createdOn timestamp
                 const q = query(collection(db, "tasks"), where("title", "==", title));
                 // Execute query
@@ -78,7 +76,7 @@ function EditTask({setCurrentPage}) {
         }
 
         fetchVolunteers();
-        fetchTaskDetails()
+        fetchTaskDetails();
     }, [])
 
     async function handleSave(data) {
@@ -92,8 +90,8 @@ function EditTask({setCurrentPage}) {
                     lastName: volunteer.value.lastName,
                     id: volunteer.value.id,
                 }
-            )
-        })
+            );
+        });
         try {
             // Create Firestore reference to task document
             const taskRef = doc(db, "tasks", docId);
@@ -107,7 +105,7 @@ function EditTask({setCurrentPage}) {
                 },
                 assignedVolunteers: assignedVolunteersArray,
             });
-            history.push("/openstaande-taken")
+            history.push("/openstaande-taken");
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -156,23 +154,9 @@ function EditTask({setCurrentPage}) {
                                 defaultValue={tasks.description}
                             />
                         </label>
-
                         <SelectElement
                             name="priority"
-                            options={[
-                                {
-                                    label: "Lage prioriteit",
-                                    value: "laag",
-                                },
-                                {
-                                    label: "Gemiddelde prioriteit",
-                                    value: "middel",
-                                },
-                                {
-                                    label: "Hoge prioriteit",
-                                    value: "hoog",
-                                },
-                            ]}
+                            options={priorityOptions()}
                             controller={control}
                             stylingClass="select"
                             isMulti={false}
@@ -209,14 +193,18 @@ function EditTask({setCurrentPage}) {
                         {errors["description"] && <p className={styles.error}>{errors["description"].message}</p>}
                         {errors["priority"] && <p className={styles.error}>{errors["priority"].message}</p>}
                         {errors["volunteers"] && <p className={styles.error}>{errors["volunteers"].message}</p>}
-                        {error && <span
-                            className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
+                        {error && <span className={styles.error}>Oeps, er ging iets mis. Probeer het opnieuw</span>}
                     </form>
                 }
             </ContentCard>
-            <img onClick={() => {
-                history.goBack()
-            }} className={styles["back-icon"]} src={backIcon} alt="back"/>
+            <img
+                onClick={() => {
+                    history.goBack()
+                }}
+                className={styles["back-icon"]}
+                src={backIcon}
+                alt="back"
+            />
         </InnerOuterContainer>
     );
 }

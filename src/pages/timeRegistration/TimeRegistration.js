@@ -1,4 +1,4 @@
-import styles from './TimeRegistration.module.css'
+import styles from './TimeRegistration.module.css';
 import React, {useContext, useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import InnerOuterContainer from "../../components/innerOuterContainer/innerOuterContainer";
@@ -6,7 +6,7 @@ import getLocation from "../../helpers/getLocation";
 import {AuthContext} from "../../context/AuthContext";
 
 //Firebase imports
-import {collection, doc, getDoc, getDocs, setDoc, updateDoc, where, query, addDoc} from "firebase/firestore";
+import {collection, doc, getDocs, updateDoc, where, query, addDoc} from "firebase/firestore";
 import {db} from "../../Firebase";
 
 function TimeRegistration({setCurrentPage}) {
@@ -23,7 +23,7 @@ function TimeRegistration({setCurrentPage}) {
 
     useEffect(() => {
         // Change header currentPage state on page mounting and close drawer
-        setCurrentPage("Urenregistratie")
+        setCurrentPage("Urenregistratie");
         setError({error: false, message: ""});
         toggleLoading(true);
 
@@ -43,9 +43,9 @@ function TimeRegistration({setCurrentPage}) {
                                 id: sessionArray[0].session.id,
                                 active: sessionArray[0].session.active,
                             }
-                        })
+                        });
                     }
-                })
+                });
             } catch (e) {
                 console.error(e);
                 setError({error: true, message: "Er is iets misgegaan bij het inklokken. Probeer het opnieuw"});
@@ -59,21 +59,22 @@ function TimeRegistration({setCurrentPage}) {
     //Start timer interval on session.loginTime state change
     useEffect(() => {
         const interval = setInterval(() => {
-                if(!session.loginTime) {
-                    clearInterval(interval);
-                } else {
-                    const format = {
-                        minimumIntegerDigits: 2,
-                        useGrouping: false
-                    }
-                    const calculatedTimeInSeconds = (Math.floor(new Date().getTime() / 1000) - (Math.floor(new Date(session.loginTime).getTime() / 1000)));
-                    const hours = Math.floor(calculatedTimeInSeconds / 3600);
-                    const minutes = Math.floor(calculatedTimeInSeconds / 60) % 60;
-                    const seconds = Math.floor(calculatedTimeInSeconds % 60);
-
-                    setTimer(`${hours.toLocaleString("nl-NL", format)}:${minutes.toLocaleString("nl-NL", format)}:${seconds.toLocaleString("nl-NL", format)}`);
+            if (!session.loginTime) {
+                clearInterval(interval);
+            } else {
+                const format = {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false
                 }
+                const calculatedTimeInSeconds = (Math.floor(new Date().getTime() / 1000) - (Math.floor(new Date(session.loginTime).getTime() / 1000)));
+                const hours = Math.floor(calculatedTimeInSeconds / 3600);
+                const minutes = Math.floor(calculatedTimeInSeconds / 60) % 60;
+                const seconds = Math.floor(calculatedTimeInSeconds % 60);
+
+                setTimer(`${hours.toLocaleString("nl-NL", format)}:${minutes.toLocaleString("nl-NL", format)}:${seconds.toLocaleString("nl-NL", format)}`);
+            }
         }, 1000);
+        // Clear interval on unmount
         return function cleanUp() {
             clearInterval(interval);
         }
@@ -103,10 +104,13 @@ function TimeRegistration({setCurrentPage}) {
                     id: user.id,
                     active: true,
                 }
-            })
+            });
         } catch (e) {
             console.error(e);
-            setError({error: true, message: "Er ging iets mis bij het starten van de registratie. Probeer het opnieuw"})
+            setError({
+                error: true,
+                message: "Er ging iets mis bij het starten van de registratie. Probeer het opnieuw"
+            });
         }
         toggleWorkAround(false);
         toggleLoading(false);
@@ -140,7 +144,6 @@ function TimeRegistration({setCurrentPage}) {
                 // Update Firebase session document
                 // Create Firestore reference to session document
                 const sessionRef = doc(db, "sessions", session.docId);
-
                 // Update Firestore session document
                 await updateDoc(sessionRef, {
                     month: new Date().getMonth(),
@@ -150,7 +153,6 @@ function TimeRegistration({setCurrentPage}) {
                         active: false,
                     },
                 });
-
                 // Update totalTime in Firebase user information
                 // Create Firestore reference to task document
                 const userRef = doc(db, "users", user.id);
@@ -171,7 +173,7 @@ function TimeRegistration({setCurrentPage}) {
                         monthlyHours: 0,
                         totalTime: user.totalTime + Math.floor((logoutTime.getTime() - session.loginTime.getTime()) / 1000),
                     },
-                })
+                });
                 toggleWorkAround(false);
             }
             toggleWrongLocationCard(false);
@@ -181,8 +183,7 @@ function TimeRegistration({setCurrentPage}) {
             setError({
                 error: true,
                 message: "Er ging iets mis bij het afsluiten van de registratie. Probeer het opnieuw"
-            })
-
+            });
         }
         toggleLoading(false);
     }
@@ -197,14 +198,20 @@ function TimeRegistration({setCurrentPage}) {
                 {error.error && <span className={styles.error}>{error.message}</span>}
 
                 {session.session.active ?
-                    <button disabled={loading} onClick={() => {
-                        getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration, toggleWrongLocationCard)
-                    }} className={styles.button} type="button">Uitklokken
+                    <button
+                        disabled={loading}
+                        onClick={() => {
+                            getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration, toggleWrongLocationCard)
+                        }}
+                        className={styles.button} type="button">Uitklokken
                     </button>
                     :
-                    <button disabled={loading} onClick={() => {
-                        getLocation(setError, toggleLoading, session, toggleWorkAround, startRegistration, toggleWrongLocationCard)
-                    }} className={styles.button} type="button">Inklokken
+                    <button
+                        disabled={loading}
+                        onClick={() => {
+                            getLocation(setError, toggleLoading, session, toggleWorkAround, startRegistration, toggleWrongLocationCard)
+                        }}
+                        className={styles.button} type="button">Inklokken
                     </button>
                 }
                 {wrongLocationCard &&
@@ -212,12 +219,16 @@ function TimeRegistration({setCurrentPage}) {
                         <p>Uw locatie is niet juist, de huidige registratie kan niet afgesloten worden.</p>
                         <p className={styles.p}>Toch op de juiste locatie? Klik op 'Opnieuw proberen.' Vergeten uit te klokken? Klik dan op 'Uitklokken' en neem contact op met uw manager. De huidige uren worden nog niet bijgeschreven.</p>
                         <div className={styles["button-container"]}>
-                            <button onClick={() => {
-                                getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration, toggleWrongLocationCard)
-                            }} className={styles["button-wrong-location"]}>Opnieuw proberen</button>
-                            <button onClick={() => {
-                                stopRegistration(true)
-                            }} className={styles["button-wrong-location"]}>Uitklokken</button>
+                            <button
+                                onClick={() => {
+                                    getLocation(setError, toggleLoading, session, toggleWorkAround, stopRegistration, toggleWrongLocationCard)
+                                }}
+                                className={styles["button-wrong-location"]}>Opnieuw proberen</button>
+                            <button
+                                onClick={() => {
+                                    stopRegistration(true)
+                                }}
+                                className={styles["button-wrong-location"]}>Uitklokken</button>
                         </div>
                     </span>
                 }
@@ -226,10 +237,20 @@ function TimeRegistration({setCurrentPage}) {
                 <span className={styles["workaround"]}>
                         <p>Content voor de beoordelaar</p>
                         <p className={styles["workaround-text"]}>Met onderstaande knop kunt u de locatieverificatie omzeilen voor beoordelingsdoeleinden.</p>
-                    {session.session.active ? <button onClick={() => {
-                            stopRegistration(false)
-                        }}>Uitklokken</button> :
-                        <button onClick={startRegistration}>Inklokken</button>}
+                    {session.session.active ?
+                        <button
+                            onClick={() => {
+                                stopRegistration(false)
+                            }}
+                        >
+                            Uitklokken
+                        </button>
+                        :
+                        <button
+                            onClick={startRegistration}
+                        >
+                            Inklokken
+                        </button>}
                     </span>
             }
         </InnerOuterContainer>

@@ -1,7 +1,7 @@
 function sortOnDate(tasks) {
     tasks.sort((a, b) => {
-        let da = new Date(a.createdOn);
-        let db = new Date(b.createdOn);
+        const da = new Date(a.createdOn);
+        const db = new Date(b.createdOn);
         return da - db;
     });
 }

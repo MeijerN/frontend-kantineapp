@@ -1,12 +1,11 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styles from './Login.module.css';
-import SubmitButton from '../../components/submitButton/SubmitButton'
-import {Link, useHistory} from 'react-router-dom';
-import {AuthContext} from "../../context/AuthContext";
+import SubmitButton from '../../components/submitButton/SubmitButton';
+import {Link} from 'react-router-dom';
 import {useForm} from "react-hook-form";
 // Firebase imports
 import {authFirebase} from "../../Firebase";
-import {signInWithEmailAndPassword} from "firebase/auth"
+import {signInWithEmailAndPassword} from "firebase/auth";
 
 function LoginPage({toggleNavdrawer}) {
 
@@ -14,7 +13,7 @@ function LoginPage({toggleNavdrawer}) {
     const [error, toggleError] = React.useState(false);
     const [submitButtonDisable, toggleSubmitButtonDisable] = React.useState(false);
 
-    const {register, handleSubmit, reset, formState: {errors}, watch} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
     // Close navbar after user logout
     useEffect(() => {
@@ -55,18 +54,6 @@ function LoginPage({toggleNavdrawer}) {
                             required: "Vul uw wachtwoord in",
                         })}
                     />
-                    {/*<InputField*/}
-                    {/*    type="text"*/}
-                    {/*    placeholder="Email"*/}
-                    {/*    stylingClass="login-registration"*/}
-                    {/*    {...register("email")}*/}
-                    {/*/>*/}
-                    {/*<InputField*/}
-                    {/*    type="password"*/}
-                    {/*    placeholder="Wachtwoord"*/}
-                    {/*    stylingClass="login-registration"*/}
-                    {/*    {...register("password")}*/}
-                    {/*/>*/}
                     <SubmitButton
                         text="Inloggen"
                         disabled={submitButtonDisable}

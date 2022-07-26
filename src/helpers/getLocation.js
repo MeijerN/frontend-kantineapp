@@ -2,7 +2,7 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
     const sessionInformation = session;
     toggleLoading(true);
     toggleWrongLocationCard(false);
-    setError({error: false, message: ""})
+    setError({error: false, message: ""});
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
@@ -13,19 +13,15 @@ function getLocation(setError, toggleLoading, session, toggleWorkaround, registr
     function showPosition(position) {
         if (position.coords.latitude > 52.518649 && position.coords.latitude < 52.519175 && position.coords.longitude > 6.267233 && position.coords.longitude < 6.268110) {
             registrationFunction(false);
-
         } else {
-            if(sessionInformation.session.active) {
+            if (sessionInformation.session.active) {
                 toggleWrongLocationCard(true);
                 toggleWorkaround(true);
             } else {
                 setError({error: true, message: "Je locatie is niet juist, registratie kan niet gestart worden"});
                 toggleWorkaround(true);
-                // toggleLoading(false);
             }
-
         }
-        // toggleLoading(false);
     }
 
     function showError(error) {
