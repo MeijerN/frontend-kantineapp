@@ -158,8 +158,9 @@ function Profile({setCurrentPage}) {
                                             type="submit">Uploaden
                                         </button>
                                         <button
-                                            onClick={() => {
+                                            onClick={(e) => {
                                                 toggleUploadCard(false);
+                                                e.preventDefault();
                                             }}
                                             className={styles.button}>Annuleren
                                         </button>

@@ -112,7 +112,6 @@ function Statistics({setCurrentPage}) {
                 console.error(e);
                 toggleError(true);
             }
-            toggleLoading(false);
         }
 
         fetchTasks();

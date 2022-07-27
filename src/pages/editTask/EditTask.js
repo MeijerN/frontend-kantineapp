@@ -144,7 +144,7 @@ function EditTask({setCurrentPage}) {
                                 {...register("description", {
                                     required: {
                                         value: true,
-                                        message: "Vul de titel in"
+                                        message: "Vul de beschrijving in"
                                     },
                                     maxLength: {
                                         value: 1000,
@@ -182,7 +182,6 @@ function EditTask({setCurrentPage}) {
                                 }
                             })}
                         />
-
                         <div className={styles["icon-container"]}>
                             <Icon
                                 text="Opslaan"

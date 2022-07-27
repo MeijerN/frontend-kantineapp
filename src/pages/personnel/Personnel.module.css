@@ -76,6 +76,7 @@
 
 .error {
     color: red;
+    align-self: center;
 }
 
 .loading {
