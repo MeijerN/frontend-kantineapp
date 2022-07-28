@@ -96,7 +96,7 @@ In order to install the required packets you have to install npm.
 2. Copy and paste the right start script command (line 19) in `package.json` for enabeling HTTPS protocol. This is
    required in order to use the Geolocation API. Certificate import is not nessesary. You will receive a browser security warning which you can ignore.<br><br>
     - For macOS users: Open `package.json` and replace `XXX`
-      for `xport HTTPS=true&&SSL_CRT_FILE=cert.pem&&SSL_KEY_FILE=key.pem react-scripts start`.<br><br>
+      for `export HTTPS=true&&SSL_CRT_FILE=cert.pem&&SSL_KEY_FILE=key.pem react-scripts start`.<br><br>
     - For Windows users: Open `package.json` and replace `XXX`
       for `set HTTPS=true&&set SSL_CRT_FILE=cert.pem&&set SSL_KEY_FILE=key.pem&&react-scripts start`.<br><br>
 

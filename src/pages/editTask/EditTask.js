@@ -1,5 +1,5 @@
 import styles from './EditTask.module.css';
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import ContentCard from "../../components/contentCard/ContentCard";
 import {useHistory, useParams} from "react-router-dom";
 import saveIcon from '../../assets/save_task_icon.svg';
