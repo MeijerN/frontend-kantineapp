@@ -1,11 +1,6 @@
 <div id="top"></div>
-
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-  </a>
-
 <h1 align="center">KantineApp</h1>
 
   <p align="center">
@@ -15,8 +10,6 @@
     <br />
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -39,8 +32,6 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 
 ### About The Project
@@ -57,7 +48,7 @@ the right location to start the registration.
 To achieve this the Google Firebase backend was used. The various functionalities that Google Firebase has to offer have
 been used, such as Firebase Authentication, Firebase Firestore and Firebase Storage. This application has been developed
 for Dutch audience and is therefore written in Dutch. After installation the user can register as a volunteer. Demo
-accounts for both volunteers and managers are provided in the `credentials_&_accounts.txt` file included in the `.zip` file.
+accounts for both volunteers and managers are provided in the `credentials_&_accounts_&_links.txt` file included in the `.zip` file.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -69,8 +60,6 @@ accounts for both volunteers and managers are provided in the `credentials_&_acc
 * [Google Fonts](https://fonts.google.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 
@@ -100,7 +89,7 @@ In order to install the required packets you have to install npm.
     - For Windows users: Open `package.json` and replace `XXX`
       for `set HTTPS=true&&set SSL_CRT_FILE=cert.pem&&set SSL_KEY_FILE=key.pem&&react-scripts start`.<br><br>
 
-3. Locate the Firebase credentials. These can be found in `credentials_&_accounts.txt` which is included in the `.zip`
+3. Locate the Firebase credentials. These can be found in `credentials_&_accounts_&_links.txt` which is included in the `.zip`
    file provided by the developer.<br><br>
 
 4. Create a `.env` file in the root directory with the following text:
@@ -120,8 +109,6 @@ In order to install the required packets you have to install npm.
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 
@@ -148,4 +135,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
