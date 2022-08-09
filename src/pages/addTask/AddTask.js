@@ -67,7 +67,7 @@ function AddTask({setCurrentPage}) {
             });
             // Create new firebase document with task information
             await addDoc(collection(db, "tasks"), {
-                title: data.title,
+                title: data.title.trim(),
                 description: data.description,
                 status: "In afwachting",
                 priority: data.priority,
@@ -99,6 +99,10 @@ function AddTask({setCurrentPage}) {
                                 maxLength: {
                                     value: 40,
                                     message: "Titel mag maximaal 40 karakters bevatten",
+                                },
+                                pattern: {
+                                    value: /^[^#%/?]+$/,
+                                    message: "De titel mag geen #, % of / karakters bevatten"
                                 },
                             })}
                         />

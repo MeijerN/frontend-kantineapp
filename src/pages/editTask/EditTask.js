@@ -97,7 +97,7 @@ function EditTask({setCurrentPage}) {
             const taskRef = doc(db, "tasks", docId);
             // Update Firestore task document
             await updateDoc(taskRef, {
-                title: data.title,
+                title: data.title.trim(),
                 description: data.description,
                 priority: {
                     label: data.priority.label,
@@ -131,6 +131,10 @@ function EditTask({setCurrentPage}) {
                                     maxLength: {
                                         value: 40,
                                         message: "Titel mag maximaal 40 karakters bevatten",
+                                    },
+                                    pattern: {
+                                        value: /^[^#%/?]+$/,
+                                        message: "De titel mag geen #, % of / karakters bevatten"
                                     },
                                 })}
                                 defaultValue={tasks.title}

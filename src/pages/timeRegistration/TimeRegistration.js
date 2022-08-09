@@ -119,7 +119,7 @@ function TimeRegistration({setCurrentPage}) {
     async function stopRegistration(wrongLocation) {
         try {
             // Create timestamp for logout
-            const logoutTime = new Date;
+            const logoutTime = new Date();
             if (wrongLocation) {
                 // Update Firebase session document
                 // Create Firestore reference to session document
